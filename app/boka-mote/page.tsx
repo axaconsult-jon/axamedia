@@ -173,7 +173,7 @@ export default function BokaMote() {
                     Din förfrågan är skickad.
                   </h2>
                   <p className="mt-4 text-[#0f172a]/80">
-                    Jag återkommer så snart jag kan.
+                    Vi återkommer så snart vi kan. 
                   </p>
 
                   <button
@@ -197,9 +197,9 @@ export default function BokaMote() {
             <Image
               src="/axa-logo.svg"
               alt="AXA Consult"
-              width={130}
-              height={32}
-              className="opacity-90"
+              width={144}
+              height={38}
+              priority
             />
             <p className="mt-6 text-[14px] leading-[1.7] text-white/50">
               Strategi, webb och marknadsföring
@@ -229,8 +229,8 @@ export default function BokaMote() {
             <p className="text-[14px] text-white/50">Kontakt</p>
 
             <div className="mt-3 space-y-2 text-[15px] text-white/80">
-              <p>jon@axaconsult.se</p>
-              <p>+46 760 35 35 60</p>
+              <p>info@axaconsult.se</p>
+              <p>+46(0) 760 35 35 60</p>
             </div>
 
             <a
@@ -243,7 +243,7 @@ export default function BokaMote() {
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-6 text-center text-[13px] text-white/40">
-          © {new Date().getFullYear()} AXA Consult
+          © 2026 AXA Consult. Alla rättigheter förbehållna.
         </div>
       </footer>
     </main>
