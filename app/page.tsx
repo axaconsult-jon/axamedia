@@ -358,41 +358,34 @@ export default function HomePage() {
                       : "translate-y-6 opacity-0"
                   }`}
                 >
-                  <div className="rounded-[24px] border border-white/12 bg-white/[0.03] p-5 shadow-[0_36px_90px_rgba(0,0,0,0.30)] backdrop-blur-xl md:p-7">
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                      <div className="rounded-[20px] border border-white/8 bg-white/[0.03] p-5 transition duration-500 hover:bg-white/[0.06]">
-                        <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
-                          För vem
-                        </p>
-                        <p className="mt-3 text-[21px] leading-[1.32] text-white/95">
-                          Företag som vill få bättre struktur och framdrift
-                        </p>
-                      </div>
+                  <div className="relative z-10">
+  <div className="relative overflow-hidden rounded-[24px] border border-white/12 shadow-[0_36px_90px_rgba(0,0,0,0.30)]">
 
-                      <div className="rounded-[20px] border border-white/8 bg-white/[0.03] p-5 transition duration-500 hover:bg-white/[0.06]">
-                        <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
-                          Fokus
-                        </p>
-                        <p className="mt-3 text-[21px] leading-[1.32] text-white/95">
-                          Tydligare budskap, rätt prioriteringar och bättre
-                          effekt
-                        </p>
-                      </div>
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="h-full w-full object-cover"
+    >
+      <source src="/video/webb.mp4" type="video/mp4" />
+    </video>
 
-                      <div className="rounded-[20px] border border-white/8 bg-white/[0.03] p-5 transition duration-500 hover:bg-white/[0.06] sm:col-span-2 lg:col-span-1 xl:col-span-2">
-                        <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
-                          Arbetssätt
-                        </p>
-                        <p className="mt-3 text-[18px] leading-[1.75] text-white/84">
-                          Strategiskt, affärsnära och praktiskt — för företag som
-                          saknar en intern marknadsansvarig men vill att arbetet
-                          går framåt.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    {/* Overlay */}
+    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+    {/* Text ovanpå (valfri men starkt rekommenderad) */}
+    <div className="absolute bottom-6 left-6 right-6 text-white">
+      <p className="text-[12px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
+        Så arbetar vi
+      </p>
+      <p className="mt-2 text-[18px] leading-[1.6]">
+        Struktur, tydlighet och rätt prioriteringar i praktiken.
+      </p>
+    </div>
+
+  </div>
+</div>
 
               <div id="utmaningar" className="mt-24 md:mt-32">
                 <div className="grid gap-10 rounded-[24px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
