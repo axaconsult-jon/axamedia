@@ -14,11 +14,10 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    
     <html lang="sv" suppressHydrationWarning>
       <head>
-       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -30,9 +29,10 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body className={`${inter.className} bg-[#13202c] text-white`}>
+      <body className={`${inter.className} bg-[#13202c] text-white antialiased`}>
         <noscript>
           <iframe
+            title="Google Tag Manager"
             src="https://www.googletagmanager.com/ns.html?id=GTM-WWK4BHP"
             height="0"
             width="0"
