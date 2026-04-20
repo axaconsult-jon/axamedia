@@ -173,10 +173,9 @@ export default function HomePage() {
         <div
           id="mobile-menu"
           aria-hidden={!menuOpen}
-            className={`fixed inset-0 z-[200] md:hidden ${
+          className={`fixed inset-0 z-[200] md:hidden ${
             menuOpen ? "pointer-events-auto" : "pointer-events-none"
           }`}
-          
         >
           <button
             type="button"
@@ -276,10 +275,11 @@ export default function HomePage() {
         </div>
 
         <Header
-  variant="home"
-  menuOpen={menuOpen}
-  setMenuOpen={setMenuOpen}
-/>
+          variant="home"
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+
         <section className="relative -mt-[96px] px-6 pb-20 pt-[200px] md:px-10 md:pb-28 lg:px-16 lg:pt-[128px]">
           <div className="absolute inset-0">
             <Image
@@ -358,34 +358,31 @@ export default function HomePage() {
                       : "translate-y-6 opacity-0"
                   }`}
                 >
-                  <div className="relative z-10">
-  <div className="relative overflow-hidden rounded-[24px] border border-white/12 shadow-[0_36px_90px_rgba(0,0,0,0.30)]">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-white/12 shadow-[0_36px_90px_rgba(0,0,0,0.30)]">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      controls
+                      className="absolute inset-0 h-full w-full object-cover"
+                    >
+                      <source src="/video/webb.mp4" type="video/mp4" />
+                    </video>
 
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="h-full w-full object-cover"
-    >
-      <source src="/video/webb.mp4" type="video/mp4" />
-    </video>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
-    {/* Overlay */}
-    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-
-    {/* Text ovanpå (valfri men starkt rekommenderad) */}
-    <div className="absolute bottom-6 left-6 right-6 text-white">
-      <p className="text-[12px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
-        Så arbetar vi
-      </p>
-      <p className="mt-2 text-[18px] leading-[1.6]">
-        Struktur, tydlighet och rätt prioriteringar i praktiken.
-      </p>
-    </div>
-
-  </div>
-</div>
+                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                      <p className="text-[12px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
+                        Så arbetar vi
+                      </p>
+                      <p className="mt-2 text-[18px] leading-[1.6]">
+                        Struktur, tydlighet och rätt prioriteringar i praktiken.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div id="utmaningar" className="mt-24 md:mt-32">
                 <div className="grid gap-10 rounded-[24px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -569,9 +566,7 @@ export default function HomePage() {
                   <p>– Har 5–50 anställda</p>
                   <p>– Saknar en intern marknadsansvarig</p>
                   <p>– Vill få bättre struktur och kontroll</p>
-                  <p>
-                    – Vill att marknadsföringen faktiskt ska bidra till affären
-                  </p>
+                  <p>– Vill att marknadsföringen faktiskt ska bidra till affären</p>
                 </div>
               </div>
             </div>
