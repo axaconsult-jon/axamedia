@@ -53,7 +53,7 @@ export default function HomePage() {
     },
     {
       title: "Genomförande",
-      text: "Jag hjälper till att få saker gjorda i praktiken, inte bara tänka strategiskt på håll.",
+      text: "Vi hjälper till att få saker gjorda i praktiken, inte bara tänka strategiskt på håll.",
     },
     {
       title: "Löpande förbättring",
