@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 type HeaderProps = {
   variant?: "home" | "boka";
@@ -50,6 +51,8 @@ export default function Header({
           </a>
           <a href={variant === "home" ? "#kontakt" : "/#kontakt"} className={linkClasses}>
             Kontakt
+          </a>
+          <a href={variant === "home" ? "/page3" : "/page3"} className={linkClasses}>
           </a>
         </div>
 
