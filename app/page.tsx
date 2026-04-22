@@ -36,9 +36,9 @@ export default function HomePage() {
   }, [menuOpen]);
 
   const challenges = [
-    "Ni gör en del marknadsföring, men det är oklart vad som faktiskt fungerar.",
-    "Det finns idéer och ambition, men inget riktigt driver arbetet framåt.",
-    "Ingen äger helheten fullt ut.",
+    "Ni gör en del marknadsföring, men det är oklart vad som ger effekt.",
+    "Det finns ambition och idéer, men inget driver arbetet framåt.",
+    "Ingen håller ihop helheten.",
     "Ni vet att ni borde göra mer, men inte vad som ska prioriteras först.",
   ];
 
@@ -76,40 +76,44 @@ export default function HomePage() {
     "Innehåll & copy",
   ];
 
-  const outcomes = [
-    {
-      title: "Fler förfrågningar",
-      text: "Tydligare erbjudande och bättre struktur gör det enklare för rätt kunder att höra av sig.",
-    },
-    {
-      title: "Bättre konvertering",
-      text: "Små förändringar i budskap, struktur och användarresa kan ge stor effekt.",
-    },
-    {
-      title: "Mindre slöseri",
-      text: "Ni slipper lägga tid och pengar på fel saker och får bättre kontroll på prioriteringarna.",
-    },
-    {
-      title: "Mer kontroll",
-      text: "Ni vet bättre vad som fungerar, varför det fungerar och vad nästa steg bör vara.",
-    },
-  ];
-
   const reasons = [
     {
-      title: "Ni får ett nära marknadsstöd",
+      title: "Ni får en extern marknadsavdelning",
       text:
-        "Ett samarbete för företag som behöver marknadsföringskompetens, men inte vill bygga upp allt internt från början.",
+        "Ett nära samarbete för företag som behöver marknadsföringskompetens, men inte vill eller kan bygga upp allt internt.",
     },
     {
-      title: "Tydligt, personligt och affärsnära",
+      title: "Tydligt, personligt och flexibelt",
       text:
-        "Vi arbetar nära verksamheten, förstår nuläget och hjälper er att fatta bättre beslut i vardagen.",
+        "Vi arbetar nära få kunder åt gången. Det ger bättre förståelse, snabbare beslut och en lösning som passar er.",
     },
     {
       title: "Fokus på effekt, inte bara aktivitet",
       text:
-        "Målet är inte att göra mer för sakens skull, utan att prioritera rätt och få marknadsföringen att bidra till affären.",
+        "Vi hjälper er att prioritera rätt insatser, följa upp resultat och förstå vad marknadsföringen bidrar med.",
+    },
+  ];
+
+  const outcomes = [
+    {
+      title: "Fler rätt förfrågningar",
+      text:
+        "Tydligare erbjudande och bättre struktur gör det enklare för rätt kunder att höra av sig.",
+    },
+    {
+      title: "Bättre konvertering",
+      text:
+        "Små förändringar i budskap, struktur och användarresa kan ge stor effekt.",
+    },
+    {
+      title: "Mindre slöseri",
+      text:
+        "Ni slipper lägga tid och pengar på fel saker och får bättre kontroll på prioriteringarna.",
+    },
+    {
+      title: "Mer kontroll",
+      text:
+        "Ni får bättre förståelse för vad som fungerar, varför det fungerar och vad nästa steg bör vara.",
     },
   ];
 
@@ -117,22 +121,26 @@ export default function HomePage() {
     {
       number: "01",
       title: "Nuläge & behov",
-      text: "Vi tittar på var ni står idag, vad som redan görs och vad som skaver i marknadsföringen.",
+      text:
+        "Vi tittar på var ni står idag, vad som redan görs och vad som bromsar marknadsföringen.",
     },
     {
       number: "02",
-      title: "Riktning & prioritering",
-      text: "Tillsammans sätter vi fokus på det som är mest relevant att börja med utifrån mål, resurser och affär.",
+      title: "Strategi & prioritering",
+      text:
+        "Tillsammans sätter vi riktning, väljer fokus och landar i en plan som är rimlig att genomföra.",
     },
     {
       number: "03",
       title: "Genomförande",
-      text: "Vi driver arbetet framåt med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
+      text:
+        "Vi driver arbetet framåt med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
     },
     {
       number: "04",
       title: "Uppföljning & förbättring",
-      text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
+      text:
+        "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
     },
   ];
 
@@ -146,7 +154,7 @@ export default function HomePage() {
     {
       question: "Passar det här företag utan egen marknadsansvarig?",
       answer:
-        "Ja, det är ofta där upplägget gör störst nytta. Ni får stöd i både strategi, prioritering och genomförande utan att behöva bygga en full intern funktion direkt.",
+        "Ja, ofta är det där upplägget gör störst nytta. Ni får stöd i både strategi, prioritering och genomförande utan att behöva bygga en full intern funktion direkt.",
     },
     {
       question: "Vad kan ni hjälpa till med?",
@@ -330,7 +338,8 @@ export default function HomePage() {
               sizes="100vw"
               className="object-cover opacity-20"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(17,25,35,0.88)_0%,rgba(26,36,48,0.91)_46%,rgba(34,52,71,0.90)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(29,45,67,0.92)_0%,rgba(43,68,102,0.92)_45%,rgba(95,145,205,0.70)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(122,166,217,0.22),transparent_34%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.10),transparent_24%)]" />
           </div>
 
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
@@ -347,17 +356,13 @@ export default function HomePage() {
                     }`}
                   >
                     <p className="mb-6 text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/85">
-                      Externt marknadsstöd för företag
+                      Marknadskonsult för företag som vill ha bättre riktning och tydligare effekt
                     </p>
 
                     <h1 className="max-w-4xl text-[44px] font-semibold leading-[0.92] tracking-[-0.065em] text-white sm:text-[60px] md:text-[78px] lg:text-[92px]">
                       Er externa
                       <br />
                       marknadsavdelning
-                      <br />
-                      för tydligare
-                      <br />
-                      effekt.
                     </h1>
                   </div>
 
@@ -368,9 +373,9 @@ export default function HomePage() {
                         : "translate-y-4 opacity-0"
                     }`}
                   >
-                    <p className="mt-8 max-w-2xl text-[18px] leading-[1.8] text-white/80 md:text-[20px]">
+                    <p className="mt-8 max-w-2xl text-[18px] leading-[1.8] text-white/82 md:text-[20px]">
                       För företag som behöver mer struktur, bättre prioriteringar
-                      och marknadsföring som faktiskt driver verksamheten framåt.
+                      och marknadsföring som driver verksamheten framåt.
                     </p>
 
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -398,7 +403,9 @@ export default function HomePage() {
                           key={item}
                           className="rounded-[18px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_10px_26px_rgba(0,0,0,0.10)]"
                         >
-                          <p className="text-sm font-medium text-white/88">{item}</p>
+                          <p className="text-sm font-medium text-white/88">
+                            {item}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -413,7 +420,7 @@ export default function HomePage() {
                   }`}
                 >
                   <div className="rounded-[24px] border border-white/12 bg-white/[0.04] p-6 shadow-[0_36px_90px_rgba(0,0,0,0.30)] backdrop-blur-xl">
-                    <div className="rounded-[20px] bg-[#111923] p-6 text-white">
+                    <div className="rounded-[20px] bg-[#142031] p-6 text-white">
                       <p className="text-sm font-medium text-[#F5B74E]/85">
                         När det ofta blir rörigt
                       </p>
@@ -440,17 +447,17 @@ export default function HomePage() {
               </div>
 
               <div id="utmaningar" className="mt-24 md:mt-32">
-                <div className="grid gap-10 rounded-[24px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+                <div className="grid gap-10 rounded-[24px] border border-[#e8dec9] bg-[linear-gradient(180deg,#fffdf8_0%,#f7f3eb_100%)] p-6 text-[#1A2430] shadow-[0_18px_50px_rgba(0,0,0,0.08)] md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
                   <div>
-                    <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
+                    <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#8a5a14]">
                       Känner du igen det här?
                     </p>
-                    <h2 className="mt-3 text-[34px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[48px]">
-                      Många företag gör marknadsföring
+                    <h2 className="mt-3 text-[34px] font-semibold leading-[0.98] tracking-[-0.05em] md:text-[48px]">
+                      Marknadsföring blir ofta något
                       <br />
-                      utan att få riktig effekt.
+                      som bara rullar på
                     </h2>
-                    <p className="mt-5 max-w-xl text-[17px] leading-[1.85] text-white/80">
+                    <p className="mt-5 max-w-xl text-[17px] leading-[1.85] text-[#1A2430]/78">
                       När mycket görs men helheten saknas blir det lätt otydligt
                       vad som fungerar, vad som ska prioriteras och vad nästa steg
                       borde vara.
@@ -461,7 +468,7 @@ export default function HomePage() {
                     {challenges.map((item) => (
                       <div
                         key={item}
-                        className="rounded-[18px] border border-white/8 bg-black/10 px-5 py-4 text-[16px] leading-[1.75] text-white/90"
+                        className="rounded-[18px] border border-black/8 bg-white/80 px-5 py-4 text-[16px] leading-[1.75] text-[#1A2430]/88 shadow-[0_8px_24px_rgba(0,0,0,0.03)]"
                       >
                         {item}
                       </div>
@@ -476,13 +483,13 @@ export default function HomePage() {
                     Så hjälper vi företag
                   </p>
                   <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
-                    Få tydligare riktning,
+                    Få struktur, tydlighet och
                     <br />
-                    bättre struktur och mer effekt
+                    marknadsföring som ger effekt
                   </h2>
                   <p className="mt-5 max-w-2xl text-[17px] leading-[1.9] text-white/80">
                     Istället för att göra lite av allt hjälper vi er att prioritera
-                    rätt och fokusera på det som faktiskt driver affären framåt.
+                    rätt och fokusera på det som driver affären framåt.
                   </p>
                 </div>
 
@@ -502,12 +509,12 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <div className="mt-16 rounded-[24px] border border-white/10 bg-black/10 p-6 md:p-8 backdrop-blur-sm">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
+                <div className="mt-16 rounded-[24px] border border-black/8 bg-[linear-gradient(180deg,#fffdf8_0%,#f7f3eb_100%)] p-6 text-[#1A2430] shadow-[0_18px_50px_rgba(0,0,0,0.08)] md:p-8">
+                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#8a5a14]">
                     Det här kan vi hjälpa er med i praktiken
                   </p>
 
-                  <p className="mt-4 max-w-2xl text-[15px] leading-[1.8] text-white/70">
+                  <p className="mt-4 max-w-2xl text-[15px] leading-[1.8] text-[#1A2430]/72">
                     Vanliga områden där vi stöttar företag beroende på mål, resurser och behov.
                   </p>
 
@@ -515,7 +522,7 @@ export default function HomePage() {
                     {practicalServices.map((service) => (
                       <span
                         key={service}
-                        className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[14px] text-white/85"
+                        className="rounded-full border border-black/8 bg-white px-4 py-2 text-[14px] text-[#1A2430]/85"
                       >
                         {service}
                       </span>
@@ -525,7 +532,7 @@ export default function HomePage() {
                   <div className="mt-8">
                     <a
                       href="/boka-mote"
-                      className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-white to-[#f4efe6] px-6 py-3 text-[15px] font-medium text-[#10161f] transition hover:scale-[0.97] ${focusRing}`}
+                      className={`inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#1a2430_0%,#2b3f59_100%)] px-6 py-3 text-[15px] font-medium text-white transition hover:scale-[0.97] ${focusRing}`}
                     >
                       Boka ett första samtal
                     </a>
@@ -541,7 +548,7 @@ export default function HomePage() {
                   <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
                     För företag som vill ha nära stöd,
                     <br />
-                    tydlig riktning och hållbar framdrift
+                    tydlig riktning och ett hållbart marknadsarbete
                   </h2>
                 </div>
 
@@ -563,17 +570,17 @@ export default function HomePage() {
               </div>
 
               <div id="resultat" className="mt-28 md:mt-36">
-                <section className="rounded-[24px] border border-white/10 bg-black/10 px-6 py-8 backdrop-blur-sm md:px-8 md:py-10 lg:px-10 lg:py-12">
+                <section className="rounded-[24px] border border-[#e8dec9] bg-[linear-gradient(180deg,#fffdf8_0%,#f7f3eb_100%)] px-6 py-8 text-[#1A2430] shadow-[0_18px_50px_rgba(0,0,0,0.08)] md:px-8 md:py-10 lg:px-10 lg:py-12">
                   <div className="mb-12 max-w-3xl">
-                    <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
+                    <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#8a5a14]">
                       Resultat
                     </p>
-                    <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
-                      Det här är vad det leder till.
+                    <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] md:text-[54px]">
+                      Det här är vad det leder till
                     </h2>
-                    <p className="mt-5 max-w-2xl text-[17px] leading-[1.9] text-white/80">
+                    <p className="mt-5 max-w-2xl text-[17px] leading-[1.9] text-[#1A2430]/78">
                       När marknadsföringen får tydligare riktning och bättre
-                      struktur blir det lättare att skapa verklig effekt över tid.
+                      struktur blir det lättare att skapa effekt över tid.
                     </p>
                   </div>
 
@@ -581,12 +588,12 @@ export default function HomePage() {
                     {outcomes.map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-[22px] border border-white/8 bg-white/[0.03] p-5 transition duration-500 hover:bg-white/[0.06]"
+                        className="rounded-[22px] border border-black/8 bg-white/90 p-5 transition duration-500 hover:bg-white"
                       >
-                        <h3 className="text-[22px] font-medium tracking-[-0.03em] text-white/95">
+                        <h3 className="text-[22px] font-medium tracking-[-0.03em] text-[#1A2430]">
                           {item.title}
                         </h3>
-                        <p className="mt-3 text-[15px] leading-[1.9] text-white/82">
+                        <p className="mt-3 text-[15px] leading-[1.9] text-[#1A2430]/78">
                           {item.text}
                         </p>
                       </div>
@@ -646,40 +653,35 @@ export default function HomePage() {
                 Om AXA Consult
               </p>
               <h2 className="mt-3 max-w-xl text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] md:text-[54px]">
-                För företag som vill få
+                Ett nära samarbete för företag
                 <br />
-                sin marknadsföring att fungera.
+                som vill framåt
               </h2>
 
               <div className="mt-8 space-y-6 text-[18px] leading-[1.9] text-[#1A2430]/86">
                 <p>
-                  AXA Consult passar företag som behöver någon som hjälper dem
-                  att tänka rätt, prioritera klokt och få marknadsföringen att
-                  hänga ihop.
+                  AXA Consult hjälper företag som vill få bättre riktning,
+                  tydligare prioriteringar och ett mer hållbart marknadsarbete.
                 </p>
                 <p>
-                  I många fall görs det redan en del — men utan tydlig riktning,
-                  struktur eller någon som håller ihop helheten.
+                  Det kan handla om att skapa struktur, hålla ihop helheten eller
+                  se till att rätt insatser blir genomförda i rätt ordning.
                 </p>
                 <p>
-                  Då handlar det inte om att göra mer. Det handlar om att göra
-                  rätt saker.
-                </p>
-                <p>
-                  Målet är att skapa tydlighet, lugn och framdrift i
-                  marknadsföringen.
+                  Målet är att göra marknadsföringen lättare att förstå, lättare
+                  att följa upp och mer värdefull för verksamheten.
                 </p>
               </div>
 
               <div className="mt-10 rounded-[22px] border border-black/8 bg-white/70 p-6 shadow-[0_10px_26px_rgba(0,0,0,0.04)]">
                 <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-[#8a5a14]">
-                  Passar oftast företag som
+                  Passar ofta företag som
                 </p>
                 <div className="mt-4 grid gap-3 text-[16px] leading-[1.75] text-[#1A2430]/86">
-                  <p>– Har 5–50 anställda</p>
-                  <p>– Saknar en intern marknadsansvarig</p>
-                  <p>– Vill få bättre struktur och kontroll</p>
-                  <p>– Vill att marknadsföringen faktiskt ska bidra till affären</p>
+                  <p>– Behöver bättre struktur i marknadsarbetet</p>
+                  <p>– Vill få bättre kontroll på vad som görs</p>
+                  <p>– Behöver hjälp att prioritera rätt</p>
+                  <p>– Söker en närmare partner än en traditionell byrå</p>
                 </div>
               </div>
             </div>
@@ -698,20 +700,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-[#f4f1eb] px-6 pb-8 pt-0 text-[#1A2430] md:px-10 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <div className="rounded-[24px] border border-black/8 bg-white/90 px-6 py-7 shadow-[0_8px_24px_rgba(0,0,0,0.035)] md:px-8">
-              <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-[#8a5a14]">
-                Ett vanligt resultat
-              </p>
-              <blockquote className="mt-4 text-[24px] font-medium leading-[1.4] tracking-[-0.03em] text-[#1A2430] md:text-[30px]">
-                “Vi fick äntligen bättre struktur i vår marknadsföring och
-                började se vad som faktiskt gav resultat.”
-              </blockquote>
-            </div>
-          </div>
-        </section>
-
         <section
           id="faq"
           className="bg-[#f4f1eb] px-6 pb-24 pt-10 text-[#1A2430] md:px-10 lg:px-16 lg:pb-28"
@@ -724,7 +712,7 @@ export default function HomePage() {
               <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] md:text-[54px]">
                 Vanliga frågor om att anlita
                 <br />
-                en marknadskonsult.
+                en marknadskonsult
               </h2>
             </div>
 
@@ -767,7 +755,7 @@ export default function HomePage() {
               sizes="100vw"
               className="object-cover opacity-[0.10]"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(19,32,44,0.90)_0%,rgba(28,44,60,0.86)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(19,32,44,0.90)_0%,rgba(43,68,102,0.88)_50%,rgba(95,145,205,0.60)_100%)]" />
           </div>
 
           <div className="relative mx-auto max-w-6xl rounded-[24px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.04] px-8 py-10 text-center shadow-[0_30px_80px_rgba(0,0,0,0.14)] backdrop-blur-sm md:px-12 md:py-16">
