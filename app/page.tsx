@@ -42,23 +42,38 @@ export default function HomePage() {
     "Ni vet att ni borde göra mer, men inte vad som ska prioriteras först.",
   ];
 
-  const services = [
+  const offer = [
     {
-      title: "Tydlig riktning",
-      text: "Ni får en konkret plan för vad som ska göras, vad som kan vänta och vad som faktiskt kommer göra skillnad.",
+      title: "Strategi & prioritering",
+      text:
+        "För företag som behöver tydlighet i vad som ska göras, vad som kan vänta och hur marknadsföringen bäst ska stötta affären.",
     },
     {
-      title: "Bättre prioriteringar",
-      text: "Fokus på det som driver affären framåt först — inte det som bara känns bra att ha gjort.",
+      title: "Synlighet & efterfrågan",
+      text:
+        "För er som vill bli lättare att hitta, nå rätt målgrupp och skapa fler relevanta förfrågningar.",
     },
     {
-      title: "Genomförande",
-      text: "Vi hjälper till att få saker gjorda i praktiken, inte bara tänka strategiskt på håll.",
+      title: "Webb & konvertering",
+      text:
+        "För företag som vill göra det enklare för rätt kunder att förstå erbjudandet och ta nästa steg.",
     },
     {
-      title: "Löpande förbättring",
-      text: "Vi följer upp, justerar och utvecklar marknadsföringen över tid så att den blir bättre steg för steg.",
+      title: "Löpande marknadsstöd",
+      text:
+        "För företag som behöver någon som driver arbetet framåt och skapar kontinuitet över tid.",
     },
+  ];
+
+  const practicalServices = [
+    "SEO & synlighet",
+    "Google Ads & annonsering",
+    "Strategi & rådgivning",
+    "Sociala medier & innehåll",
+    "Nyhetsbrev & kundkommunikation",
+    "Varumärke & webb",
+    "CRO & förbättring",
+    "Innehåll & copy",
   ];
 
   const outcomes = [
@@ -80,53 +95,71 @@ export default function HomePage() {
     },
   ];
 
+  const reasons = [
+    {
+      title: "Ni får ett nära marknadsstöd",
+      text:
+        "Ett samarbete för företag som behöver marknadsföringskompetens, men inte vill bygga upp allt internt från början.",
+    },
+    {
+      title: "Tydligt, personligt och affärsnära",
+      text:
+        "Vi arbetar nära verksamheten, förstår nuläget och hjälper er att fatta bättre beslut i vardagen.",
+    },
+    {
+      title: "Fokus på effekt, inte bara aktivitet",
+      text:
+        "Målet är inte att göra mer för sakens skull, utan att prioritera rätt och få marknadsföringen att bidra till affären.",
+    },
+  ];
+
   const process = [
     {
       number: "01",
-      title: "Förstå nuläget",
-      text: "Vi tittar på vad ni gör idag, vad som fungerar och var det skaver.",
+      title: "Nuläge & behov",
+      text: "Vi tittar på var ni står idag, vad som redan görs och vad som skaver i marknadsföringen.",
     },
     {
       number: "02",
-      title: "Prioritera rätt",
-      text: "Ni får en tydlig riktning med fokus på det som skapar mest effekt först.",
+      title: "Riktning & prioritering",
+      text: "Tillsammans sätter vi fokus på det som är mest relevant att börja med utifrån mål, resurser och affär.",
     },
     {
       number: "03",
-      title: "Genomföra smart",
-      text: "Vi tar nästa steg utan att göra arbetet onödigt tungt eller komplext.",
+      title: "Genomförande",
+      text: "Vi driver arbetet framåt med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
     },
     {
       number: "04",
-      title: "Förbättra löpande",
-      text: "Arbetet följs upp, justeras och fortsätter framåt med lugn och struktur.",
+      title: "Uppföljning & förbättring",
+      text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
     },
   ];
 
   const faqItems = [
     {
       question:
-        "Varför ska jag anlita en marknadskonsult och inte en byrå eller mediebyrå?",
+        "Varför ska jag anlita AXA Consult istället för en traditionell byrå?",
       answer:
-        "Om du vill ha en närmare samarbetspartner som förstår affären, prioriterar tillsammans med er och håller ihop helheten kan en marknadskonsult vara rätt. Du får ofta ett mer personligt, flexibelt och affärsnära upplägg än i en större byråmodell.",
+        "För många företag passar ett närmare och mer personligt samarbete bättre. Ni får en partner som sätter sig in i verksamheten, hjälper er att prioritera rätt och håller ihop helheten.",
     },
     {
-      question: "Vilka tjänster erbjuder du som marknadskonsult?",
+      question: "Passar det här företag utan egen marknadsansvarig?",
       answer:
-        "Arbetet kan omfatta strategi, webb, innehåll, SEO, annonsering, CRO, nyhetsbrev, varumärkesutveckling och löpande marknadsstöd. Upplägget formas efter vad som är mest värdefullt för företaget.",
+        "Ja, det är ofta där upplägget gör störst nytta. Ni får stöd i både strategi, prioritering och genomförande utan att behöva bygga en full intern funktion direkt.",
     },
     {
-      question: "Vad gör en marknadskonsult?",
+      question: "Vad kan ni hjälpa till med?",
       answer:
-        "En marknadskonsult hjälper företag att få struktur, tydlighet och framdrift i marknadsföringen — både strategiskt och praktiskt.",
+        "Det kan handla om strategi, SEO, annonsering, innehåll, webb, nyhetsbrev och löpande marknadsstöd. Upplägget formas efter mål, resurser och ambitionsnivå.",
     },
     {
-      question: "Hur anpassas arbetet till olika företags behov?",
+      question: "Hur börjar ett samarbete?",
       answer:
-        "Upplägget anpassas efter nuläge, mål, resurser och ambition. För vissa handlar det om att få en tydlig riktning. För andra om att någon driver arbetet löpande.",
+        "Vanligtvis med ett första samtal där vi går igenom nuläge, mål och vad ni behöver hjälp med. Därefter föreslår vi ett upplägg som känns tydligt och rimligt.",
     },
     {
-      question: "Hur kan en marknadskonsult hjälpa mitt företag?",
+      question: "Hur kan AXA Consult hjälpa mitt företag?",
       answer:
         "Ni kan få tydligare budskap, bättre prioriteringar, mer kontroll och marknadsföring som i högre grad bidrar till affären.",
     },
@@ -225,6 +258,13 @@ export default function HomePage() {
                   Så hjälper vi
                 </a>
                 <a
+                  href="#varfor"
+                  onClick={() => setMenuOpen(false)}
+                  className={mobileLinkClass}
+                >
+                  Varför AXA
+                </a>
+                <a
                   href="#resultat"
                   onClick={() => setMenuOpen(false)}
                   className={mobileLinkClass}
@@ -311,13 +351,13 @@ export default function HomePage() {
                     </p>
 
                     <h1 className="max-w-4xl text-[44px] font-semibold leading-[0.92] tracking-[-0.065em] text-white sm:text-[60px] md:text-[78px] lg:text-[92px]">
-                      Marknadsföring
+                      Er externa
                       <br />
-                      som faktiskt
+                      marknadsavdelning
                       <br />
-                      driver affären
+                      för tydligare
                       <br />
-                      framåt.
+                      effekt.
                     </h1>
                   </div>
 
@@ -329,9 +369,8 @@ export default function HomePage() {
                     }`}
                   >
                     <p className="mt-8 max-w-2xl text-[18px] leading-[1.8] text-white/80 md:text-[20px]">
-                      AXA Consult hjälper företag att få struktur, tydligare
-                      budskap och rätt prioriteringar — så att marknadsföringen
-                      inte bara görs, utan också ger effekt.
+                      För företag som behöver mer struktur, bättre prioriteringar
+                      och marknadsföring som faktiskt driver verksamheten framåt.
                     </p>
 
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -345,8 +384,23 @@ export default function HomePage() {
                         href="#tjanster"
                         className={`inline-flex items-center justify-center rounded-full border border-white/14 bg-white/[0.03] px-6 py-3.5 text-[15px] font-medium text-white transition duration-300 hover:scale-[0.97] hover:bg-white/[0.07] active:scale-[0.95] ${focusRing}`}
                       >
-                        Se hur vi hjälper till
+                        Se vad vi hjälper till med
                       </a>
+                    </div>
+
+                    <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
+                      {[
+                        "Personligt samarbete",
+                        "Få kunder åt gången",
+                        "Fokus på resultat och tydlighet",
+                      ].map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[18px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_10px_26px_rgba(0,0,0,0.10)]"
+                        >
+                          <p className="text-sm font-medium text-white/88">{item}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -358,27 +412,28 @@ export default function HomePage() {
                       : "translate-y-6 opacity-0"
                   }`}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-white/12 shadow-[0_36px_90px_rgba(0,0,0,0.30)]">
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      controls
-                      className="absolute inset-0 h-full w-full object-cover"
-                    >
-                      <source src="/video/webb.mp4" type="video/mp4" />
-                    </video>
-
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-
-                    <div className="absolute bottom-6 left-6 right-6 text-white">
-                      <p className="text-[12px] uppercase tracking-[0.2em] text-[#F5B74E]/80">
-                        Så arbetar vi
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.04] p-6 shadow-[0_36px_90px_rgba(0,0,0,0.30)] backdrop-blur-xl">
+                    <div className="rounded-[20px] bg-[#111923] p-6 text-white">
+                      <p className="text-sm font-medium text-[#F5B74E]/85">
+                        När det ofta blir rörigt
                       </p>
-                      <p className="mt-2 text-[18px] leading-[1.6]">
-                        Struktur, tydlighet och rätt prioriteringar i praktiken.
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-white/88">
+                        <li>• Ni hinner inte driva marknadsföringen framåt själva</li>
+                        <li>• Det är svårt att veta vad som fungerar och inte</li>
+                        <li>• Insatser görs, men utan tydlig riktning eller uppföljning</li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-4 rounded-[20px] border border-white/10 bg-white/[0.06] p-6">
+                      <p className="text-sm font-medium text-[#F5B74E]/80">
+                        Det vi hjälper till att skapa
                       </p>
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-white/82">
+                        <li>• En tydligare marknadsplan</li>
+                        <li>• Bättre struktur i arbetet</li>
+                        <li>• Ett tryggare beslutsunderlag</li>
+                        <li>• Marknadsföring som blir lättare att förstå och följa upp</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -416,35 +471,93 @@ export default function HomePage() {
               </div>
 
               <div id="tjanster" className="mt-28 md:mt-36">
-                <div className="mb-12 max-w-3xl">
+                <div className="mb-14 max-w-3xl">
                   <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
                     Så hjälper vi företag
                   </p>
                   <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
-                    Ett externt marknadsstöd
+                    Få tydligare riktning,
                     <br />
-                    som skapar framdrift.
+                    bättre struktur och mer effekt
                   </h2>
                   <p className="mt-5 max-w-2xl text-[17px] leading-[1.9] text-white/80">
-                    Istället för att sprida insatserna brett hjälper vi er att
-                    prioritera rätt, få struktur och fokusera på det som faktiskt
-                    gör skillnad.
+                    Istället för att göra lite av allt hjälper vi er att prioritera
+                    rätt och fokusera på det som faktiskt driver affären framåt.
                   </p>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  {services.map((service) => (
+                  {offer.map((item) => (
                     <article
-                      key={service.title}
+                      key={item.title}
                       className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 transition duration-500 ease-out hover:-translate-y-1 hover:bg-white/[0.06] motion-reduce:transition-none"
                     >
                       <h3 className="text-[22px] font-medium leading-[1.1] tracking-[-0.035em] text-white/95">
-                        {service.title}
+                        {item.title}
                       </h3>
                       <p className="mt-4 text-[15px] leading-[1.9] text-white/82">
-                        {service.text}
+                        {item.text}
                       </p>
                     </article>
+                  ))}
+                </div>
+
+                <div className="mt-16 rounded-[24px] border border-white/10 bg-black/10 p-6 md:p-8 backdrop-blur-sm">
+                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
+                    Det här kan vi hjälpa er med i praktiken
+                  </p>
+
+                  <p className="mt-4 max-w-2xl text-[15px] leading-[1.8] text-white/70">
+                    Vanliga områden där vi stöttar företag beroende på mål, resurser och behov.
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {practicalServices.map((service) => (
+                      <span
+                        key={service}
+                        className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[14px] text-white/85"
+                      >
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-8">
+                    <a
+                      href="/boka-mote"
+                      className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-white to-[#f4efe6] px-6 py-3 text-[15px] font-medium text-[#10161f] transition hover:scale-[0.97] ${focusRing}`}
+                    >
+                      Boka ett första samtal
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div id="varfor" className="mt-28 md:mt-36">
+                <div className="mb-12 max-w-3xl">
+                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
+                    Varför AXA Consult
+                  </p>
+                  <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
+                    För företag som vill ha nära stöd,
+                    <br />
+                    tydlig riktning och hållbar framdrift
+                  </h2>
+                </div>
+
+                <div className="grid gap-6 lg:grid-cols-3">
+                  {reasons.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 transition duration-500 hover:-translate-y-1 hover:bg-white/[0.06]"
+                    >
+                      <h3 className="text-[22px] font-medium tracking-[-0.03em] text-white/95">
+                        {item.title}
+                      </h3>
+                      <p className="mt-4 text-[15px] leading-[1.9] text-white/82">
+                        {item.text}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -489,13 +602,13 @@ export default function HomePage() {
                       Process
                     </p>
                     <h2 className="mt-3 text-[36px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[54px]">
-                      En enkel process som
+                      Ett enklare sätt att få
                       <br />
-                      skapar framdrift.
+                      ordning på marknadsföringen
                     </h2>
                     <p className="mt-5 max-w-2xl text-[17px] leading-[1.9] text-white/80">
-                      Du behöver inte ha allt klart från början — vi börjar där
-                      ni är och tar nästa steg utifrån det.
+                      Vi tror på ett arbetssätt som är nära, tydligt och lätt att förstå.
+                      Det ska vara enkelt att veta vad som händer, varför det görs och vad nästa steg är.
                     </p>
                   </div>
 
@@ -662,13 +775,13 @@ export default function HomePage() {
               Kontakt
             </p>
             <h2 className="mt-3 text-[38px] font-semibold leading-[0.98] tracking-[-0.05em] text-white md:text-[58px]">
-              Vill du få tydlighet i
+              Vill du se om vi är rätt
               <br />
-              din marknadsföring?
+              för varandra?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-[1.85] text-white/82">
-              Ett första samtal är ett enkelt sätt att se vad som skulle göra
-              störst skillnad för er just nu.
+              Hör av dig så tar vi ett första samtal om nuläge, behov och vad
+              som skulle vara ett rimligt nästa steg för er.
             </p>
             <p className="mt-6 text-[15px] text-white/74">
               Vi finns i Uppsala och Falun och arbetar med företag i hela
@@ -720,6 +833,9 @@ export default function HomePage() {
               </a>
               <a href="#tjanster" className={`transition hover:text-white ${focusRing}`}>
                 Så hjälper vi
+              </a>
+              <a href="#varfor" className={`transition hover:text-white ${focusRing}`}>
+                Varför AXA
               </a>
               <a href="#resultat" className={`transition hover:text-white ${focusRing}`}>
                 Resultat
