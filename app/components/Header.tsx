@@ -53,6 +53,7 @@ export default function Header({
             Kontakt
           </a>
           <a href={variant === "home" ? "/page3" : "/page3"} className={linkClasses}>
+            Page 3
           </a>
         </div>
 
