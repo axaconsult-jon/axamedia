@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Slide = {
   title: string;
@@ -30,13 +30,13 @@ const slides: Slide[] = [
   },
 ];
 
+const AUTOPLAY_MS = 5000;
+
 export default function WorkStyleCarousel() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const canGoPrev = activeIndex > 0;
-  const canGoNext = activeIndex < slides.length - 1;
+  const [isHovered, setIsHovered] = useState(false);
 
   function scrollToSlide(index: number) {
     const el = slideRefs.current[index];
@@ -50,13 +50,13 @@ export default function WorkStyleCarousel() {
   }
 
   function goPrev() {
-    if (!canGoPrev) return;
-    scrollToSlide(activeIndex - 1);
+    const nextIndex = activeIndex === 0 ? slides.length - 1 : activeIndex - 1;
+    scrollToSlide(nextIndex);
   }
 
   function goNext() {
-    if (!canGoNext) return;
-    scrollToSlide(activeIndex + 1);
+    const nextIndex = activeIndex === slides.length - 1 ? 0 : activeIndex + 1;
+    scrollToSlide(nextIndex);
   }
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function WorkStyleCarousel() {
       },
       {
         root: track,
-        threshold: [0.4, 0.6, 0.75],
+        threshold: [0.45, 0.6, 0.75],
       }
     );
 
@@ -89,7 +89,16 @@ export default function WorkStyleCarousel() {
     return () => observer.disconnect();
   }, []);
 
-  const activeSlide = useMemo(() => slides[activeIndex], [activeIndex]);
+  useEffect(() => {
+    if (isHovered) return;
+
+    const timer = setInterval(() => {
+      const nextIndex = activeIndex === slides.length - 1 ? 0 : activeIndex + 1;
+      scrollToSlide(nextIndex);
+    }, AUTOPLAY_MS);
+
+    return () => clearInterval(timer);
+  }, [activeIndex, isHovered]);
 
   return (
     <section
@@ -102,6 +111,8 @@ export default function WorkStyleCarousel() {
           role="region"
           aria-roledescription="carousel"
           aria-label="Så arbetar AXA Consult"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <div className="mb-8 flex items-end justify-between gap-4">
             <div className="max-w-3xl">
@@ -123,15 +134,9 @@ export default function WorkStyleCarousel() {
                 type="button"
                 onClick={goPrev}
                 aria-label="Föregående slide"
-                disabled={!canGoPrev}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#10161f] shadow-sm transition hover:bg-[#f7efe1] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#10161f] shadow-sm transition hover:bg-[#f7efe1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
               >
-                <svg
-                  viewBox="0 0 15 15"
-                  className="h-5 w-5"
-                  fill="none"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 15 15" className="h-5 w-5" fill="none" aria-hidden="true">
                   <path
                     d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
                     fill="currentColor"
@@ -143,15 +148,9 @@ export default function WorkStyleCarousel() {
                 type="button"
                 onClick={goNext}
                 aria-label="Nästa slide"
-                disabled={!canGoNext}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#10161f] shadow-sm transition hover:bg-[#f7efe1] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#10161f] shadow-sm transition hover:bg-[#f7efe1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
               >
-                <svg
-                  viewBox="0 0 15 15"
-                  className="h-5 w-5"
-                  fill="none"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 15 15" className="h-5 w-5" fill="none" aria-hidden="true">
                   <path
                     d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
                     fill="currentColor"
@@ -163,7 +162,7 @@ export default function WorkStyleCarousel() {
 
           <div
             ref={trackRef}
-            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {slides.map((slide, index) => (
               <div
@@ -175,18 +174,12 @@ export default function WorkStyleCarousel() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} av ${slides.length}`}
-                className="min-w-0 shrink-0 snap-start basis-[92%] md:basis-[88%] xl:basis-[82%]"
+                className="min-w-0 shrink-0 snap-start basis-[86%] md:basis-[72%] xl:basis-[68%]"
               >
-                <div
-                  className={`rounded-[30px] border p-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300 sm:p-6 lg:rounded-[38px] lg:p-8 ${
-                    activeIndex === index
-                      ? "border-[#e7dcc7] bg-white opacity-100"
-                      : "border-[#ebe3d3] bg-white/90 opacity-95"
-                  }`}
-                >
-                  <div className="grid grid-cols-1 gap-6 xl:grid-cols-[0.95fr_1.05fr] xl:items-stretch">
-                    <div className="flex flex-col xl:px-2 xl:py-2">
-                      <h3 className="max-w-[14ch] text-[28px] font-semibold leading-[1.08] tracking-[-0.035em] text-[#111827] md:text-[40px] lg:text-[48px]">
+                <div className="flex h-full min-h-[500px] flex-col rounded-[30px] border border-[#e7dcc7] bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-6 lg:rounded-[38px] lg:p-8">
+                  <div className="grid h-full grid-cols-1 gap-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
+                    <div className="flex h-full flex-col xl:px-2 xl:py-2">
+                      <h3 className="max-w-[14ch] text-[28px] font-semibold leading-[1.08] tracking-[-0.035em] text-[#111827] md:text-[40px] lg:text-[46px]">
                         {slide.title}
                       </h3>
 
@@ -194,76 +187,66 @@ export default function WorkStyleCarousel() {
                         {slide.text}
                       </p>
 
-                      <div className="mt-8 flex items-center gap-2 md:hidden">
-                        <button
-                          type="button"
-                          onClick={goPrev}
-                          aria-label="Föregående slide"
-                          disabled={!canGoPrev}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f4ee] text-[#10161f] transition hover:bg-[#efe6d6] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
-                        >
-                          <svg
-                            viewBox="0 0 15 15"
-                            className="h-5 w-5"
-                            fill="none"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={goNext}
-                          aria-label="Nästa slide"
-                          disabled={!canGoNext}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f4ee] text-[#10161f] transition hover:bg-[#efe6d6] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
-                        >
-                          <svg
-                            viewBox="0 0 15 15"
-                            className="h-5 w-5"
-                            fill="none"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-
-                      <div className="mt-8 flex gap-2">
-                        {slides.map((_, dotIndex) => (
+                      <div className="mt-auto pt-8">
+                        <div className="flex items-center gap-2 md:hidden">
                           <button
-                            key={dotIndex}
                             type="button"
-                            onClick={() => scrollToSlide(dotIndex)}
-                            aria-label={`Gå till slide ${dotIndex + 1}`}
-                            aria-pressed={activeIndex === dotIndex}
-                            className={`h-2.5 rounded-full transition-all ${
-                              activeIndex === dotIndex
-                                ? "w-8 bg-[#F5B74E]"
-                                : "w-2.5 bg-[#d7cdb8]"
-                            }`}
-                          />
-                        ))}
+                            onClick={goPrev}
+                            aria-label="Föregående slide"
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f4ee] text-[#10161f] transition hover:bg-[#efe6d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
+                          >
+                            <svg viewBox="0 0 15 15" className="h-5 w-5" fill="none" aria-hidden="true">
+                              <path
+                                d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={goNext}
+                            aria-label="Nästa slide"
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f7f4ee] text-[#10161f] transition hover:bg-[#efe6d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F5B74E]"
+                          >
+                            <svg viewBox="0 0 15 15" className="h-5 w-5" fill="none" aria-hidden="true">
+                              <path
+                                d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+
+                        <div className="mt-6 flex gap-2">
+                          {slides.map((_, dotIndex) => (
+                            <button
+                              key={dotIndex}
+                              type="button"
+                              onClick={() => scrollToSlide(dotIndex)}
+                              aria-label={`Gå till slide ${dotIndex + 1}`}
+                              aria-pressed={activeIndex === dotIndex}
+                              className={`h-2.5 rounded-full transition-all ${
+                                activeIndex === dotIndex
+                                  ? "w-8 bg-[#F5B74E]"
+                                  : "w-2.5 bg-[#d7cdb8]"
+                              }`}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
 
                     <div className="overflow-hidden rounded-[24px] xl:rounded-[30px]">
                       <video
-                        className="aspect-video h-full w-full object-cover"
+                        className="aspect-video h-full min-h-[280px] w-full object-cover"
                         src={slide.videoSrc}
                         poster={slide.poster}
                         muted
                         loop
                         playsInline
-                        autoPlay={activeIndex === index}
-                        preload="metadata"
+                        autoPlay
+                        preload="auto"
                       />
                     </div>
                   </div>
