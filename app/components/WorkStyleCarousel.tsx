@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Slide = {
   title: string;
@@ -30,67 +30,91 @@ const slides: Slide[] = [
   },
 ];
 
-const AUTOPLAY_MS = 2000;
-const STEP_PX = 850;
+const AUTOPLAY_MS = 7000;
 
 export default function WorkStyleCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  function goPrev() {
-    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  }
+  const cardWidths = useMemo(
+    () => ({
+      mobile: 292,
+      tablet: 360,
+      desktop: 430,
+    }),
+    []
+  );
 
-  function goNext() {
-    setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  }
+  const [cardWidth, setCardWidth] = useState(cardWidths.desktop);
 
   useEffect(() => {
-    if (isPaused) return;
+    const updateCardWidth = () => {
+      if (window.innerWidth < 768) {
+        setCardWidth(cardWidths.mobile);
+      } else if (window.innerWidth < 1024) {
+        setCardWidth(cardWidths.tablet);
+      } else {
+        setCardWidth(cardWidths.desktop);
+      }
+    };
 
+    updateCardWidth();
+    window.addEventListener("resize", updateCardWidth);
+    return () => window.removeEventListener("resize", updateCardWidth);
+  }, [cardWidths]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, AUTOPLAY_MS);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, []);
+
+  function goPrev() {
+    setHasInteracted(true);
+    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }
+
+  function goNext() {
+    setHasInteracted(true);
+    setActiveIndex((prev) => (prev + 1) % slides.length);
+  }
 
   return (
     <section
       id="samarbete"
-      className="overflow-hidden bg-[linear-gradient(180deg,#f7f4ee_0%,#ffffff_100%)] py-20 lg:py-24"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      className="overflow-hidden bg-[linear-gradient(180deg,#f7f4ee_0%,#ffffff_100%)] py-16 md:py-20 lg:py-24"
     >
-      <div className="mx-auto w-full max-w-[1400px] px-6 md:px-10 lg:px-16">
+      <div className="mx-auto w-full max-w-[1540px] px-6 md:px-10 lg:px-16">
         <div
           className="relative w-full"
           role="region"
           aria-roledescription="carousel"
           aria-label="Så arbetar AXA Consult"
         >
-          <div className="mb-6 flex w-full justify-between gap-4 pt-1">
+          <div className="mb-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
                 Samarbete
               </p>
-              <h2 className="mt-3 text-[36px] font-semibold leading-[1.02] tracking-[-0.04em] text-[#0f1724] md:text-[52px]">
+              <h2 className="mt-3 text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] text-[#0f1724] md:text-[44px] lg:text-[52px]">
                 Ett närmare sätt att arbeta med marknadsföring
               </h2>
-              <p className="mt-6 max-w-3xl text-[18px] leading-[1.85] text-[#5b6678] md:text-[20px]">
+              <p className="mt-5 max-w-3xl text-[17px] leading-[1.8] text-[#5b6678] md:text-[19px]">
                 Ni får ett stöd som kombinerar affärsförståelse,
                 marknadsstrategi och genomförande. Tanken är enkel: mindre
                 fluff, mer riktning och bättre fart i rätt saker.
               </p>
             </div>
 
-            <div className="mb-4 ml-auto hidden gap-2 md:flex">
+            <div className="hidden shrink-0 items-center gap-2 md:flex">
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={goPrev}
                 aria-label="Previous slide"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
               >
                 <svg
                   width="15"
@@ -111,7 +135,7 @@ export default function WorkStyleCarousel() {
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={goNext}
                 aria-label="Next slide"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
               >
                 <svg
                   width="15"
@@ -131,8 +155,10 @@ export default function WorkStyleCarousel() {
 
           <div className="overflow-hidden">
             <div
-              className="flex gap-6 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-              style={{ transform: `translate3d(-${activeIndex * STEP_PX}px, 0, 0)` }}
+              className="flex gap-4 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-6"
+              style={{
+                transform: `translate3d(-${activeIndex * cardWidth}px, 0, 0)`,
+              }}
             >
               {slides.map((slide, index) => (
                 <div
@@ -141,15 +167,15 @@ export default function WorkStyleCarousel() {
                   aria-roledescription="slide"
                   aria-label={`${index + 1} av ${slides.length}`}
                   className="shrink-0"
-                  style={{ width: `${STEP_PX}px` }}
+                  style={{ width: `${cardWidth}px` }}
                 >
-                  <div className="grid min-h-[390px] grid-cols-1 justify-between gap-6 rounded-[28px] bg-white p-4 text-black shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-5 lg:rounded-[32px] lg:p-6 xl:grid-cols-[0.78fr_1.22fr] xl:items-stretch">
-                    <div className="flex flex-col xl:px-2 xl:py-2">
-                      <h3 className="mb-4 max-w-[13ch] text-[24px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#111827] md:text-[30px] lg:text-[34px]">
+                  <div className="grid min-h-[320px] grid-cols-1 gap-5 rounded-[24px] bg-white p-4 text-black shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-5 lg:min-h-[390px] lg:rounded-[32px] lg:p-6 xl:grid-cols-[0.82fr_1.18fr] xl:items-stretch">
+                    <div className="order-2 flex flex-col xl:order-1">
+                      <h3 className="mb-4 max-w-[14ch] text-[22px] font-semibold leading-[1.12] tracking-[-0.03em] text-[#111827] md:text-[26px] lg:text-[32px]">
                         {slide.title}
                       </h3>
 
-                      <p className="mb-4 max-w-md text-[15px] leading-[1.8] text-[#5f6b7b] md:text-[16px]">
+                      <p className="mb-4 max-w-md text-[15px] leading-[1.75] text-[#5f6b7b] md:text-[16px]">
                         {slide.text}
                       </p>
 
@@ -159,7 +185,10 @@ export default function WorkStyleCarousel() {
                             key={dotIndex}
                             type="button"
                             onMouseDown={(e) => e.preventDefault()}
-                            onClick={() => setActiveIndex(dotIndex)}
+                            onClick={() => {
+                              setHasInteracted(true);
+                              setActiveIndex(dotIndex);
+                            }}
                             aria-label={`Gå till slide ${dotIndex + 1}`}
                             aria-pressed={activeIndex === dotIndex}
                             className={`h-2.5 rounded-full transition-all ${
@@ -195,8 +224,8 @@ export default function WorkStyleCarousel() {
                     </div>
 
                     <video
-                      key={`${slide.videoSrc}-${activeIndex === index ? "active" : "inactive"}`}
-                      className="aspect-[16/10] w-full rounded-[22px] object-cover lg:rounded-[26px]"
+                      key={`${slide.videoSrc}-${activeIndex === index ? "active" : "inactive"}-${hasInteracted ? "manual" : "auto"}-${index}`}
+                      className="order-1 aspect-[16/10] w-full rounded-[20px] object-cover xl:order-2 lg:rounded-[24px]"
                       src={slide.videoSrc}
                       poster={slide.poster}
                       muted

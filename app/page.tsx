@@ -225,197 +225,129 @@ export default function HomePage() {
           setMenuOpen={setMenuOpen}
         />
 
-  
-{/* HERO */}
-<section className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24 lg:px-16 lg:py-28">
-  <div className="absolute inset-0">
-    <Image
-      src="/abtract-hero.webp"
-      alt=""
-      fill
-      priority
-      sizes="100vw"
-      className="object-cover opacity-[0.12]"
-    />
+        {/* HERO */}
+        <section className="relative overflow-x-hidden px-6 pb-20 pt-[140px] md:px-10 md:pb-24 md:pt-[180px] lg:px-16 lg:pb-28 lg:pt-[210px]">
+          <div className="absolute inset-0">
+            <Image
+              src="/abtract-hero.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-[0.12]"
+            />
 
-    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,18,29,0.99)_0%,rgba(10,23,36,0.98)_35%,rgba(13,27,43,0.97)_70%,rgba(16,31,47,0.96)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,18,29,0.99)_0%,rgba(10,23,36,0.98)_35%,rgba(13,27,43,0.97)_70%,rgba(16,31,47,0.96)_100%)]" />
 
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(90,130,180,0.10),transparent_22%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_18%),radial-gradient(circle_at_bottom_left,rgba(50,84,126,0.08),transparent_24%)]" />
-  </div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(90,130,180,0.10),transparent_22%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_18%),radial-gradient(circle_at_bottom_left,rgba(50,84,126,0.08),transparent_24%)]" />
+          </div>
 
-  <div className="relative mx-auto grid max-w-7xl gap-12 pt-20 lg:grid-cols-12 lg:items-start lg:pt-28">
-    <div className="lg:col-span-7">
-      <p
-        className={`mb-4 text-[12px] font-medium uppercase tracking-[0.22em] text-[#F5B74E]/82 ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700`}
-      >
-        Marknadskonsult för företag som vill framåt
-      </p>
+          <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
+            <div className="lg:col-span-7">
+              <p
+                className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E]/82 sm:text-[12px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700`}
+              >
+                Marknadskonsult för företag som vill framåt
+              </p>
 
-      <h1
-        className={`max-w-[12ch] text-[42px] font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:max-w-[14ch] sm:text-[56px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[78px] ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700`}
-      >
-        Er externa
-        <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text text-transparent">
-          marknadsavdelning
-        </span>
-      </h1>
+              <h1
+                className={`max-w-[12ch] pb-2 text-[36px] font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:max-w-[13ch] sm:text-[46px] md:max-w-[14ch] md:text-[58px] lg:max-w-none lg:text-[68px] xl:text-[76px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700`}
+              >
+                Er externa
+                <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text text-transparent">
+                  marknadsavdelning
+                </span>
+              </h1>
 
-      <p
-        className={`mt-6 max-w-2xl text-[18px] leading-[1.8] text-white/76 md:text-[20px] ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700 delay-100`}
-      >
-        AXA Consult hjälper företag att få struktur i sin marknadsföring,
-        prioritera rätt insatser och omsätta idéer till arbete som faktiskt blir gjort.
-      </p>
+              <p
+                className={`mt-5 max-w-2xl text-[17px] leading-[1.75] text-white/76 sm:text-[18px] md:text-[19px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700 delay-100`}
+              >
+                AXA Consult hjälper företag att få struktur i sin marknadsföring,
+                prioritera rätt insatser och omsätta idéer till arbete som
+                faktiskt blir gjort.
+              </p>
 
-      <div
-        className={`mt-8 flex flex-col gap-4 sm:flex-row ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700 delay-150`}
-      >
-        <a
-          href="/boka-mote"
-          className={`inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea] ${focusRing}`}
-        >
-          Boka ett första samtal
-        </a>
+              <div
+                className={`mt-8 flex flex-col gap-3 sm:flex-row ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700 delay-150`}
+              >
+                <a
+                  href="/boka-mote"
+                  className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea] ${focusRing}`}
+                >
+                  Boka ett första samtal
+                </a>
 
-        <a
-          href="#services"
-          className={`inline-flex items-center justify-center rounded-full border border-white/14 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white transition hover:border-white/24 hover:bg-white/[0.08] ${focusRing}`}
-        >
-          Se hur vi hjälper till
-        </a>
-      </div>
+                <a
+                  href="#services"
+                  className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/14 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white transition hover:border-white/24 hover:bg-white/[0.08] ${focusRing}`}
+                >
+                  Se hur vi hjälper till
+                </a>
+              </div>
+            </div>
 
-      <div
-        className={`mt-10 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-3 ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700 delay-200`}
-      >
-        <div className="flex items-center gap-3">
-          <svg
-            className="h-5 w-5 shrink-0 text-[#F5B74E]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          >
-            <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
-            <circle cx="9.5" cy="7" r="4" />
-          </svg>
-          <p className="text-[15px] leading-[1.45] text-white/78">
-            Personligt samarbete
-          </p>
-        </div>
+            <div
+              className={`lg:col-span-5 ${
+                isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              } transition-all duration-700 delay-300`}
+            >
+              <div className="rounded-[26px] border border-white/10 bg-white/[0.05] p-4 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-md sm:p-5 md:p-6">
+                <div className="rounded-[22px] bg-[linear-gradient(135deg,rgba(24,39,58,0.92)_0%,rgba(35,56,82,0.90)_100%)] p-5 text-white sm:p-6">
+                  <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#d5e5f7]">
+                    Så kan vi hjälpa till
+                  </p>
 
-        <div className="flex items-center gap-3">
-          <svg
-            className="h-5 w-5 shrink-0 text-[#F5B74E]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          >
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-          </svg>
-          <p className="text-[15px] leading-[1.45] text-white/78">
-            Få kunder åt gången
-          </p>
-        </div>
+                  <div className="mt-5 grid gap-3">
+                    <div className="rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4">
+                      <p className="text-[15px] font-medium text-white/92">
+                        Tydligare riktning
+                      </p>
+                      <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
+                        Vi hjälper er att prioritera rätt och skapa en plan som
+                        går att arbeta efter.
+                      </p>
+                    </div>
 
-        <div className="flex items-center gap-3 sm:col-span-2 lg:col-span-1">
-          <svg
-            className="h-5 w-5 shrink-0 text-[#F5B74E]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          >
-            <path d="M3 17l6-6 4 4 7-7" />
-            <path d="M14 8h6v6" />
-          </svg>
-          <p className="text-[15px] leading-[1.45] text-white/78">
-            Fokus på resultat och tydlighet
-          </p>
-        </div>
-      </div>
-    </div>
+                    <div className="rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4">
+                      <p className="text-[15px] font-medium text-white/92">
+                        Löpande stöd i vardagen
+                      </p>
+                      <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
+                        För företag som vill ha hjälp att hålla ihop
+                        marknadsföringen över tid.
+                      </p>
+                    </div>
 
-    <div className="lg:col-span-5">
-      <div className="rounded-[26px] border border-white/10 bg-white/[0.05] p-4 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-md sm:p-5 md:p-6">
-        <div className="rounded-[22px] bg-[linear-gradient(135deg,rgba(24,39,58,0.92)_0%,rgba(35,56,82,0.90)_100%)] p-5 text-white sm:p-6">
-          <p className="text-sm font-medium text-[#d5e5f7]">
-            När det ofta blir rörigt
-          </p>
-          <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-100">
-            <li>• Ni hinner inte driva marknadsföringen framåt själva</li>
-            <li>• Det är svårt att veta vad som fungerar och inte</li>
-            <li>• Insatser görs, men utan tydlig riktning eller uppföljning</li>
-          </ul>
-        </div>
+                    <div className="rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4">
+                      <p className="text-[15px] font-medium text-white/92">
+                        Från strategi till genomförande
+                      </p>
+                      <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
+                        När idéer också behöver omsättas till webb, innehåll,
+                        synlighet och konkret arbete.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.06] p-5 sm:p-6">
-          <p className="text-sm font-medium text-white/82">
-            Det vi hjälper till att skapa
-          </p>
-          <ul className="mt-4 space-y-3 text-sm leading-6 text-white/74">
-            <li>• En tydligare marknadsplan</li>
-            <li>• Bättre struktur i arbetet</li>
-            <li>• Ett tryggare beslutsunderlag</li>
-            <li>• Marknadsföring som blir lättare att förstå och följa upp</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <WorkStyleCarousel />
 
-<WorkStyleCarousel />
-
-{/* SERVICES */}
-<section
-  id="services"
-  className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
->
-  <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-        Tjänster
-      </p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-        Det här kan vi hjälpa er med
-      </h2>
-      <p className="mt-4 text-lg leading-8 text-slate-600">
-        Upplägget anpassas efter era mål, resurser och hur mycket stöd ni
-        behöver i vardagen.
-      </p>
-    </div>
-
-    <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {services.map((service) => (
-        <article
-          key={service.title}
-          className="rounded-[2rem] border border-[#e7dcc7] bg-white p-7 shadow-sm transition hover:border-[#F5B74E]/40 hover:shadow-lg"
-        >
-          <h3 className="text-xl font-semibold text-slate-950">
-            {service.title}
-          </h3>
-          <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
         {/* SERVICES */}
-        <section id="services"
-          className="border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
+        <section
+          id="services"
+          className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
         >
           <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
             <div className="max-w-3xl">
@@ -440,7 +372,9 @@ export default function HomePage() {
                   <h3 className="text-xl font-semibold text-slate-950">
                     {service.title}
                   </h3>
-                  <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    {service.text}
+                  </p>
                 </article>
               ))}
             </div>
