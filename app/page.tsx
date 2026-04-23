@@ -248,8 +248,8 @@ export default function HomePage() {
   <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
   <div className="relative mx-auto max-w-7xl">
-    <div className="grid items-start gap-10 lg:grid-cols-[1.18fr_0.82fr] lg:gap-14">
-      <div className="min-w-0 max-w-4xl">
+    <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
+      <div className="min-w-0 max-w-4xl lg:pr-12">
         <span
           className={`inline-flex max-w-full rounded-full border border-white/12 bg-white/[0.07] px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/72 shadow-sm backdrop-blur sm:text-[11px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -259,7 +259,7 @@ export default function HomePage() {
         </span>
 
         <h1
-          className={`mt-5 max-w-[9ch] text-[38px] font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:max-w-[10ch] sm:text-[52px] md:max-w-none md:text-[68px] lg:text-[76px] xl:text-[84px] ${
+         className={`mt-5 max-w-[10ch] pr-2 text-[38px] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[78px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           } transition-all duration-700`}
         >
