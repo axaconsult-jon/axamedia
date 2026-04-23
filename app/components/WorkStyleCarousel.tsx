@@ -31,7 +31,7 @@ const slides: Slide[] = [
 ];
 
 const AUTOPLAY_MS = 7000;
-const STEP_PX = 550;
+const STEP_PX = 750;
 
 export default function WorkStyleCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
