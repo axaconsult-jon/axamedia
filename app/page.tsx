@@ -3,6 +3,7 @@
 import Header from "./components/Header";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import WorkStyleCarousel from "./components/WorkStyleCarousel";
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
