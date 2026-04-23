@@ -6,27 +6,27 @@ type Slide = {
   title: string;
   text: string;
   videoSrc: string;
-  poster?: string;
+  poster: string;
 };
 
 const slides: Slide[] = [
   {
     title: "En partner, inte bara en leverantör",
     text: "Vi sätter oss in i er verksamhet, era mål och er vardag. Det gör att marknadsföringen blir mer relevant, mer genomförbar och närmare affären.",
-    videoSrc: "/videos/partner.mp4",
-    poster: "/images/partner-poster.jpg",
+    videoSrc: "/videos/partner-webb.mp4",
+    poster: "/partner-webb.webp",
   },
   {
     title: "Fokus på det som faktiskt gör skillnad",
     text: "Istället för att göra allt samtidigt hjälper vi er att prioritera rätt insatser utifrån läge, potential och vad som faktiskt kan ge effekt.",
-    videoSrc: "/videos/fokus.mp4",
-    poster: "/images/fokus-poster.jpg",
+    videoSrc: "/videos/fokus-webb.mp4",
+    poster: "/fokus-webb.webp",
   },
   {
     title: "Flexibelt stöd efter ert behov",
     text: "Ni kan få hjälp med strategi, genomförande eller båda delarna. Upplägget anpassas efter hur mycket stöd ni behöver just nu.",
-    videoSrc: "/videos/flexibelt-stod.mp4",
-    poster: "/images/flexibelt-stod-poster.jpg",
+    videoSrc: "/videos/fleibelt-stod-webb.mp4",
+    poster: "/fleibelt-stod-webb.webp",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function WorkStyleCarousel() {
           aria-roledescription="carousel"
           aria-label="Så arbetar AXA Consult"
         >
-          <div className="mb-6 flex items-center justify-between gap-4">
+          <div className="mb-6 flex items-end justify-between gap-4">
             <div className="max-w-3xl">
               <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
                 Samarbete
