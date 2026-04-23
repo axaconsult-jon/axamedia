@@ -196,7 +196,8 @@ export default function HomePage() {
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
         />
-<section className="relative overflow-hidden px-6 pb-24 pt-[170px] md:px-10 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
+        {/* HERO */}
+<section className="relative overflow-hidden px-5 pb-20 pt-[150px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
   <div className="absolute inset-0">
     <Image
       src="/abtract-hero.webp"
@@ -217,18 +218,18 @@ export default function HomePage() {
   <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
   <div className="relative mx-auto max-w-7xl">
-    <div className="grid items-start gap-14 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12">
-      <div className="max-w-4xl">
+    <div className="grid items-start gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-12">
+      <div className="min-w-0">
         <span
-          className={`inline-flex rounded-full border border-white/14 bg-white/10 px-4 py-1 text-sm font-medium text-white/80 shadow-sm backdrop-blur transition-all duration-700 ${
+          className={`inline-flex max-w-full rounded-full border border-white/14 bg-white/10 px-4 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/80 shadow-sm backdrop-blur transition-all duration-700 sm:text-sm ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          Marknadskonsult för företag som vill ha bättre riktning och tydligare effekt
+          Externt marknadsstöd för företag
         </span>
 
         <h1
-          className={`mt-6 max-w-4xl text-[44px] font-semibold leading-[0.95] tracking-[-0.055em] text-white transition-all duration-700 sm:text-[58px] md:text-[72px] lg:text-[88px] ${
+          className={`mt-6 max-w-[11ch] text-[42px] font-semibold leading-[0.94] tracking-[-0.06em] text-white transition-all duration-700 sm:max-w-none sm:text-[58px] md:text-[72px] lg:text-[88px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
@@ -239,7 +240,7 @@ export default function HomePage() {
         </h1>
 
         <p
-          className={`mt-7 max-w-2xl text-[18px] leading-[1.85] text-white/78 transition-all duration-700 delay-100 md:text-[20px] ${
+          className={`mt-6 max-w-xl text-[17px] leading-[1.8] text-white/78 transition-all duration-700 delay-100 sm:text-[18px] md:text-[20px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
@@ -254,91 +255,81 @@ export default function HomePage() {
         >
           <a
             href="/boka-mote"
-            className={`inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3.5 text-sm font-medium text-[#10161f] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#f8f3ea] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]`}
+            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#10161f] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#f8f3ea] sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
           >
             Boka ett första samtal
           </a>
 
           <a
             href="#services"
-            className={`inline-flex items-center justify-center rounded-2xl border border-white/14 bg-white/[0.04] px-6 py-3.5 text-sm font-medium text-white transition hover:border-white/24 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]`}
+            className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full border border-white/14 bg-white/[0.04] px-6 py-3.5 text-sm font-medium text-white transition hover:border-white/24 hover:bg-white/[0.08] sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
           >
             Se vad vi hjälper till med
           </a>
         </div>
 
         <div
-          className={`mt-10 grid max-w-3xl gap-4 sm:grid-cols-3 transition-all duration-700 delay-200 ${
+          className={`mt-10 grid gap-4 sm:grid-cols-3 transition-all duration-700 delay-200 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >
-          <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 shadow-sm backdrop-blur">
-            <div className="flex items-center gap-3">
-              <svg
-                className="h-5 w-5 text-[#F5B74E]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
-                <circle cx="9.5" cy="7" r="4" />
-                <path d="M20 8v6" />
-                <path d="M23 11h-6" />
-              </svg>
-              <p className="text-sm font-medium text-white/84">
-                Personligt samarbete
-              </p>
-            </div>
+          <div className="flex min-w-0 items-center gap-3">
+            <svg
+              className="h-5 w-5 shrink-0 text-[#F5B74E]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
+              <circle cx="9.5" cy="7" r="4" />
+            </svg>
+            <p className="text-sm leading-[1.5] text-white/80">
+              Personligt samarbete
+            </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 shadow-sm backdrop-blur">
-            <div className="flex items-center gap-3">
-              <svg
-                className="h-5 w-5 text-[#F5B74E]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <p className="text-sm font-medium text-white/84">
-                Få kunder åt gången
-              </p>
-            </div>
+          <div className="flex min-w-0 items-center gap-3">
+            <svg
+              className="h-5 w-5 shrink-0 text-[#F5B74E]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            <p className="text-sm leading-[1.5] text-white/80">
+              Få kunder åt gången
+            </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 shadow-sm backdrop-blur">
-            <div className="flex items-center gap-3">
-              <svg
-                className="h-5 w-5 text-[#F5B74E]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <path d="M3 17l6-6 4 4 7-7" />
-                <path d="M14 8h6v6" />
-              </svg>
-              <p className="text-sm font-medium text-white/84">
-                Fokus på resultat och tydlighet
-              </p>
-            </div>
+          <div className="flex min-w-0 items-center gap-3">
+            <svg
+              className="h-5 w-5 shrink-0 text-[#F5B74E]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
+              <path d="M3 17l6-6 4 4 7-7" />
+              <path d="M14 8h6v6" />
+            </svg>
+            <p className="text-sm leading-[1.5] text-white/80">
+              Fokus på resultat och tydlighet
+            </p>
           </div>
         </div>
       </div>
 
       <div
-        className={`lg:pl-4 transition-all duration-700 delay-300 ${
+        className={`min-w-0 transition-all duration-700 delay-300 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 shadow-2xl shadow-black/20 backdrop-blur-md md:p-6">
-          <div className="rounded-[1.5rem] bg-[linear-gradient(135deg,rgba(23,37,55,0.96)_0%,rgba(34,55,81,0.95)_100%)] p-6 text-white">
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.06] p-4 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-5 md:p-6">
+          <div className="rounded-[24px] bg-[linear-gradient(135deg,rgba(23,37,55,0.96)_0%,rgba(34,55,81,0.95)_100%)] p-5 text-white sm:p-6">
             <p className="text-sm font-medium text-[#d5e5f7]">
               När det ofta blir rörigt
             </p>
@@ -349,7 +340,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-6">
+          <div className="mt-4 rounded-[24px] border border-white/10 bg-white/[0.06] p-5 sm:p-6">
             <p className="text-sm font-medium text-white/82">
               Det vi hjälper till att skapa
             </p>
