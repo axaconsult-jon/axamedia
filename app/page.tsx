@@ -358,177 +358,156 @@ export default function HomePage() {
 </section>
 
         {/* SERVICES */}
-        <section
-          id="services"
-          className="border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
-        >
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-                Tjänster
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Det här kan vi hjälpa er med
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-slate-600">
-                Upplägget anpassas efter era mål, resurser och hur mycket stöd ni
-                behöver i vardagen.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {[
-                {
-                  title: "SEO & synlighet",
-                  text: "För företag som vill synas bättre i sök, bygga relevant trafik och skapa långsiktig närvaro.",
-                },
-                {
-                  title: "Google Ads & annonsering",
-                  text: "För er som vill nå rätt målgrupp snabbare och få bättre kontroll på budget, resultat och uppföljning.",
-                },
-                {
-                  title: "Strategi & rådgivning",
-                  text: "Vi hjälper er att prioritera rätt, se vad som fungerar och skapa en plan som går att genomföra i vardagen.",
-                },
-                {
-                  title: "Sociala medier & innehåll",
-                  text: "Stöd i både organiskt innehåll, annonsering och hur ert varumärke ska kännas i olika kanaler.",
-                },
-                {
-                  title: "Nyhetsbrev & kundkommunikation",
-                  text: "För företag som vill hålla kontakten, bygga relationer och skapa fler affärer över tid.",
-                },
-                {
-                  title: "Varumärke & webb",
-                  text: "Från budskap och struktur till visuellt uttryck och webbupplevelse som stärker förtroendet.",
-                },
-              ].map((service) => (
-                <div
-                  key={service.title}
-                  className="rounded-[2rem] border border-[#ede3d0] bg-white p-7 shadow-sm transition hover:border-[#F5B74E]/40 hover:shadow-lg"
-                >
-                  <div className="mb-5 inline-flex rounded-full bg-[#fff3da] px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-                    AXA Consult
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-950">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+  {[
+    {
+      title: "SEO & synlighet",
+      text: "För företag som vill synas bättre i sök, bygga relevant trafik och skapa långsiktig närvaro.",
+    },
+    {
+      title: "Google Ads & annonsering",
+      text: "För er som vill nå rätt målgrupp snabbare och få bättre kontroll på budget, resultat och uppföljning.",
+    },
+    {
+      title: "Strategi & rådgivning",
+      text: "Vi hjälper er att prioritera rätt, se vad som fungerar och skapa en plan som går att genomföra i vardagen.",
+    },
+    {
+      title: "Sociala medier & innehåll",
+      text: "Stöd i både organiskt innehåll, annonsering och hur ert varumärke ska kännas i olika kanaler.",
+    },
+    {
+      title: "Nyhetsbrev & kundkommunikation",
+      text: "För företag som vill hålla kontakten, bygga relationer och skapa fler affärer över tid.",
+    },
+    {
+      title: "Varumärke & webb",
+      text: "Från budskap och struktur till visuellt uttryck och webbupplevelse som stärker förtroendet.",
+    },
+  ].map((service) => (
+    <div
+      key={service.title}
+      className="rounded-[2rem] border border-[#e7dcc7] bg-white p-7 shadow-sm transition hover:border-[#F5B74E]/40 hover:shadow-lg"
+    >
+      <h3 className="text-xl font-semibold text-slate-950">
+        {service.title}
+      </h3>
+      <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
+    </div>
+  ))}
+</div>
 
         {/* PROCESS */}
-        <section id="process" className="bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-                  Arbetssätt
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                  Ett enklare sätt att få ordning på marknadsföringen
-                </h2>
-                <p className="mt-4 text-lg leading-8 text-slate-600">
-                  Vi tror på ett arbetssätt som är nära, tydligt och lätt att förstå.
-                  Det ska vara enkelt att veta vad som händer, varför det görs och
-                  vad nästa steg är.
-                </p>
-              </div>
+       <section
+  id="process"
+  className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.12),transparent_22%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_28%)]" />
 
-              <div className="grid gap-4">
-                {[
-                  {
-                    number: "01",
-                    title: "Nuläge & behov",
-                    text: "Vi tittar på var ni står idag, vad som redan görs och vilka utmaningar som bromsar er marknadsföring.",
-                  },
-                  {
-                    number: "02",
-                    title: "Strategi & prioritering",
-                    text: "Tillsammans sätter vi riktning, väljer fokus och landar i en plan som är rimlig att genomföra.",
-                  },
-                  {
-                    number: "03",
-                    title: "Genomförande",
-                    text: "Vi driver arbetet framåt med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
-                  },
-                  {
-                    number: "04",
-                    title: "Uppföljning & förbättring",
-                    text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
-                  },
-                ].map((step) => (
-                  <div
-                    key={step.number}
-                    className="rounded-[2rem] border border-[#ece2cf] bg-[linear-gradient(180deg,#ffffff_0%,#fcfaf6_100%)] p-6 shadow-sm"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#F5B74E_0%,#d9982f_100%)] text-sm font-semibold text-[#1a2430] shadow-md shadow-[#F5B74E]/20">
-                        {step.number}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-slate-950">
-                          {step.title}
-                        </h3>
-                        <p className="mt-2 leading-7 text-slate-600">{step.text}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+  <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
+          Arbetssätt
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Ett enklare sätt att få ordning på marknadsföringen
+        </h2>
+        <p className="mt-4 text-lg leading-8 text-slate-200">
+          Vi tror på ett arbetssätt som är nära, tydligt och lätt att förstå.
+          Det ska vara enkelt att veta vad som händer, varför det görs och vad
+          nästa steg är.
+        </p>
+      </div>
+
+      <div className="grid gap-4">
+        {[
+          {
+            number: "01",
+            title: "Nuläge & behov",
+            text: "Vi tittar på var ni står idag, vad som redan görs och vilka utmaningar som bromsar er marknadsföring.",
+          },
+          {
+            number: "02",
+            title: "Strategi & prioritering",
+            text: "Tillsammans sätter vi riktning, väljer fokus och landar i en plan som är rimlig att genomföra.",
+          },
+          {
+            number: "03",
+            title: "Genomförande",
+            text: "Vi driver arbetet framåt med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
+          },
+          {
+            number: "04",
+            title: "Uppföljning & förbättring",
+            text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
+          },
+        ].map((step) => (
+          <div
+            key={step.number}
+            className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm"
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#F5B74E_0%,#d9982f_100%)] text-sm font-semibold text-[#1a2430] shadow-md shadow-[#F5B74E]/20">
+                {step.number}
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  {step.title}
+                </h3>
+                <p className="mt-2 leading-7 text-slate-200">{step.text}</p>
               </div>
             </div>
           </div>
-        </section>
-
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
         {/* OM SAMARBETET */}
-        <section
-          id="samarbete"
-          className="relative overflow-hidden bg-[linear-gradient(135deg,#15202b_0%,#1f3042_55%,#29405c_100%)] text-white"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.20),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.07),transparent_28%)]" />
+       <section
+  id="samarbete"
+  className="bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] text-[#1A2430]"
+>
+  <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
+          Om samarbetet
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+          Vi jobbar nära ett fåtal kunder åt gången
+        </h2>
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+          Det gör att vi kan sätta oss in i verksamheten på riktigt, förstå
+          prioriteringarna och bidra med både strategiskt och operativt stöd.
+          Målet är inte att göra mer för sakens skull, utan att hjälpa er
+          framåt på ett sätt som känns relevant och hållbart.
+        </p>
+      </div>
 
-          <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
-                  Om samarbetet
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Vi jobbar nära ett fåtal kunder åt gången
-                </h2>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-                  Det gör att vi kan sätta oss in i verksamheten på riktigt, förstå
-                  prioriteringarna och bidra med både strategiskt och operativt stöd.
-                  Målet är inte att göra mer för sakens skull, utan att hjälpa er
-                  framåt på ett sätt som känns relevant och hållbart.
-                </p>
-              </div>
-
-              <div className="rounded-[2rem] border border-white/10 bg-white/10 p-8 backdrop-blur">
-                <p className="text-sm font-medium text-[#f0d9ad]">
-                  Passar ofta företag som...
-                </p>
-                <div className="mt-5 grid gap-3 text-sm leading-6 text-slate-100">
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-                    saknar intern marknadsansvarig
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-                    vill få bättre kontroll på vad som görs
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-                    behöver hjälp att prioritera rätt insatser
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-4">
-                    vill ha en mer personlig partner än en traditionell byrå
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="rounded-[2rem] border border-[#e8dec9] bg-white p-8 shadow-sm shadow-[#d7c6a2]/10">
+        <p className="text-sm font-medium text-[#8a5a14]">
+          Passar ofta företag som...
+        </p>
+        <div className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
+          <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
+            saknar intern marknadsansvarig
           </div>
-        </section>
+          <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
+            vill få bättre kontroll på vad som görs
+          </div>
+          <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
+            behöver hjälp att prioritera rätt insatser
+          </div>
+          <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
+            vill ha en mer personlig partner än en traditionell byrå
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* FAQ */}
         <section
@@ -575,98 +554,100 @@ export default function HomePage() {
         </section>
 
         {/* CONTACT */}
-        <section
-          id="contact"
-          className="border-t border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
-        >
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-                  Kontakt
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                  Vill du se om vi är rätt för varandra?
-                </h2>
-                <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-                  Hör av dig så tar vi ett första samtal om nuläge, behov och vad
-                  som skulle vara ett rimligt nästa steg för er.
-                </p>
+       <section
+  id="contact"
+  className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
 
-                <div className="mt-8 space-y-3 text-slate-700">
-                  <p>
-                    <span className="font-semibold text-slate-950">Telefon:</span>{" "}
-                    +46 (0)760 35 35 60
-                  </p>
-                  <p>
-                    <span className="font-semibold text-slate-950">E-post:</span>{" "}
-                    info@axaconsult.se
-                  </p>
-                  <p>
-                    <span className="font-semibold text-slate-950">Plats:</span>{" "}
-                    Uppsala & Falun
-                  </p>
-                </div>
-              </div>
+  <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
+          Kontakt
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Vill du se om vi är rätt för varandra?
+        </h2>
+        <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
+          Hör av dig så tar vi ett första samtal om nuläge, behov och vad som
+          skulle vara ett rimligt nästa steg för er.
+        </p>
 
-              <div className="rounded-[2rem] border border-[#e8dec9] bg-white p-6 shadow-sm shadow-[#d7c6a2]/10">
-                <form className="grid gap-4">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-slate-700"
-                    >
-                      Namn
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="w-full rounded-2xl border border-[#d9cfbb] px-4 py-3 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="Ditt namn"
-                    />
-                  </div>
+        <div className="mt-8 space-y-3 text-slate-200">
+          <p>
+            <span className="font-semibold text-white">Telefon:</span> +46 (0)760
+            35 35 60
+          </p>
+          <p>
+            <span className="font-semibold text-white">E-post:</span>{" "}
+            info@axaconsult.se
+          </p>
+          <p>
+            <span className="font-semibold text-white">Plats:</span> Uppsala &
+            Falun
+          </p>
+        </div>
+      </div>
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-slate-700"
-                    >
-                      E-post
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="w-full rounded-2xl border border-[#d9cfbb] px-4 py-3 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="din@epost.se"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="mb-2 block text-sm font-medium text-slate-700"
-                    >
-                      Meddelande
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      className="w-full rounded-2xl border border-[#d9cfbb] px-4 py-3 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="Berätta kort vad du vill ha hjälp med"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#1a2430_0%,#2b3f59_100%)] px-6 py-3 text-sm font-medium text-white transition hover:opacity-95"
-                  >
-                    Skicka förfrågan
-                  </button>
-                </form>
-              </div>
-            </div>
+      <div className="rounded-[2rem] border border-white/10 bg-white/[0.08] p-6 shadow-2xl shadow-black/15 backdrop-blur-sm">
+        <form className="grid gap-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="mb-2 block text-sm font-medium text-white/80"
+            >
+              Namn
+            </label>
+            <input
+              id="name"
+              type="text"
+              className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+              placeholder="Ditt namn"
+            />
           </div>
-        </section>
+
+          <div>
+            <label
+              htmlFor="email"
+              className="mb-2 block text-sm font-medium text-white/80"
+            >
+              E-post
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+              placeholder="din@epost.se"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="message"
+              className="mb-2 block text-sm font-medium text-white/80"
+            >
+              Meddelande
+            </label>
+            <textarea
+              id="message"
+              rows={5}
+              className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+              placeholder="Berätta kort vad du vill ha hjälp med"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea]"
+          >
+            Skicka förfrågan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* FOOTER */}
         <footer className="relative bg-[#0f1a24] px-6 py-16 md:px-10 lg:px-16">
