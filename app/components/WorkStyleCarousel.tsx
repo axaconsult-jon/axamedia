@@ -39,8 +39,8 @@ export default function WorkStyleCarousel() {
   const cardWidths = useMemo(
     () => ({
       mobile: 292,
-      tablet: 360,
-      desktop: 830,
+      tablet: 460,
+      desktop: 930,
     }),
     []
   );
