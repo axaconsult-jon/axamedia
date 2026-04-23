@@ -227,7 +227,7 @@ export default function HomePage() {
 
      
 {/* HERO */}
-<section className="relative overflow-x-hidden px-5 pb-16 pt-[138px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
+<section className="relative overflow-x-hidden px-5 pb-20 pt-[150px] md:px-10 md:pb-28 md:pt-[200px] lg:px-16 lg:pb-32 lg:pt-[220px]">
   {/* Background */}
   <div className="absolute inset-0">
     <Image
@@ -253,7 +253,7 @@ export default function HomePage() {
     <div className="grid items-start gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
       
       {/* LEFT */}
-      <div className="min-w-0 max-w-4xl lg:pr-14">
+      <div className="min-w-0 max-w-4xl pb-2 lg:pr-14">
         <span
           className={`inline-flex max-w-full rounded-full border border-white/12 bg-white/[0.07] px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/72 shadow-sm backdrop-blur sm:text-[11px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -263,7 +263,7 @@ export default function HomePage() {
         </span>
 
         <h1
-          className={`mt-5 max-w-[10ch] pr-2 text-[38px] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[74px] ${
+          className={`mt-5 max-w-[10ch] pr-2 pb-2 break-words text-[38px] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[74px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           } transition-all duration-700`}
         >
