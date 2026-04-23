@@ -17,7 +17,7 @@ export default function Header({
   setMenuOpen,
 }: HeaderProps) {
   return (
-    <header className="fixed inset-x-0 top-[10px] z-[110] bg-[rgba(19,32,44,0.78)] px-5 pt-4 backdrop-blur-xl md:px-10 md:pt-8 lg:px-16">
+    <header className="fixed inset-x-0 top-[10px] z-[110] bg-[rgba(10,23,36,0.72)] px-5 pt-4 backdrop-blur-xl md:px-10 md:pt-8 lg:px-16">
       <nav
         aria-label="Huvudnavigering"
         className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center py-5 md:grid-cols-[180px_1fr_240px] md:py-6"
@@ -47,13 +47,13 @@ export default function Header({
             href={variant === "home" ? "#process" : "/#process"}
             className={linkClasses}
           >
-            Process
+            Arbetssätt
           </a>
           <a
             href={variant === "home" ? "#samarbete" : "/#samarbete"}
             className={linkClasses}
           >
-            Om samarbetet
+            Samarbete
           </a>
           <a
             href={variant === "home" ? "#faq" : "/#faq"}
