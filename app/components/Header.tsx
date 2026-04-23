@@ -52,9 +52,6 @@ export default function Header({
           <a href={variant === "home" ? "#kontakt" : "/#kontakt"} className={linkClasses}>
             Kontakt
           </a>
-          <a href={variant === "home" ? "/page3" : "/page3"} className={linkClasses}>
-            Page 3
-          </a>
         </div>
 
         <div className="flex items-center justify-end gap-3">
