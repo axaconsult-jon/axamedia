@@ -413,8 +413,6 @@ export default function HomePage() {
     </div>
   </div>
 </section>
-        <WorkStyleCarousel />
-
         {/* SERVICES */}
         <section id="services"
           className="border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
