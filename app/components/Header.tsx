@@ -17,7 +17,7 @@ export default function Header({
   setMenuOpen,
 }: HeaderProps) {
   return (
-    <header className="fixed inset-x-0 top-[10px] z-[110] border-b border-white/5 bg-[linear-gradient(90deg,rgba(8,18,29,0.98)_0%,rgba(10,23,36,0.97)_40%,rgba(13,27,43,0.96)_100%)] px-5 pt-4 md:px-10 md:pt-8 lg:px-16">
+    <header className="fixed inset-x-0 top-[10px] z-[110] border-b border-white/5 bg-[linear-gradient(135deg,rgba(8,18,29,0.98)_0%,rgba(10,23,36,0.97)_60%,rgba(13,27,43,0.96)_100%)] px-5 pt-4 md:px-10 md:pt-8 lg:px-16">
       <nav
         aria-label="Huvudnavigering"
         className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center py-5 md:grid-cols-[180px_1fr_240px] md:py-6"

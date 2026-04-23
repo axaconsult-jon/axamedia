@@ -76,11 +76,11 @@ export default function BokaMote() {
 
         <Header variant="boka" />
 
-        <section className="relative px-6 pb-20 pt-[200px] md:px-10 md:pb-28 lg:px-16 lg:pt-[128px]">
+        <section className="relative px-6 pb-20 pt-[190px] md:px-10 md:pb-28 md:pt-[220px] lg:px-16 lg:pt-[170px]">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
           <div className="relative mx-auto max-w-7xl">
-            <div className="grid gap-10 lg:gap-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+            <div className="grid gap-10 lg:gap-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-start xl:pt-6">
               <div>
                 <div className="max-w-3xl">
                   <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
@@ -269,12 +269,13 @@ export default function BokaMote() {
 
             <div className="flex flex-col gap-3 text-[15px] text-white/75 md:items-center">
               {[
-                ["Startsida", "/"],
-                ["Så hjälper vi", "/#tjanster"],
-                ["Resultat", "/#resultat"],
-                ["FAQ", "/#faq"],
-                ["Kontakt", "/#kontakt"],
-              ].map(([label, href]) => (
+                  ["Startsida", "/"],
+                  ["Tjänster", "/#services"],
+                  ["Arbetssätt", "/#process"],
+                  ["Samarbete", "/#samarbete"],
+                  ["FAQ", "/#faq"],
+                  ["Kontakt", "/#contact"],
+].map(([label, href]) => (
                 <a
                   key={href}
                   href={href}
