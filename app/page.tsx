@@ -227,7 +227,7 @@ export default function HomePage() {
 
      
 {/* HERO */}
-<section className="relative overflow-hidden px-5 pb-16 pt-[138px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
+<section className="relative overflow-x-hidden px-5 pb-16 pt-[138px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
   {/* Background */}
   <div className="absolute inset-0">
     <Image
