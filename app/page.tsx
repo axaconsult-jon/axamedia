@@ -226,8 +226,9 @@ export default function HomePage() {
         />
 
      
-       {/* HERO */}
+{/* HERO */}
 <section className="relative overflow-hidden px-5 pb-16 pt-[138px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[210px]">
+  {/* Background */}
   <div className="absolute inset-0">
     <Image
       src="/abtract-hero.webp"
@@ -247,9 +248,12 @@ export default function HomePage() {
 
   <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
+  {/* Content */}
   <div className="relative mx-auto max-w-7xl">
-    <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
-      <div className="min-w-0 max-w-4xl lg:pr-12">
+    <div className="grid items-start gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
+      
+      {/* LEFT */}
+      <div className="min-w-0 max-w-4xl lg:pr-14">
         <span
           className={`inline-flex max-w-full rounded-full border border-white/12 bg-white/[0.07] px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white/72 shadow-sm backdrop-blur sm:text-[11px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -259,7 +263,7 @@ export default function HomePage() {
         </span>
 
         <h1
-         className={`mt-5 max-w-[10ch] pr-2 text-[38px] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[78px] ${
+          className={`mt-5 max-w-[10ch] pr-2 text-[38px] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[74px] ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           } transition-all duration-700`}
         >
@@ -304,55 +308,32 @@ export default function HomePage() {
           } transition-all duration-700 delay-200`}
         >
           <div className="flex items-center gap-3">
-            <svg
-              className="h-5 w-5 shrink-0 text-[#F5B74E]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
+            <svg className="h-5 w-5 text-[#F5B74E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
               <circle cx="9.5" cy="7" r="4" />
             </svg>
-            <p className="text-[15px] leading-[1.45] text-white/78">
-              Personligt samarbete
-            </p>
+            <p className="text-[15px] text-white/78">Personligt samarbete</p>
           </div>
 
           <div className="flex items-center gap-3">
-            <svg
-              className="h-5 w-5 shrink-0 text-[#F5B74E]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
+            <svg className="h-5 w-5 text-[#F5B74E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
               <circle cx="9" cy="7" r="4" />
             </svg>
-            <p className="text-[15px] leading-[1.45] text-white/78">
-              Få kunder åt gången
-            </p>
+            <p className="text-[15px] text-white/78">Få kunder åt gången</p>
           </div>
 
           <div className="flex items-center gap-3 sm:col-span-2 lg:col-span-1">
-            <svg
-              className="h-5 w-5 shrink-0 text-[#F5B74E]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
+            <svg className="h-5 w-5 text-[#F5B74E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M3 17l6-6 4 4 7-7" />
               <path d="M14 8h6v6" />
             </svg>
-            <p className="text-[15px] leading-[1.45] text-white/78">
-              Fokus på resultat och tydlighet
-            </p>
+            <p className="text-[15px] text-white/78">Fokus på resultat och tydlighet</p>
           </div>
         </div>
       </div>
 
+      {/* RIGHT */}
       <div
         className={`min-w-0 transition-all duration-700 delay-300 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
@@ -360,10 +341,8 @@ export default function HomePage() {
       >
         <div className="rounded-[26px] border border-white/10 bg-white/[0.05] p-4 shadow-[0_24px_60px_rgba(0,0,0,0.18)] backdrop-blur-md sm:p-5 md:p-6">
           <div className="rounded-[22px] bg-[linear-gradient(135deg,rgba(24,39,58,0.92)_0%,rgba(35,56,82,0.90)_100%)] p-5 text-white sm:p-6">
-            <p className="text-sm font-medium text-[#d5e5f7]">
-              När det ofta blir rörigt
-            </p>
-            <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-100">
+            <p className="text-sm font-medium text-[#d5e5f7]">När det ofta blir rörigt</p>
+            <ul className="mt-4 space-y-3 text-sm text-slate-100">
               <li>• Ni hinner inte driva marknadsföringen framåt själva</li>
               <li>• Det är svårt att veta vad som fungerar och inte</li>
               <li>• Insatser görs, men utan tydlig riktning eller uppföljning</li>
@@ -371,10 +350,8 @@ export default function HomePage() {
           </div>
 
           <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.06] p-5 sm:p-6">
-            <p className="text-sm font-medium text-white/82">
-              Det vi hjälper till att skapa
-            </p>
-            <ul className="mt-4 space-y-3 text-sm leading-6 text-white/74">
+            <p className="text-sm font-medium text-white/82">Det vi hjälper till att skapa</p>
+            <ul className="mt-4 space-y-3 text-sm text-white/74">
               <li>• En tydligare marknadsplan</li>
               <li>• Bättre struktur i arbetet</li>
               <li>• Ett tryggare beslutsunderlag</li>
@@ -383,6 +360,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
