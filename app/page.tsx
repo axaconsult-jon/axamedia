@@ -243,7 +243,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 lg:pr-6">
               <p
                 className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E]/82 sm:text-[12px] ${
                   isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -253,15 +253,15 @@ export default function HomePage() {
               </p>
 
               <h1
-                className={`max-w-[12ch] pb-2 text-[36px] font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:max-w-[13ch] sm:text-[46px] md:max-w-[14ch] md:text-[58px] lg:max-w-none lg:text-[68px] xl:text-[76px] ${
-                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                } transition-all duration-700`}
-              >
-                Er externa
-                <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text text-transparent">
-                  marknadsavdelning
-                </span>
-              </h1>
+  className={`max-w-[11ch] text-[34px] font-semibold leading-[1.14] tracking-[-0.05em] text-white sm:max-w-[12ch] sm:text-[44px] md:max-w-[13ch] md:text-[56px] lg:max-w-none lg:text-[68px] lg:leading-[1.08] xl:text-[76px] ${
+    isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+  } transition-all duration-700`}
+>
+  <span className="block">Er externa</span>
+  <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text pb-[0.08em] text-transparent">
+    marknadsavdelning
+  </span>
+</h1>
 
               <p
                 className={`mt-5 max-w-2xl text-[17px] leading-[1.75] text-white/76 sm:text-[18px] md:text-[19px] ${
