@@ -35,59 +35,24 @@ const AUTOPLAY_MS = 6000;
 export default function WorkStyleCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isResetting, setIsResetting] = useState(false);
 
   function goPrev() {
-    if (activeIndex === 0) {
-      setIsResetting(true);
-      setActiveIndex(slides.length - 1);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setIsResetting(false));
-      });
-      return;
-    }
-
-    setActiveIndex((prev) => prev - 1);
-  }
+  setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+}
 
   function goNext() {
-    if (activeIndex === slides.length - 1) {
-      setActiveIndex(slides.length);
-      setTimeout(() => {
-        setIsResetting(true);
-        setActiveIndex(0);
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => setIsResetting(false));
-        });
-      }, 380);
-      return;
-    }
-
-    setActiveIndex((prev) => prev + 1);
-  }
+  setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+}
 
   useEffect(() => {
-    if (isPaused) return;
+  if (isPaused) return;
 
-    const timer = setInterval(() => {
-      if (activeIndex === slides.length - 1) {
-        setActiveIndex(slides.length);
-        setTimeout(() => {
-          setIsResetting(true);
-          setActiveIndex(0);
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => setIsResetting(false));
-          });
-        }, 380);
-      } else {
-        setActiveIndex((prev) => prev + 1);
-      }
-    }, AUTOPLAY_MS);
+  const timer = setInterval(() => {
+    setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  }, AUTOPLAY_MS);
 
-    return () => clearInterval(timer);
-  }, [activeIndex, isPaused]);
-
-  const renderedSlides = [...slides, slides[0]];
+  return () => clearInterval(timer);
+}, [isPaused]);
 
   return (
     <section
@@ -153,10 +118,10 @@ export default function WorkStyleCarousel() {
 
           <div className="overflow-hidden">
             <div
-              className={`flex ${isResetting ? "" : "transition-transform duration-500 ease-out"}`}
-              style={{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }}
-            >
-              {renderedSlides.map((slide, index) => (
+  className="flex gap-6 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+  style={{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }}
+>
+        {slides.map((slide, index) => (
                 <div
                   key={`${slide.title}-${index}`}
                   role="group"
@@ -164,7 +129,7 @@ export default function WorkStyleCarousel() {
                   aria-label={`${Math.min(index + 1, slides.length)} av ${slides.length}`}
                   className="min-w-0 shrink-0 grow-0 basis-full"
                 >
-                  <div className="pr-[12%] md:pr-[22%] lg:pr-[28%]">
+                  <div className="w-[88%] md:w-[72%] lg:w-[62%]">
                     <div className="grid min-h-[390px] grid-cols-1 justify-between gap-6 rounded-[28px] bg-white p-4 text-black shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-5 lg:rounded-[32px] lg:p-6 xl:grid-cols-[0.78fr_1.22fr] xl:items-stretch">
                       <div className="flex flex-col xl:px-2 xl:py-2">
                         <h3 className="mb-4 max-w-[13ch] text-[24px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#111827] md:text-[30px] lg:text-[34px]">
@@ -176,29 +141,21 @@ export default function WorkStyleCarousel() {
                         </p>
 
                         <div className="mt-auto flex gap-2">
-                          {slides.map((_, dotIndex) => {
-                            const currentIndex =
-                              activeIndex === slides.length ? 0 : activeIndex;
-
-                            return (
-                              <button
-                                key={dotIndex}
-                                type="button"
-                                onMouseDown={(e) => e.preventDefault()}
-                                onClick={() => {
-                                  setIsResetting(false);
-                                  setActiveIndex(dotIndex);
-                                }}
-                                aria-label={`Gå till slide ${dotIndex + 1}`}
-                                aria-pressed={currentIndex === dotIndex}
-                                className={`h-2.5 rounded-full transition-all ${
-                                  currentIndex === dotIndex
-                                    ? "w-8 bg-[#F5B74E]"
-                                    : "w-2.5 bg-[#d7cdb8]"
-                                }`}
-                              />
-                            );
-                          })}
+                          {slides.map((_, dotIndex) => (
+  <button
+    key={dotIndex}
+    type="button"
+    onMouseDown={(e) => e.preventDefault()}
+    onClick={() => setActiveIndex(dotIndex)}
+    aria-label={`Gå till slide ${dotIndex + 1}`}
+    aria-pressed={activeIndex === dotIndex}
+    className={`h-2.5 rounded-full transition-all ${
+      activeIndex === dotIndex
+        ? "w-8 bg-[#F5B74E]"
+        : "w-2.5 bg-[#d7cdb8]"
+    }`}
+  />
+))}
                         </div>
 
                         <div className="mt-6 flex gap-2 md:hidden">
@@ -231,7 +188,7 @@ export default function WorkStyleCarousel() {
                         muted
                         loop
                         playsInline
-                        autoPlay={activeIndex === index || (activeIndex === slides.length && index === slides.length)}
+                        autoPlay={activeIndex === index}
                         preload="auto"
                       />
                     </div>
@@ -241,9 +198,9 @@ export default function WorkStyleCarousel() {
             </div>
           </div>
 
-          <p className="mt-4 text-sm text-[#7b8798]">
-            {(activeIndex === slides.length ? 1 : activeIndex + 1)} / {slides.length}
-          </p>
+       <p className="mt-4 text-sm text-[#7b8798]">
+  {activeIndex + 1} / {slides.length}
+</p>
         </div>
       </div>
     </section>
