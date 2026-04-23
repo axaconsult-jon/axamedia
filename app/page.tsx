@@ -262,16 +262,16 @@ export default function HomePage() {
           Externt marknadsstöd för företag
         </span>
 
-        <h1
-          className={`mt-5 max-w-[10ch] pr-2 pb-2 break-words text-[38px] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:max-w-[11ch] sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[74px] ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          } transition-all duration-700`}
-        >
-          Er externa
-          <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text text-transparent">
-            marknadsavdelning
-          </span>
-        </h1>
+       <h1
+  className={`mt-5 max-w-none sm:max-w-[11ch] pr-2 pb-2 text-[38px] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[52px] md:max-w-none md:text-[64px] lg:text-[72px] xl:text-[74px] ${
+    isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+  } transition-all duration-700`}
+>
+  Er externa
+  <span className="block bg-gradient-to-r from-white via-[#dce8f6] to-[#8fb3da] bg-clip-text text-transparent">
+    marknadsavdelning
+  </span>
+</h1>
 
         <p
           className={`mt-5 max-w-[34rem] text-[16px] leading-[1.75] text-white/76 sm:max-w-xl sm:text-[17px] md:text-[18px] lg:text-[19px] ${
