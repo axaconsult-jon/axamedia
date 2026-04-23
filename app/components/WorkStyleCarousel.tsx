@@ -40,7 +40,7 @@ export default function WorkStyleCarousel() {
     () => ({
       mobile: 292,
       tablet: 360,
-      desktop: 430,
+      desktop: 830,
     }),
     []
   );
