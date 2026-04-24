@@ -105,7 +105,7 @@ export default function HomePage() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[999] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[999] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black"
       >
         Hoppa till innehåll
       </a>
@@ -207,13 +207,12 @@ export default function HomePage() {
               </nav>
 
               <div className="mt-auto pt-8">
-                <a
-                  href="/boka-mote"
-                  onClick={() => setMenuOpen(false)}
-                  className={`inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-white to-[#f4efe6] px-6 py-4 text-[15px] font-medium text-[#10161f] transition hover:scale-[0.985] hover:from-[#fff7ea] hover:to-white ${focusRing}`}
-                >
-                  Boka ett första samtal
-                </a>
+              <a
+  href="/boka-mote"
+  className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#101923] transition hover:bg-[#f8f3ea] ${focusRing}`}
+>
+  Boka ett första samtal
+</a>
               </div>
             </div>
           </div>
@@ -280,12 +279,12 @@ export default function HomePage() {
           Boka ett första samtal
         </a>
 
-        <a
-          href="#services"
-          className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d8cbb6] bg-white/70 px-6 py-3 text-sm font-medium text-white transition hover:border-[#bfa56f] hover:bg-white ${focusRing}`}
-        >
-          Se hur vi hjälper till
-        </a>
+      <a
+  href="#services"
+  className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/15 ${focusRing}`}
+>
+  Se hur vi hjälper till
+</a>
       </div>
     </div>
 
