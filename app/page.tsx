@@ -248,7 +248,7 @@ export default function HomePage() {
       </p>
 
       <h1
-        className={`max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-[#101923] sm:text-[56px] md:text-[68px] lg:text-[78px] ${
+        className={`max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-[56px] md:text-[68px] lg:text-[78px] ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
         } transition-all duration-700`}
       >
@@ -259,7 +259,7 @@ export default function HomePage() {
       </h1>
 
       <p
-        className={`mt-6 max-w-2xl text-[17px] leading-[1.8] text-[#4f5b6b] sm:text-[18px] md:text-[20px] ${
+        className={`mt-6 max-w-2xl text-[17px] leading-[1.8] text-white/75 sm:text-[18px] md:text-[20px] ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
         } transition-all duration-700 delay-100`}
       >
@@ -322,24 +322,6 @@ export default function HomePage() {
     </div>
   </div>
 
-  <style jsx>{`
-    .hero-flow {
-  background-image:
-    linear-gradient(120deg, rgba(16, 25, 35, 0.06) 1px, transparent 1px),
-    linear-gradient(30deg, rgba(16, 25, 35, 0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  animation: heroFlow 14s linear infinite;
-}
-
-    @keyframes heroFlow {
-  from {
-    background-position: 0 0, 0 0;
-  }
-  to {
-    background-position: 120px 60px, -60px 120px;
-  }
-}
-  `}</style>
   <style jsx>{`
   .hero-lines {
     background-image:
@@ -474,7 +456,7 @@ export default function HomePage() {
 
         {/* OM SAMARBETET */}
         <section
-          id="om-axa"
+          id="samarbete"
           className="bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] text-[#1A2430]"
         >
           <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
