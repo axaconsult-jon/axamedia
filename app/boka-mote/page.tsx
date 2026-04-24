@@ -275,7 +275,7 @@ export default function BokaMote() {
                   ["Samarbete", "/#samarbete"],
                   ["FAQ", "/#faq"],
                   ["Kontakt", "/#contact"],
-].map(([label, href]) => (
+                    ].map(([label, href]) => (
                 <a
                   key={href}
                   href={href}
