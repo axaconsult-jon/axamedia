@@ -207,12 +207,13 @@ export default function HomePage() {
               </nav>
 
               <div className="mt-auto pt-8">
-              <a
-  href="/boka-mote"
-  className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#101923] transition hover:bg-[#f8f3ea] ${focusRing}`}
->
-  Boka ett första samtal
-</a>
+                <a
+                  href="/boka-mote"
+                  onClick={() => setMenuOpen(false)}
+                  className={`inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-white to-[#f4efe6] px-6 py-4 text-[15px] font-medium text-[#10161f] transition hover:scale-[0.985] hover:from-[#fff7ea] hover:to-white ${focusRing}`}
+                >
+                  Boka ett första samtal
+                </a>
               </div>
             </div>
           </div>
@@ -226,25 +227,26 @@ export default function HomePage() {
 
   
 {/* HERO */}
-<section className="relative overflow-hidden bg-[#f7f4ee] px-6 pb-20 pt-[150px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[220px]">
+<section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
   <div className="absolute inset-0">
-  <div className="absolute inset-0 bg-[linear-gradient(135deg,#08121d_0%,#0a1724_35%,#0d1b2b_70%,#101f2f_100%)]" />
+  <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
 
-  <div className="hero-lines absolute inset-0 opacity-[0.35]" />
+  <div className="hero-particles absolute inset-0" />
+  <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
 
-  <div className="absolute right-[10%] top-[20%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
-  <div className="absolute left-[5%] bottom-[10%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/15 blur-[120px]" />
+  <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+  <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
 </div>
 
   <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
     <div className="lg:col-span-7">
-      <p
-        className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#8a5a14] sm:text-[12px] ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700`}
-      >
-        Marknadsföring för företag som vill framåt
-      </p>
+     <p
+  className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E] sm:text-[12px] ${
+    isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+  } transition-all duration-700`}
+>
+  Marknadsföring för företag som vill framåt
+</p>
 
       <h1
         className={`max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-[56px] md:text-[68px] lg:text-[78px] ${
@@ -293,7 +295,7 @@ export default function HomePage() {
         isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } transition-all duration-700 delay-300`}
     >
-<div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md">        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#8a5a14]">
+<div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md">        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
           Så kan vi hjälpa till
         </p>
 
@@ -337,22 +339,48 @@ export default function HomePage() {
   </div>
 
   <style jsx>{`
-  .hero-lines {
+  .hero-particles {
+    opacity: 0.55;
     background-image:
-      radial-gradient(circle at 70% 30%, rgba(245,183,78,0.15), transparent 40%),
-      radial-gradient(circle at 30% 80%, rgba(143,179,218,0.12), transparent 45%),
-      linear-gradient(120deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(30deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: cover, cover, 80px 80px, 80px 80px;
-    animation: moveBg 18s linear infinite;
+      radial-gradient(circle, rgba(245, 183, 78, 0.55) 1px, transparent 1.5px),
+      radial-gradient(circle, rgba(143, 179, 218, 0.45) 1px, transparent 1.5px);
+    background-size: 90px 90px, 130px 130px;
+    background-position: 0 0, 40px 60px;
+    animation: particlesMove 28s linear infinite;
   }
 
-  @keyframes moveBg {
+  .hero-wave {
+    opacity: 0.7;
+    background:
+      radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
+      radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
+      linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
+    filter: blur(1px);
+    animation: waveMove 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes particlesMove {
     from {
-      background-position: 0 0, 0 0, 0 0, 0 0;
+      background-position: 0 0, 40px 60px;
     }
     to {
-      background-position: 40px -40px, -40px 60px, 120px 80px, -80px 120px;
+      background-position: 180px 90px, -90px 190px;
+    }
+  }
+
+  @keyframes waveMove {
+    from {
+      transform: translate3d(-3%, 8px, 0) scale(1);
+    }
+    to {
+      transform: translate3d(4%, -10px, 0) scale(1.04);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-particles,
+    .hero-wave {
+      animation: none;
     }
   }
 `}</style>
