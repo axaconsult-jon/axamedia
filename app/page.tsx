@@ -253,9 +253,9 @@ export default function HomePage() {
         } transition-all duration-700`}
       >
         Marknadsföring som drivs framåt
-        <span className="block bg-gradient-to-r from-[#13202c] via-[#29405c] to-[#8a5a14] bg-clip-text pb-[0.08em] text-transparent">
-          inte bara planeras
-        </span>
+        <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
+  inte bara planeras
+</span>
       </h1>
 
       <p
@@ -282,7 +282,7 @@ export default function HomePage() {
 
         <a
           href="#services"
-          className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d8cbb6] bg-white/70 px-6 py-3 text-sm font-medium text-[#101923] transition hover:border-[#bfa56f] hover:bg-white ${focusRing}`}
+          className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d8cbb6] bg-white/70 px-6 py-3 text-sm font-medium text-white transition hover:border-[#bfa56f] hover:bg-white ${focusRing}`}
         >
           Se hur vi hjälper till
         </a>
@@ -294,29 +294,44 @@ export default function HomePage() {
         isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } transition-all duration-700 delay-300`}
     >
-      <div className="rounded-[28px] border border-[#e2d8c8] bg-white/80 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur-md">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#8a5a14]">
+<div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md">        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#8a5a14]">
           Så kan vi hjälpa till
         </p>
 
         <div className="mt-5 grid gap-3">
-          {[
-            ["Rätt prioriteringar", "Vi hjälper er se vad som är viktigast just nu och vad som kan vänta."],
-            ["Stöd i det löpande arbetet", "Vi håller ihop marknadsföringen så att arbetet faktiskt rör sig framåt."],
-            ["Från plan till genomförande", "När det inte räcker med idéer, utan också behöver bli något konkret."],
-          ].map(([title, text]) => (
-            <div
-              key={title}
-              className="rounded-[18px] border border-[#eadfce] bg-[#fbf8f2] px-4 py-4"
-            >
-              <p className="text-[15px] font-medium text-[#101923]">
-                {title}
-              </p>
-              <p className="mt-1 text-[14px] leading-[1.7] text-[#5b6678]">
-                {text}
-              </p>
-            </div>
-          ))}
+       {[
+  {
+    title: "Rätt prioriteringar",
+    text: "Vi hjälper er se vad som är viktigast just nu och vad som kan vänta.",
+    icon: "◎",
+  },
+  {
+    title: "Stöd i det löpande arbetet",
+    text: "Vi håller ihop marknadsföringen så att arbetet faktiskt rör sig framåt.",
+    icon: "↗",
+  },
+  {
+    title: "Från plan till genomförande",
+    text: "När det inte räcker med idéer, utan också behöver bli något konkret.",
+    icon: "✦",
+  },
+].map((item) => (
+  <div
+    key={item.title}
+    className="flex gap-4 rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4"
+  >
+    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[22px] text-[#F5B74E]">
+      {item.icon}
+    </div>
+
+    <div>
+      <p className="text-[15px] font-medium text-white">{item.title}</p>
+      <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
+        {item.text}
+      </p>
+    </div>
+  </div>
+))}
         </div>
       </div>
     </div>
