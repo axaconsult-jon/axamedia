@@ -105,7 +105,7 @@ export default function HomePage() {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[999] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[999] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-white"
       >
         Hoppa till innehåll
       </a>
@@ -160,7 +160,7 @@ export default function HomePage() {
                   type="button"
                   onClick={() => setMenuOpen(false)}
                   aria-label="Stäng meny"
-                  className={`text-[40px] leading-none text-white transition hover:text-[#F5B74E] ${focusRing}`}
+                  className={`text-[40px] leading-none text-white/75 transition hover:text-[#F5B74E] ${focusRing}`}
                 >
                   <span aria-hidden="true" className="inline-block rotate-45">
                     +
@@ -229,13 +229,13 @@ export default function HomePage() {
 {/* HERO */}
 <section className="relative overflow-hidden bg-[#f7f4ee] px-6 pb-20 pt-[150px] md:px-10 md:pb-24 md:pt-[190px] lg:px-16 lg:pb-28 lg:pt-[220px]">
   <div className="absolute inset-0">
-    <div className="absolute inset-0 bg-[linear-gradient(135deg,#ffffff_0%,#f7f4ee_42%,#eef2f5_100%)]" />
+  <div className="absolute inset-0 bg-[linear-gradient(135deg,#08121d_0%,#0a1724_35%,#0d1b2b_70%,#101f2f_100%)]" />
 
-    <div className="hero-flow absolute inset-0 opacity-[0.55]" />
+  <div className="hero-lines absolute inset-0 opacity-[0.35]" />
 
-    <div className="absolute right-[8%] top-[18%] h-[320px] w-[320px] rounded-full bg-[#F5B74E]/18 blur-[120px]" />
-    <div className="absolute bottom-[8%] left-[4%] h-[280px] w-[280px] rounded-full bg-[#8fb3da]/20 blur-[120px]" />
-  </div>
+  <div className="absolute right-[10%] top-[20%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+  <div className="absolute left-[5%] bottom-[10%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/15 blur-[120px]" />
+</div>
 
   <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
     <div className="lg:col-span-7">
@@ -340,6 +340,26 @@ export default function HomePage() {
   }
 }
   `}</style>
+  <style jsx>{`
+  .hero-lines {
+    background-image:
+      radial-gradient(circle at 70% 30%, rgba(245,183,78,0.15), transparent 40%),
+      radial-gradient(circle at 30% 80%, rgba(143,179,218,0.12), transparent 45%),
+      linear-gradient(120deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(30deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: cover, cover, 80px 80px, 80px 80px;
+    animation: moveBg 18s linear infinite;
+  }
+
+  @keyframes moveBg {
+    from {
+      background-position: 0 0, 0 0, 0 0, 0 0;
+    }
+    to {
+      background-position: 40px -40px, -40px 60px, 120px 80px, -80px 120px;
+    }
+  }
+`}</style>
 </section>
 
         <WorkStyleCarousel />
