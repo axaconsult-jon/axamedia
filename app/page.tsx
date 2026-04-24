@@ -102,7 +102,7 @@ export default function HomePage() {
 ];
 
   return (
-    <section>
+    <>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[999] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black"
@@ -324,62 +324,31 @@ export default function HomePage() {
 
   <style jsx>{`
     .hero-flow {
-      background-image:
-        linear-gradient(120deg, rgba(16, 25, 35, 0.045) 1px, transparent 1px),
-        linear-gradient(30deg, rgba(16, 25, 35, 0.035) 1px, transparent 1px);
-      background-size: 72px 72px;
-      animation: heroFlow 18s linear infinite;
-    }
+  background-image:
+    linear-gradient(120deg, rgba(16, 25, 35, 0.06) 1px, transparent 1px),
+    linear-gradient(30deg, rgba(16, 25, 35, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: heroFlow 14s linear infinite;
+}
 
     @keyframes heroFlow {
-      from {
-        background-position: 0 0, 0 0;
-      }
-      to {
-        background-position: 144px 72px, -72px 144px;
-      }
-    }
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 120px 60px, -60px 120px;
+  }
+}
   `}</style>
 </section>
 
         <WorkStyleCarousel />
 
-{/* SERVICES */}
-<section>
-  id="services"
-  className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
-  <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
-        Tjänster
-      </p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-        Det här kan vi hjälpa er med
-      </h2>
-      <p className="mt-4 text-lg leading-8 text-slate-600">
-        Upplägget anpassas efter era mål, resurser och hur mycket stöd ni
-        behöver i vardagen.
-      </p>
-    </div>
 
-    <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {services.map((service) => (
-        <article
-          key={service.title}
-          className="rounded-[2rem] border border-[#e7dcc7] bg-white p-7 shadow-sm transition hover:border-[#F5B74E]/40 hover:shadow-lg"
-        >
-          <h3 className="text-xl font-semibold text-slate-950">
-            {service.title}
-          </h3>
-          <p className="mt-3 leading-7 text-slate-600">{service.text}</p>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
         {/* SERVICES */}
-        <section id="services"
-          className="border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
+        <section
+        id="services"
+        className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
         >
           <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
             <div className="max-w-3xl">
