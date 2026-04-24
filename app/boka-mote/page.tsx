@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -63,20 +64,18 @@ export default function BokaMote() {
         </div>
 
         <div className="absolute inset-0">
-          <Image
-            src="/abtract-hero.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(17,25,35,0.88)_0%,rgba(26,36,48,0.91)_46%,rgba(34,52,71,0.90)_100%)]" />
-        </div>
+  <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+
+  <div className="hero-particles absolute inset-0" />
+  <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+
+  <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+  <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
+</div>
 
         <Header variant="boka" />
 
-        <section className="relative px-6 pb-20 pt-[190px] md:px-10 md:pb-28 md:pt-[220px] lg:px-16 lg:pt-[170px]">
+        <section className="relative px-6 pb-28 pt-[170px] md:px-10 md:pb-32 md:pt-[210px] lg:px-16 lg:pb-36 lg:pt-[230px]">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
           <div className="relative mx-auto max-w-7xl">
@@ -102,7 +101,7 @@ export default function BokaMote() {
                 </div>
 
                 <div className="mt-14 max-w-xl space-y-4">
-                  <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Vad vi pratar om
                     </p>
@@ -112,7 +111,7 @@ export default function BokaMote() {
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Innan ni skickar
                     </p>
@@ -122,7 +121,7 @@ export default function BokaMote() {
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Efteråt
                     </p>
@@ -134,7 +133,7 @@ export default function BokaMote() {
                 </div>
               </div>
 
-              <div className="rounded-[24px] border border-[#ddd6cc] bg-[#f7f3eb] p-10 text-[#1A2430] shadow-[0_40px_100px_rgba(0,0,0,0.22)]">
+              <div className="rounded-[28px] border border-[#ddd6cc] bg-[#f7f3eb] p-6 text-[#1A2430] shadow-[0_40px_100px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
                 <div aria-live="polite" aria-atomic="true">
                   {!isSuccess ? (
                     <form onSubmit={handleSubmit} noValidate className="space-y-6">
@@ -246,81 +245,55 @@ export default function BokaMote() {
           </div>
         </section>
 
-        <footer className="relative mt-24 bg-[#0f1a24] px-6 py-16 md:px-10 lg:px-16">
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+     <Footer />
+     
+        <style jsx>{`
+  .hero-particles {
+    opacity: 0.48;
+    background-image:
+      radial-gradient(circle, rgba(245, 183, 78, 0.48) 1px, transparent 1.8px),
+      radial-gradient(circle, rgba(143, 179, 218, 0.38) 1px, transparent 1.7px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
+    background-size: 96px 88px, 142px 132px, 210px 190px;
+    background-position: 0 0, 42px 64px, 90px 30px;
+    animation: particlesMove 32s linear infinite;
+  }
 
-          <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
-            <div className="max-w-sm">
-              <Image
-                src="/axa-logo.svg"
-                alt="AXA Consult"
-                width={144}
-                height={38}
-                priority
-              />
-              <p className="mt-6 text-[14px] leading-[1.7] text-white/65">
-                Strategi, webb och marknadsföring
-                <br />
-                för företag som vill skapa tydlighet
-                <br />
-                och bättre struktur.
-              </p>
-            </div>
+  .hero-wave {
+    opacity: 0.7;
+    background:
+      radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
+      radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
+      linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
+    filter: blur(1px);
+    animation: waveMove 12s ease-in-out infinite alternate;
+  }
 
-            <div className="flex flex-col gap-3 text-[15px] text-white/75 md:items-center">
-              {[
-                  ["Startsida", "/"],
-                  ["Tjänster", "/#services"],
-                  ["Arbetssätt", "/#process"],
-                  ["Samarbete", "/#samarbete"],
-                  ["FAQ", "/#faq"],
-                  ["Kontakt", "/#contact"],
-                    ].map(([label, href]) => (
-                <a
-                  key={href}
-                  href={href}
-                  className="transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
+  @keyframes particlesMove {
+    from {
+      background-position: 0 0, 42px 64px, 90px 30px;
+    }
+    to {
+      background-position: 180px 90px, -90px 190px, 230px 120px;
+    }
+  }
 
-            <div className="md:text-right">
-              <p className="text-[14px] text-white/60">Kontakt</p>
+  @keyframes waveMove {
+    from {
+      transform: translate3d(-3%, 8px, 0) scale(1);
+    }
+    to {
+      transform: translate3d(4%, -10px, 0) scale(1.04);
+    }
+  }
 
-              <div className="mt-3 space-y-2 text-[15px] text-white/90">
-                <p>
-                  <a
-                    href="mailto:info@axaconsult.se"
-                    className="transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
-                  >
-                    info@axaconsult.se
-                  </a>
-                </p>
-                <p>
-                  <a
-                    href="tel:+46760353560"
-                    className="transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
-                  >
-                    +46 760 35 35 60
-                  </a>
-                </p>
-              </div>
-
-              <a
-                href="/"
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[14px] font-medium text-[#10161f] transition hover:scale-[0.97] hover:bg-[#fff7ea] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
-              >
-                Till startsidan
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-14 border-t border-white/10 pt-6 text-center text-[13px] text-white/50">
-            © 2026 AXA Consult. Alla rättigheter förbehållna.
-          </div>
-        </footer>
+  @media (prefers-reduced-motion: reduce) {
+    .hero-particles,
+    .hero-wave {
+      animation: none;
+    }
+  }
+`}</style>
       </main>
     </>
   );
