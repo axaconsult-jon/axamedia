@@ -254,7 +254,7 @@ export default function HomePage() {
         } transition-all duration-700`}
       >
         Marknadsföring som drivs framåt
-        <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
+       <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
   inte bara planeras
 </span>
       </h1>
@@ -295,7 +295,7 @@ export default function HomePage() {
         isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } transition-all duration-700 delay-300`}
     >
-<div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md">        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
+<div className="rounded-[28px] border border-white/20 bg-white/[0.08] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md"></div><div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md">        <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
           Så kan vi hjälpa till
         </p>
 
@@ -340,14 +340,15 @@ export default function HomePage() {
 
   <style jsx>{`
   .hero-particles {
-    opacity: 0.55;
-    background-image:
-      radial-gradient(circle, rgba(245, 183, 78, 0.55) 1px, transparent 1.5px),
-      radial-gradient(circle, rgba(143, 179, 218, 0.45) 1px, transparent 1.5px);
-    background-size: 90px 90px, 130px 130px;
-    background-position: 0 0, 40px 60px;
-    animation: particlesMove 28s linear infinite;
-  }
+  opacity: 0.48;
+  background-image:
+    radial-gradient(circle, rgba(245, 183, 78, 0.48) 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(143, 179, 218, 0.38) 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
+  background-size: 96px 88px, 142px 132px, 210px 190px;
+  background-position: 0 0, 42px 64px, 90px 30px;
+  animation: particlesMove 32s linear infinite;
+}
 
   .hero-wave {
     opacity: 0.7;
@@ -746,9 +747,10 @@ export default function HomePage() {
 
               <div className="mt-6 space-y-3 text-[14px] text-white/72">
                 <div>
-                  <p className="text-white/90">Uppsala</p>
-                  <p>Bergsbrunnagatan 5</p>
-                </div>
+  <p className="text-white/90">Uppsala</p>
+  <p>Bergsbrunnagatan 5</p>
+  <p>753 23 Uppsala</p>
+</div>
 
                 <div>
                   <p className="text-white/90">Falun</p>
