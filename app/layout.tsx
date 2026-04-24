@@ -22,7 +22,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="sv" suppressHydrationWarning>
+    <html lang="sv">
       <head>
         <link
           rel="icon"
@@ -46,7 +46,7 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body className={`${inter.className} bg-[#13202c] text-white antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <noscript>
           <iframe
             title="Google Tag Manager"

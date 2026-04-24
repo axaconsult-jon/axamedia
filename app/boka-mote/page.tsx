@@ -11,36 +11,53 @@ export default function BokaMote() {
   const [submitError, setSubmitError] = useState("");
   const successRef = useRef<HTMLHeadingElement | null>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError("");
+ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitError("");
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 900));
+  try {
+    const formData = new FormData(e.currentTarget);
 
-      if (typeof window !== "undefined") {
-        (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer =
-          (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer || [];
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.get("name"),
+        company: formData.get("company"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      }),
+    });
 
-        (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer?.push({
-          event: "form_submit",
-          form_name: "boka_mote",
-        });
-      }
-
-      setIsSuccess(true);
-
-      setTimeout(() => {
-        successRef.current?.focus();
-      }, 0);
-    } catch (error) {
-      console.error("Form submit error:", error);
-      setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
-    } finally {
-      setIsSubmitting(false);
+    if (!response.ok) {
+      throw new Error("Failed to send");
     }
+
+    if (typeof window !== "undefined") {
+      (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer =
+        (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer || [];
+
+      (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer?.push({
+        event: "form_submit",
+        form_name: "boka_mote",
+      });
+    }
+
+    setIsSuccess(true);
+
+    setTimeout(() => {
+      successRef.current?.focus();
+    }, 0);
+  } catch (error) {
+    console.error("Form submit error:", error);
+    setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
+  } finally {
+    setIsSubmitting(false);
   }
+}
 
   return (
     <>

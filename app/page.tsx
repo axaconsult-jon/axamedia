@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer";/
+import Footer from "./components/Footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";

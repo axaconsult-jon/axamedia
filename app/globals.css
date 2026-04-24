@@ -6,6 +6,10 @@ html {
 
 body {
   margin: 0;
-  background: #13202c;
-  color: #ffffff;
+  background: #ffffff;
+  color: #1A2430;
+}
+::selection {
+  background: #F5B74E;
+  color: #08121d;
 }
