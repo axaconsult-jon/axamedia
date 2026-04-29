@@ -9,6 +9,7 @@ export default function Footer() {
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
+        
         {/* LOGO + TEXT */}
         <div className="max-w-sm">
           <Image
@@ -19,32 +20,30 @@ export default function Footer() {
             className="opacity-90"
           />
           <p className="mt-6 text-[14px] leading-[1.7] text-white/68">
-          Marknadsföring, strategi och genomförande
-          <br />
-          för företag som vill få tydligare riktning
-          <br />
-          och bättre fart i rätt saker.
+            Marknadsföring, strategi och genomförande för företag som vill få
+            tydligare riktning och bättre fart i rätt saker.
           </p>
         </div>
 
         {/* NAV */}
-        {[
-  ["Startsida", "/"],
-  ["Så jobbar vi", "/#sa-jobbar-vi"],
-  ["Tjänster", "/#services"],
-  ["Process", "/#process"],
-  ["Samarbete", "/#samarbete"],
-  ["FAQ", "/#faq"],
-  ["Kontakt", "/#contact"],
-].map(([label, href]) => (
-  <a
-    key={href}
-    href={href}
-    className={`transition hover:text-white ${focusRing}`}
-  >
-    {label}
-  </a>
-))}
+        <div className="flex flex-col gap-3 text-[15px] text-white/78 md:items-center">
+          {[
+            ["Startsida", "/"],
+            ["Tjänster", "/#services"],
+            ["Arbetssätt", "/#process"],
+            ["Samarbete", "/#samarbete"],
+            ["FAQ", "/#faq"],
+            ["Kontakt", "/#contact"],
+          ].map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              className={`transition hover:text-white ${focusRing}`}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
 
         {/* CONTACT */}
         <div className="md:text-right">
@@ -69,7 +68,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* ADRESS (fixad med postnummer) */}
           <div className="mt-6 space-y-3 text-[14px] text-white/72">
             <div>
               <p className="text-white/90">Uppsala</p>
