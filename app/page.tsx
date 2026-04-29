@@ -308,9 +308,7 @@ export default function HomePage() {
               className={`lg:col-span-5 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
               } transition-all duration-700 delay-300`}
-            >
-              <div className="rounded-[28px] border border-white/20 bg-white/[0.08] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md">
-                <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
+            >                <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
                   Så kan vi hjälpa till
                 </p>
 
@@ -353,7 +351,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
+        
 
           <style jsx>{`
             .hero-particles {
