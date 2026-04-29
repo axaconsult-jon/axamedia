@@ -77,7 +77,7 @@ export default function BokaMote() {
       </a>
 
       <main id="main-content" className="relative min-h-screen overflow-x-hidden text-white">
-        <div className="fixed inset-x-0 top-0 z-[120] h-[10px]">
+        <div className="fixed inset-x-0 top-0 z-[120] h-[12px]">
           <Image
             src="/line-axa.png"
             alt=""
@@ -104,10 +104,10 @@ export default function BokaMote() {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
           <div className="relative mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-24 xl:pt-6">
+            <div className="grid gap-10 lg:gap-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-start xl:pt-6">
               <div>
                 <div className="max-w-3xl">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]">
+                  <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#F5B74E]/80">
                     Boka ett första samtal
                   </p>
 
@@ -127,7 +127,7 @@ export default function BokaMote() {
 
                 <div className="mt-14 max-w-xl space-y-4">
                   <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/75">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Vad vi pratar om
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
@@ -137,7 +137,7 @@ export default function BokaMote() {
                   </div>
 
                   <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/75">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Innan ni skickar
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
@@ -147,7 +147,7 @@ export default function BokaMote() {
                   </div>
 
                   <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/75">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Efteråt
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
@@ -182,7 +182,7 @@ export default function BokaMote() {
                           autoComplete="name"
                           placeholder="Ditt namn"
                           required
-                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] transition outline-none hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
                         />
                       </div>
 
@@ -196,7 +196,7 @@ export default function BokaMote() {
                           type="text"
                           autoComplete="organization"
                           placeholder="Företagsnamn"
-                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] transition outline-none hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
                         />
                       </div>
 
@@ -211,7 +211,7 @@ export default function BokaMote() {
                           autoComplete="email"
                           placeholder="din@email.se"
                           required
-                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] transition outline-none hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
                         />
                       </div>
 
@@ -226,7 +226,7 @@ export default function BokaMote() {
                           autoComplete="off"
                           placeholder="Beskriv kort vad ni vill ha hjälp med"
                           required
-                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] transition outline-none hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
                         />
                       </div>
 
