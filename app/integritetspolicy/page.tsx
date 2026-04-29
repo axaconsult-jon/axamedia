@@ -9,7 +9,7 @@ export default function Integritetspolicy() {
       <main className="min-h-screen bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] text-[#1A2430]">
         <Header />
 
-        <section className="mx-auto max-w-4xl px-6 py-24 md:px-10 lg:px-16">
+       <section className="mx-auto max-w-4xl px-6 pt-[160px] pb-24 md:px-10 lg:px-16">
           <div className="max-w-3xl">
             <p className="text-[12px] font-medium uppercase tracking-[0.26em] text-[#8a5a14]">
               Integritet
