@@ -444,21 +444,39 @@ setTimeout(() => {
             }
           `}</style>
         </section>
-        <section className="bg-white px-6 py-16 md:py-20">
-  <div className="mx-auto max-w-4xl">
-    <h2 className="text-[32px] font-semibold leading-[1.1] tracking-[-0.04em] text-[#0f1724] md:text-[44px]">
-      Marknadsföring blir ofta mer komplicerat än det behöver vara
-    </h2>
+        <section className="relative overflow-hidden bg-white px-6 py-20 md:py-28">
+  <div className="absolute left-[-120px] top-[-120px] h-[320px] w-[320px] rounded-full bg-[#F5B74E]/12 blur-[90px]" />
+  <div className="absolute right-[-160px] bottom-[-160px] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[100px]" />
 
-    <p className="mt-6 text-[18px] leading-[1.8] text-[#5b6678]">
-      Många företag har idéer, initiativ och saker som borde göras –
-      men saknar tydlig riktning eller tid att få det gjort.
-    </p>
+  <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+    <div>
+      <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
+        Varför AXA
+      </p>
 
-    <p className="mt-4 text-[18px] leading-[1.8] text-[#5b6678]">
-      Vi startade AXA för att förändra det. Mindre fokus på att göra mer,
-      och mer fokus på att göra rätt saker – på ett sätt som går att genomföra i vardagen.
-    </p>
+      <h2 className="mt-4 max-w-3xl text-[36px] font-semibold leading-[1.04] tracking-[-0.055em] text-[#0f1724] md:text-[56px]">
+        Det är sällan brist på idéer som är problemet
+      </h2>
+    </div>
+
+    <div className="rounded-[32px] border border-[#eadfca] bg-[#fbf8f1] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)] md:p-8">
+      <p className="text-[18px] leading-[1.8] text-[#5b6678] md:text-[20px]">
+        De flesta företag vi träffar har redan mycket på gång. Kampanjer,
+        innehåll, annonsering, initiativ. Men ändå känns det som att
+        marknadsföringen inte riktigt tar fart.
+      </p>
+
+      <p className="mt-5 text-[18px] leading-[1.8] text-[#5b6678] md:text-[20px]">
+        Det saknas inte vilja. Det saknas inte idéer. Det som saknas är
+        riktning, prioriteringar – och någon som ser till att det händer.
+      </p>
+
+      <div className="mt-8 rounded-[24px] bg-[#101923] p-6 text-white md:p-7">
+        <p className="text-[22px] font-medium leading-[1.3] tracking-[-0.035em] md:text-[30px]">
+          Det är där vi kommer in.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
