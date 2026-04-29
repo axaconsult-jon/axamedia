@@ -9,7 +9,11 @@ import WorkStyleCarousel from "./components/WorkStyleCarousel";
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const successRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 120);
@@ -18,9 +22,7 @@ export default function HomePage() {
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-      }
+      if (e.key === "Escape") setMenuOpen(false);
     }
 
     if (menuOpen) {
@@ -36,6 +38,44 @@ export default function HomePage() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const formData = new FormData(e.currentTarget);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          company: "",
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send");
+      }
+
+      setIsSuccess(true);
+
+      setTimeout(() => {
+        successRef.current?.focus();
+      }, 0);
+    } catch (error) {
+      console.error("Form submit error:", error);
+      setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   const faqItems = [
     {
@@ -70,37 +110,37 @@ export default function HomePage() {
     },
   ];
 
+  const services = [
+    {
+      title: "Strategi & prioritering",
+      text: "Vi hjälper er sätta riktning, välja fokus och prioritera det som faktiskt gör skillnad.",
+    },
+    {
+      title: "SEO & synlighet",
+      text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid.",
+    },
+    {
+      title: "Google Ads & annonsering",
+      text: "Vi hjälper er nå rätt målgrupp och få bättre koll på vad som fungerar.",
+    },
+    {
+      title: "Sociala medier & innehåll",
+      text: "Innehåll och annonser som stärker ert varumärke och driver affär.",
+    },
+    {
+      title: "Nyhetsbrev & kundkommunikation",
+      text: "För företag som vill hålla kontakt med kunder och skapa fler affärer över tid.",
+    },
+    {
+      title: "Webb & varumärke",
+      text: "Vi ser till att budskap, struktur och upplevelse hänger ihop.",
+    },
+  ];
+
   const focusRing =
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]";
 
   const mobileLinkClass = `py-3 text-[28px] tracking-[-0.04em] text-white transition hover:text-[#F5B74E] ${focusRing}`;
-
- const services = [
-  {
-    title: "Strategi & prioritering",
-    text: "Vi hjälper er sätta riktning, välja fokus och prioritera det som faktiskt gör skillnad.",
-  },
-  {
-    title: "SEO & synlighet",
-    text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid.",
-  },
-  {
-    title: "Google Ads & annonsering",
-    text: "Vi hjälper er nå rätt målgrupp och få bättre koll på vad som fungerar.",
-  },
-  {
-    title: "Sociala medier & innehåll",
-    text: "Innehåll och annonser som stärker ert varumärke och driver affär.",
-  },
-  {
-    title: "Nyhetsbrev & kundkommunikation",
-    text: "För företag som vill hålla kontakt med kunder och skapa fler affärer över tid.",
-  },
-  {
-    title: "Webb & varumärke",
-    text: "Vi ser till att budskap, struktur och upplevelse hänger ihop.",
-  },
-];
 
   return (
     <>
@@ -170,39 +210,19 @@ export default function HomePage() {
               </div>
 
               <nav aria-label="Mobil navigering" className="mt-8 flex flex-col">
-                <a
-                  href="#services"
-                  onClick={() => setMenuOpen(false)}
-                  className={mobileLinkClass}
-                >
+                <a href="#services" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
                   Tjänster
                 </a>
-                <a
-                  href="#process"
-                  onClick={() => setMenuOpen(false)}
-                  className={mobileLinkClass}
-                >
+                <a href="#process" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
                   Arbetssätt
                 </a>
-                <a
-                  href="#samarbete"
-                  onClick={() => setMenuOpen(false)}
-                  className={mobileLinkClass}
-                >
+                <a href="#samarbete" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
                   Samarbete
                 </a>
-                <a
-                  href="#faq"
-                  onClick={() => setMenuOpen(false)}
-                  className={mobileLinkClass}
-                >
+                <a href="#faq" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
                   FAQ
                 </a>
-                <a
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className={mobileLinkClass}
-                >
+                <a href="#contact" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
                   Kontakt
                 </a>
               </nav>
@@ -220,181 +240,176 @@ export default function HomePage() {
           </div>
         </div>
 
-        <Header
-          variant="home"
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-        />
+        <Header variant="home" menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-  
-{/* HERO */}
-<section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
-  <div className="absolute inset-0">
-  <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+            <div className="hero-particles absolute inset-0" />
+            <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+            <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+            <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
+          </div>
 
-  <div className="hero-particles absolute inset-0" />
-  <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+          <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-7">
+              <p
+                className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E] sm:text-[12px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700`}
+              >
+                Marknadsföring för företag som vill framåt
+              </p>
 
-  <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
-  <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
-</div>
+              <h1
+                className={`max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-[56px] md:text-[68px] lg:text-[78px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700`}
+              >
+                Marknadsföring som drivs framåt
+                <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
+                  inte bara planeras
+                </span>
+              </h1>
 
-  <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
-    <div className="lg:col-span-7">
-     <p
-  className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E] sm:text-[12px] ${
-    isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-  } transition-all duration-700`}
->
-  Marknadsföring för företag som vill framåt
-</p>
+              <p
+                className={`mt-6 max-w-2xl text-[17px] leading-[1.8] text-white/75 sm:text-[18px] md:text-[20px] ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700 delay-100`}
+              >
+                AXA Consult hjälper företag att få struktur i marknadsföringen,
+                prioritera rätt och driva arbetet framåt. Ni får samma bredd som
+                från en mediabyrå – men i ett närmare, mer personligt samarbete.
+              </p>
 
-      <h1
-        className={`max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-[56px] md:text-[68px] lg:text-[78px] ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700`}
-      >
-        Marknadsföring som drivs framåt
-       <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
-  inte bara planeras
-</span>
-      </h1>
+              <div
+                className={`mt-8 flex flex-col gap-3 sm:flex-row ${
+                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                } transition-all duration-700 delay-150`}
+              >
+                <a
+                  href="/boka-mote"
+                  className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#101923] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#24364a] ${focusRing}`}
+                >
+                  Boka ett första samtal
+                </a>
 
-      <p
-        className={`mt-6 max-w-2xl text-[17px] leading-[1.8] text-white/75 sm:text-[18px] md:text-[20px] ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700 delay-100`}
-      >
-        AXA Consult hjälper företag att få struktur i marknadsföringen,
-        prioritera rätt och driva arbetet framåt. Ni får samma bredd som från
-        en mediabyrå – men i ett närmare, mer personligt samarbete.
-      </p>
+                <a
+                  href="#services"
+                  className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/15 ${focusRing}`}
+                >
+                  Se hur vi hjälper till
+                </a>
+              </div>
+            </div>
 
-      <div
-        className={`mt-8 flex flex-col gap-3 sm:flex-row ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        } transition-all duration-700 delay-150`}
-      >
-        <a
-          href="/boka-mote"
-          className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#101923] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#24364a] ${focusRing}`}
-        >
-          Boka ett första samtal
-        </a>
+            <div
+              className={`lg:col-span-5 ${
+                isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              } transition-all duration-700 delay-300`}
+            >
+              <div className="rounded-[28px] border border-white/20 bg-white/[0.08] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md">
+                <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
+                  Så kan vi hjälpa till
+                </p>
 
-      <a
-  href="#services"
-  className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/15 ${focusRing}`}
->
-  Se hur vi hjälper till
-</a>
-      </div>
-    </div>
+                <div className="mt-5 grid gap-3">
+                  {[
+                    {
+                      title: "Rätt prioriteringar",
+                      text: "Vi hjälper er se vad som är viktigast just nu och vad som kan vänta.",
+                      icon: "◎",
+                    },
+                    {
+                      title: "Stöd i det löpande arbetet",
+                      text: "Vi håller ihop marknadsföringen så att arbetet faktiskt rör sig framåt.",
+                      icon: "↗",
+                    },
+                    {
+                      title: "Från plan till genomförande",
+                      text: "När det inte räcker med idéer, utan också behöver bli något konkret.",
+                      icon: "✦",
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex gap-4 rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4"
+                    >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[22px] text-[#F5B74E]">
+                        {item.icon}
+                      </div>
 
-    <div
-      className={`lg:col-span-5 ${
-        isLoaded ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-      } transition-all duration-700 delay-300`}
-    >
-<div className="rounded-[28px] border border-white/20 bg-white/[0.08] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-md">       <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
-          Så kan vi hjälpa till
-        </p>
+                      <div>
+                        <p className="text-[15px] font-medium text-white">
+                          {item.title}
+                        </p>
+                        <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <div className="mt-5 grid gap-3">
-       {[
-  {
-    title: "Rätt prioriteringar",
-    text: "Vi hjälper er se vad som är viktigast just nu och vad som kan vänta.",
-    icon: "◎",
-  },
-  {
-    title: "Stöd i det löpande arbetet",
-    text: "Vi håller ihop marknadsföringen så att arbetet faktiskt rör sig framåt.",
-    icon: "↗",
-  },
-  {
-    title: "Från plan till genomförande",
-    text: "När det inte räcker med idéer, utan också behöver bli något konkret.",
-    icon: "✦",
-  },
-].map((item) => (
-  <div
-    key={item.title}
-    className="flex gap-4 rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4"
-  >
-    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[22px] text-[#F5B74E]">
-      {item.icon}
-    </div>
+          <style jsx>{`
+            .hero-particles {
+              opacity: 0.48;
+              background-image:
+                radial-gradient(circle, rgba(245, 183, 78, 0.48) 1px, transparent 1.8px),
+                radial-gradient(circle, rgba(143, 179, 218, 0.38) 1px, transparent 1.7px),
+                radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
+              background-size: 96px 88px, 142px 132px, 210px 190px;
+              background-position: 0 0, 42px 64px, 90px 30px;
+              animation: particlesMove 32s linear infinite;
+            }
 
-    <div>
-      <p className="text-[15px] font-medium text-white">{item.title}</p>
-      <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
-        {item.text}
-      </p>
-    </div>
-  </div>
-))}
-        </div>
-      </div>
-    </div>
-  </div>
+            .hero-wave {
+              opacity: 0.7;
+              background:
+                radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
+                radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
+                linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
+              filter: blur(1px);
+              animation: waveMove 12s ease-in-out infinite alternate;
+            }
 
-  <style jsx>{`
-  .hero-particles {
-  opacity: 0.48;
-  background-image:
-    radial-gradient(circle, rgba(245, 183, 78, 0.48) 1px, transparent 1.8px),
-    radial-gradient(circle, rgba(143, 179, 218, 0.38) 1px, transparent 1.7px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
-  background-size: 96px 88px, 142px 132px, 210px 190px;
-  background-position: 0 0, 42px 64px, 90px 30px;
-  animation: particlesMove 32s linear infinite;
-}
+            @keyframes particlesMove {
+              from {
+                background-position: 0 0, 40px 60px;
+              }
+              to {
+                background-position: 180px 90px, -90px 190px;
+              }
+            }
 
-  .hero-wave {
-    opacity: 0.7;
-    background:
-      radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
-      radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
-      linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
-    filter: blur(1px);
-    animation: waveMove 12s ease-in-out infinite alternate;
-  }
+            @keyframes waveMove {
+              from {
+                transform: translate3d(-3%, 8px, 0) scale(1);
+              }
+              to {
+                transform: translate3d(4%, -10px, 0) scale(1.04);
+              }
+            }
 
-  @keyframes particlesMove {
-    from {
-      background-position: 0 0, 40px 60px;
-    }
-    to {
-      background-position: 180px 90px, -90px 190px;
-    }
-  }
-
-  @keyframes waveMove {
-    from {
-      transform: translate3d(-3%, 8px, 0) scale(1);
-    }
-    to {
-      transform: translate3d(4%, -10px, 0) scale(1.04);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-particles,
-    .hero-wave {
-      animation: none;
-    }
-  }
-`}</style>
-</section>
+            @media (prefers-reduced-motion: reduce) {
+              .hero-particles,
+              .hero-wave {
+                animation: none;
+              }
+            }
+          `}</style>
+        </section>
 
         <WorkStyleCarousel />
 
-
         {/* SERVICES */}
         <section
-        id="services"
-        className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
+          id="services"
+          className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
         >
           <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
             <div className="max-w-3xl">
@@ -405,8 +420,8 @@ export default function HomePage() {
                 Det här kan vi hjälpa er med
               </h2>
               <p className="mt-4 text-lg leading-8 text-slate-600">
-                Upplägget anpassas efter era mål, resurser och hur mycket stöd ni
-                behöver i vardagen.
+                Upplägget anpassas efter era mål, resurser och hur mycket stöd
+                ni behöver i vardagen.
               </p>
             </div>
 
@@ -605,8 +620,8 @@ export default function HomePage() {
                   Vill du se om vi är rätt för varandra?
                 </h2>
                 <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
-                  Hör av dig så tar vi ett första samtal om nuläge, behov och vad
-                  som skulle vara ett rimligt nästa steg för er.
+                  Hör av dig så tar vi ett första samtal om nuläge, behov och
+                  vad som skulle vara ett rimligt nästa steg för er.
                 </p>
 
                 <div className="mt-8 space-y-3 text-slate-200">
@@ -626,65 +641,110 @@ export default function HomePage() {
               </div>
 
               <div className="rounded-[2rem] border border-white/10 bg-white/[0.08] p-6 shadow-2xl shadow-black/15 backdrop-blur-sm">
-                <form className="grid gap-4">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-white/80"
-                    >
-                      Namn
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="Ditt namn"
-                    />
-                  </div>
+                <div aria-live="polite" aria-atomic="true">
+                  {!isSuccess ? (
+                    <form onSubmit={handleSubmit} noValidate className="grid gap-4">
+                      {submitError && (
+                        <div
+                          role="alert"
+                          className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800"
+                        >
+                          {submitError}
+                        </div>
+                      )}
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-white/80"
-                    >
-                      E-post
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="din@epost.se"
-                    />
-                  </div>
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="mb-2 block text-sm font-medium text-white/80"
+                        >
+                          Namn
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+                          placeholder="Ditt namn"
+                        />
+                      </div>
 
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="mb-2 block text-sm font-medium text-white/80"
-                    >
-                      Meddelande
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={5}
-                      className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                      placeholder="Berätta kort vad du vill ha hjälp med"
-                    />
-                  </div>
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="mb-2 block text-sm font-medium text-white/80"
+                        >
+                          E-post
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+                          placeholder="din@epost.se"
+                        />
+                      </div>
 
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea]"
-                  >
-                    Skicka förfrågan
-                  </button>
-                </form>
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="mb-2 block text-sm font-medium text-white/80"
+                        >
+                          Meddelande
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows={5}
+                          required
+                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
+                          placeholder="Berätta kort vad du vill ha hjälp med"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        aria-busy={isSubmitting}
+                        className="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea] disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        {isSubmitting ? "Skickar..." : "Skicka förfrågan"}
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="rounded-[22px] border border-white/10 bg-white/[0.06] p-6 text-white">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]">
+                        Tack
+                      </p>
+                      <h3
+                        ref={successRef}
+                        tabIndex={-1}
+                        className="mt-3 text-[24px] font-medium focus:outline-none"
+                      >
+                        Din förfrågan är skickad.
+                      </h3>
+                      <p className="mt-4 text-white/75">
+                        Jag återkommer så snart jag kan.
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => setIsSuccess(false)}
+                        className="mt-6 rounded-full border border-white/20 px-6 py-3 text-white transition hover:bg-white/10"
+                      >
+                        Skicka igen
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-      <Footer />
+        <Footer />
 
         <script
           type="application/ld+json"
