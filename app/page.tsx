@@ -445,8 +445,6 @@ setTimeout(() => {
           `}</style>
         </section>
 
-        <WorkStyleCarousel />
-
         <section className="bg-white px-6 py-20 md:py-28">
   <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.4fr_0.3fr_0.3fr]">
     <div>
@@ -472,6 +470,9 @@ setTimeout(() => {
     </p>
   </div>
 </section>
+
+        <WorkStyleCarousel />
+        
 
         {/* SERVICES */}
         <section
