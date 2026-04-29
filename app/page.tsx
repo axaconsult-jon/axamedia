@@ -444,37 +444,6 @@ setTimeout(() => {
             }
           `}</style>
         </section>
-        <section className="bg-white px-6 py-20 md:py-28">
-  <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.45fr_0.55fr]">
-
-    {/* VÄNSTER – TITEL */}
-    <div>
-      <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
-        Varför AXA
-      </p>
-
-      <h2 className="mt-4 text-[36px] font-semibold leading-[1.04] tracking-[-0.055em] text-[#0f1724] md:text-[52px]">
-        Det är sällan brist på idéer som är problemet
-      </h2>
-    </div>
-
-    {/* HÖGER – TEXT */}
-    <div className="flex flex-col justify-between">
-
-      <p className="text-[18px] leading-[1.85] text-[#5b6678] md:text-[20px]">
-        De flesta företag vi träffar har redan mycket på gång. Kampanjer,
-        innehåll, annonsering, initiativ. Men ändå känns det som att
-        marknadsföringen inte riktigt tar fart.
-      </p>
-
-      <p className="mt-8 text-[18px] leading-[1.85] text-[#5b6678] md:text-[20px]">
-        Det saknas inte vilja. Det saknas inte idéer. Det som saknas är
-        riktning, prioriteringar – och någon som ser till att det händer.
-      </p>
-
-    </div>
-  </div>
-</section>
 
         <WorkStyleCarousel />
 
