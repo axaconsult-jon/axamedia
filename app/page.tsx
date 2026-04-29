@@ -408,6 +408,23 @@ setTimeout(() => {
             }
           `}</style>
         </section>
+        <section className="bg-white px-6 py-16 md:py-20">
+  <div className="mx-auto max-w-4xl">
+    <h2 className="text-[32px] font-semibold leading-[1.1] tracking-[-0.04em] text-[#0f1724] md:text-[44px]">
+      Marknadsföring blir ofta mer komplicerat än det behöver vara
+    </h2>
+
+    <p className="mt-6 text-[18px] leading-[1.8] text-[#5b6678]">
+      Många företag har idéer, initiativ och saker som borde göras –
+      men saknar tydlig riktning eller tid att få det gjort.
+    </p>
+
+    <p className="mt-4 text-[18px] leading-[1.8] text-[#5b6678]">
+      Vi startade AXA för att förändra det. Mindre fokus på att göra mer,
+      och mer fokus på att göra rätt saker – på ett sätt som går att genomföra i vardagen.
+    </p>
+  </div>
+</section>
 
         <WorkStyleCarousel />
 

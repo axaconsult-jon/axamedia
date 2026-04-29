@@ -9,6 +9,7 @@ type Slide = {
   poster: string;
 };
 
+
 const slides: Slide[] = [
   {
     title: "En partner, inte bara en leverantör",
@@ -83,7 +84,7 @@ export default function WorkStyleCarousel() {
 
   return (
     <section
-      id="samarbete"
+      id="Så jobbar vi"
       className="overflow-hidden bg-[linear-gradient(180deg,#f7f4ee_0%,#ffffff_100%)] py-16 md:py-20 lg:py-24"
     >
       <div className="mx-auto w-full max-w-[1540px] px-6 md:px-10 lg:px-16">
@@ -96,7 +97,7 @@ export default function WorkStyleCarousel() {
           <div className="mb-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
               <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
-                Samarbete
+                Så jobbar vi
               </p>
               <h2 className="mt-3 text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] text-[#0f1724] md:text-[44px] lg:text-[52px]">
                 Ett närmare sätt att arbeta med marknadsföring
