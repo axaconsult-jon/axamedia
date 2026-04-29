@@ -117,32 +117,68 @@ setTimeout(() => {
     },
   ];
 
-  const services = [
-    {
-      title: "Strategi & prioritering",
-      text: "Vi hjälper er sätta riktning, välja fokus och prioritera det som faktiskt gör skillnad.",
-    },
-    {
-      title: "SEO & synlighet",
-      text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid.",
-    },
-    {
-      title: "Google Ads & annonsering",
-      text: "Vi hjälper er nå rätt målgrupp och få bättre koll på vad som fungerar.",
-    },
-    {
-      title: "Sociala medier & innehåll",
-      text: "Innehåll och annonser som stärker ert varumärke och driver affär.",
-    },
-    {
-      title: "Nyhetsbrev & kundkommunikation",
-      text: "För företag som vill hålla kontakt med kunder och skapa fler affärer över tid.",
-    },
-    {
-      title: "Webb & varumärke",
-      text: "Vi ser till att budskap, struktur och upplevelse hänger ihop.",
-    },
-  ];
+ const services = [
+  {
+    title: "Strategi & prioritering",
+    text: "Vi hjälper er sätta riktning, välja fokus och prioritera det som faktiskt gör störst skillnad.",
+  },
+  {
+    title: "SEO & hemsida",
+    text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid.",
+  },
+  {
+    title: "Google Ads",
+    text: "Vi hjälper er nå rätt målgrupp via sökannonsering och få bättre koll på resultat och budget.",
+  },
+  {
+    title: "Bing Ads / Microsoft Ads",
+    text: "Ett smart komplement till Google Ads för att nå fler relevanta kunder i sök.",
+  },
+  {
+    title: "Social organic",
+    text: "Vi hjälper er skapa innehåll som bygger förtroende, synlighet och relation över tid.",
+  },
+  {
+    title: "Social paid",
+    text: "Annonsering i sociala medier för varumärke, trafik, leads eller kampanjer med tydligare styrning.",
+  },
+  {
+    title: "Grafisk profil",
+    text: "Vi hjälper er få ett visuellt uttryck som känns tydligt, professionellt och lätt att använda.",
+  },
+  {
+    title: "Foto & film",
+    text: "Vi arbetar med lokala fotografer och videoproducenter för material som stärker ert varumärke.",
+  },
+  {
+    title: "Rådgivning",
+    text: "Stöd när ni behöver bolla idéer, fatta bättre beslut eller få extern riktning framåt.",
+  },
+  {
+    title: "Referenscase & kundrecensioner",
+    text: "Vi hjälper er lyfta kundcase och omdömen som skapar förtroende hos nya kunder.",
+  },
+  {
+    title: "Kreativt content",
+    text: "Vi tar fram idéer för innehåll, UGC och influencers som kan skapa räckvidd och engagemang.",
+  },
+  {
+    title: "Sponsring & samarbeten",
+    text: "Vi hjälper er hitta samarbeten som stärker varumärket och känns relevanta för målgruppen.",
+  },
+  {
+    title: "Display & programmatic",
+    text: "Digital annonsering för att bygga synlighet, återaktivera målgrupper och stötta andra kampanjer.",
+  },
+  {
+    title: "Native annonsering",
+    text: "Annonser som smälter in i redaktionella miljöer och passar för räckvidd, trafik och förtroende.",
+  },
+  {
+    title: "Tryckt media",
+    text: "Vi hjälper er ta fram annonser, material och budskap för print när det passar målgruppen.",
+  },
+];
 
   const focusRing =
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]";
