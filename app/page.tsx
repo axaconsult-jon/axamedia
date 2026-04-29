@@ -2,6 +2,7 @@
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SchemaMarkup from "./components/SchemaMarkup";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";
@@ -150,6 +151,7 @@ export default function HomePage() {
       >
         Hoppa till innehåll
       </a>
+       <SchemaMarkup />
 
       <main
         id="main-content"
