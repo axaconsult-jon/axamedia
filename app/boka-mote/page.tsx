@@ -77,7 +77,7 @@ export default function BokaMote() {
       </a>
 
       <main id="main-content" className="relative min-h-screen overflow-x-hidden text-white">
-        <div className="fixed inset-x-0 top-0 z-[120] h-[12px]">
+        <div className="fixed inset-x-0 top-0 z-[120] h-[10px]">
           <Image
             src="/line-axa.png"
             alt=""
@@ -88,15 +88,23 @@ export default function BokaMote() {
           />
         </div>
 
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+  <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
 
-          <div className="hero-particles absolute inset-0" />
-          <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+    <div className="hero-particles absolute inset-0" />
+    <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
 
-          <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
-          <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
-        </div>
+    <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+    <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
+  </div>
+
+  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
+
+  <div className="relative mx-auto max-w-7xl">
+    ...
+  </div>
+</section>
 
         <Header variant="boka" />
 
