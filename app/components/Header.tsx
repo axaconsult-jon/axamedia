@@ -37,26 +37,30 @@ export default function Header({
         </a>
 
         <div className="hidden items-center justify-center gap-3 md:flex">
-          <a href={variant === "home" ? "#services" : "/#services"} className={linkClasses}>
-  Tjänster
-</a>
+  <a href={variant === "home" ? "#sa-jobbar-vi" : "/#sa-jobbar-vi"} className={linkClasses}>
+    Så jobbar vi
+  </a>
 
-<a href={variant === "home" ? "#process" : "/#process"} className={linkClasses}>
-  Arbetssätt
-</a>
+  <a href={variant === "home" ? "#services" : "/#services"} className={linkClasses}>
+    Tjänster
+  </a>
 
-<a href={variant === "home" ? "#samarbete" : "/#samarbete"} className={linkClasses}>
-  Samarbete
-</a>
+  <a href={variant === "home" ? "#process" : "/#process"} className={linkClasses}>
+    Process
+  </a>
 
-<a href={variant === "home" ? "#faq" : "/#faq"} className={linkClasses}>
-  FAQ
-</a>
+  <a href={variant === "home" ? "#samarbete" : "/#samarbete"} className={linkClasses}>
+    Samarbete
+  </a>
 
-<a href={variant === "home" ? "#contact" : "/#contact"} className={linkClasses}>
-  Kontakt
-</a>
-        </div>
+  <a href={variant === "home" ? "#faq" : "/#faq"} className={linkClasses}>
+    FAQ
+  </a>
+
+  <a href={variant === "home" ? "#contact" : "/#contact"} className={linkClasses}>
+    Kontakt
+  </a>
+</div>
 
         <div className="flex items-center justify-end gap-3">
           {variant === "home" && setMenuOpen && (

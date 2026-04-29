@@ -84,7 +84,7 @@ export default function WorkStyleCarousel() {
 
   return (
     <section
-      id="Så jobbar vi"
+      id="sa-jobbar-vi"
       className="overflow-hidden bg-[linear-gradient(180deg,#f7f4ee_0%,#ffffff_100%)] py-16 md:py-20 lg:py-24"
     >
       <div className="mx-auto w-full max-w-[1540px] px-6 md:px-10 lg:px-16">

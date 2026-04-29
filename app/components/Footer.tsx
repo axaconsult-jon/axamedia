@@ -19,20 +19,20 @@ export default function Footer() {
             className="opacity-90"
           />
           <p className="mt-6 text-[14px] leading-[1.7] text-white/68">
-            Strategi, webb och marknadsföring
-            <br />
-            för företag som vill skapa tydlighet
-            <br />
-            och bättre struktur.
+          Marknadsföring, strategi och genomförande
+          <br />
+          för företag som vill få tydligare riktning
+          <br />
+          och bättre fart i rätt saker.
           </p>
         </div>
 
         {/* NAV */}
-        <div className="flex flex-col gap-3 text-[15px] text-white/78 md:items-center">
-          {[
+        {[
   ["Startsida", "/"],
+  ["Så jobbar vi", "/#sa-jobbar-vi"],
   ["Tjänster", "/#services"],
-  ["Arbetssätt", "/#process"],
+  ["Process", "/#process"],
   ["Samarbete", "/#samarbete"],
   ["FAQ", "/#faq"],
   ["Kontakt", "/#contact"],
@@ -45,7 +45,6 @@ export default function Footer() {
     {label}
   </a>
 ))}
-        </div>
 
         {/* CONTACT */}
         <div className="md:text-right">
