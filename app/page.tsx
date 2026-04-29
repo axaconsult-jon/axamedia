@@ -2,7 +2,6 @@
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SchemaMarkup from "./components/SchemaMarkup";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";
@@ -13,6 +12,7 @@ export default function HomePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const successRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -42,6 +42,11 @@ export default function HomePage() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!acceptedPrivacy) {
+  setSubmitError("Du behöver godkänna integritetspolicyn för att skicka formuläret.");
+  return;
+}
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -62,14 +67,15 @@ export default function HomePage() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send");
-      }
+  throw new Error("Failed to send");
+}
 
-      setIsSuccess(true);
+setIsSuccess(true);
+setAcceptedPrivacy(false);
 
-      setTimeout(() => {
-        successRef.current?.focus();
-      }, 0);
+setTimeout(() => {
+  successRef.current?.focus();
+}, 0);
     } catch (error) {
       console.error("Form submit error:", error);
       setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
@@ -151,7 +157,6 @@ export default function HomePage() {
       >
         Hoppa till innehåll
       </a>
-       <SchemaMarkup />
 
       <main
         id="main-content"
@@ -703,7 +708,32 @@ export default function HomePage() {
                           placeholder="Berätta kort vad du vill ha hjälp med"
                         />
                       </div>
+<div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+  <div className="flex items-start gap-3">
+    <input
+      id="privacy"
+      name="privacy"
+      type="checkbox"
+      checked={acceptedPrivacy}
+      onChange={(e) => {
+        setAcceptedPrivacy(e.target.checked);
+        if (e.target.checked) setSubmitError("");
+      }}
+      className="mt-1 h-4 w-4 rounded border-white/20 bg-white/[0.06] accent-[#F5B74E]"
+    />
 
+    <label htmlFor="privacy" className="text-sm leading-6 text-white/75">
+      Jag godkänner att AXA Consult behandlar mina uppgifter enligt{" "}
+      <a
+        href="/integritetspolicy"
+        className="font-medium text-[#F5B74E] underline underline-offset-4 transition hover:text-white"
+      >
+        integritetspolicyn
+      </a>
+      .
+    </label>
+  </div>
+</div>
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -746,23 +776,7 @@ export default function HomePage() {
 
         <Footer />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: faqItems.map((item) => ({
-                "@type": "Question",
-                name: item.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: item.answer,
-                },
-              })),
-            }),
-          }}
-        />
+    
       </main>
     </>
   );

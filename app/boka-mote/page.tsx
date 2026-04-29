@@ -9,10 +9,16 @@ export default function BokaMote() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const successRef = useRef<HTMLHeadingElement | null>(null);
 
  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
+ 
+   if (!acceptedPrivacy) {
+  setSubmitError("Du behöver godkänna integritetspolicyn för att skicka formuläret.");
+  return;
+  }
   setIsSubmitting(true);
   setSubmitError("");
 
@@ -47,7 +53,7 @@ export default function BokaMote() {
     }
 
     setIsSuccess(true);
-
+    setAcceptedPrivacy(false);
     setTimeout(() => {
       successRef.current?.focus();
     }, 0);
@@ -221,7 +227,32 @@ export default function BokaMote() {
                           className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] transition outline-none hover:border-[#bcae98] focus:border-[#9a6617] focus:shadow-[0_0_0_3px_rgba(154,102,23,0.18)]"
                         />
                       </div>
+<div className="rounded-2xl border border-[#ddd6cc] bg-white/60 p-4">
+  <div className="flex items-start gap-3">
+    <input
+      id="privacy"
+      name="privacy"
+      type="checkbox"
+      checked={acceptedPrivacy}
+      onChange={(e) => {
+        setAcceptedPrivacy(e.target.checked);
+        if (e.target.checked) setSubmitError("");
+      }}
+      className="mt-1 h-4 w-4 rounded border-[#cfc6ba] accent-[#9a6617]"
+    />
 
+    <label htmlFor="privacy" className="text-sm leading-6 text-[#2f2f35]">
+      Jag godkänner att AXA Consult behandlar mina uppgifter enligt{" "}
+      <a
+        href="/integritetspolicy"
+        className="font-medium text-[#8a5a14] underline underline-offset-4 transition hover:text-[#1A2430]"
+      >
+        integritetspolicyn
+      </a>
+      .
+    </label>
+  </div>
+</div>
                       <button
                         type="submit"
                         disabled={isSubmitting}

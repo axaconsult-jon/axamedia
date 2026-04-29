@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import SchemaMarkup from "./components/SchemaMarkup";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
@@ -56,6 +57,8 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+
+        <SchemaMarkup />
 
         {children}
       </body>
