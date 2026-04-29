@@ -447,6 +447,32 @@ setTimeout(() => {
 
         <WorkStyleCarousel />
 
+        <section className="bg-white px-6 py-20 md:py-28">
+  <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.4fr_0.3fr_0.3fr]">
+    <div>
+      <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
+        Varför AXA
+      </p>
+
+      <h2 className="mt-4 text-[36px] font-semibold leading-[1.04] tracking-[-0.055em] text-[#0f1724] md:text-[52px]">
+        Vi tror på marknadsföring som går att förstå, prioritera och genomföra
+      </h2>
+    </div>
+
+    <p className="text-[18px] leading-[1.85] text-[#3f4a5a] md:text-[20px]">
+      För många företag blir marknadsföring lätt en lista av kanaler, idéer och
+      saker som borde göras. Vi tror att det börjar i andra änden: med riktning,
+      affären och vad som är viktigast just nu.
+    </p>
+
+    <p className="text-[18px] leading-[1.85] text-[#3f4a5a] md:text-[20px]">
+      AXA startades för att vara ett närmare stöd i det arbetet. Inte bara någon
+      som levererar enstaka insatser, utan en partner som hjälper er välja rätt,
+      hålla ihop helheten och få saker gjorda.
+    </p>
+  </div>
+</section>
+
         {/* SERVICES */}
         <section
           id="services"
@@ -457,7 +483,7 @@ setTimeout(() => {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a5a14]">
                 Tjänster
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-semibold trackinng-tight text-slate-950 sm:text-4xl">
                 Det här kan vi hjälpa er med
               </h2>
               <p className="mt-4 text-lg leading-8 text-slate-600">
