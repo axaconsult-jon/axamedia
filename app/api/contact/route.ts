@@ -11,19 +11,19 @@ export async function POST(req: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "AXA Consult <kontakt@contact.axaconsult.se>",
-      to: ["info@axaconsult.se"],
-      replyTo: email,
-      subject: `Ny förfrågan från ${name}`,
-      text: `
+  from: "AXA Consult <kontakt@contact.axaconsult.se>",
+  to: ["info@axaconsult.se"],
+  replyTo: email,
+  subject: `Ny förfrågan från ${name}`,
+  text: `
 Namn: ${name}
 Företag: ${company || "-"}
 E-post: ${email}
 
 Meddelande:
 ${message}
-      `,
-    });
+  `,
+});
 
     if (error) {
       console.error("Resend error:", error);
