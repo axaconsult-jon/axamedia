@@ -86,12 +86,11 @@ export default function HomePage() {
       if (!response.ok) {
   throw new Error("Failed to send");
 }
-
-setIsSuccess(true);
 trackEvent("generate lead", {
   form_name: "contact_form",
   form_location: "homepage_contact_section",
 });
+setIsSuccess(true);
 setAcceptedPrivacy(false);
 
 setTimeout(() => {
