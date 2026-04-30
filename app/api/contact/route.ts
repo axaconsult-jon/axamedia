@@ -10,9 +10,9 @@ export async function POST(req: Request) {
       return Response.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    await resend.emails.send({
-      from: "onboarding@resend.dev", // TEMP (funkar direkt)
-      to: "info@axaconsult.se",
+    const { data, error } = await resend.emails.send({
+      from: "AXA Consult <kontakt@contact.axaconsult.se>",
+      to: ["info@axaconsult.se"],
       replyTo: email,
       subject: `Ny förfrågan från ${name}`,
       text: `
@@ -25,9 +25,14 @@ ${message}
       `,
     });
 
-    return Response.json({ success: true });
+    if (error) {
+      console.error("Resend error:", error);
+      return Response.json({ error }, { status: 500 });
+    }
+
+    return Response.json({ success: true, data });
   } catch (err) {
-    console.error(err);
+    console.error("API error:", err);
     return Response.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
