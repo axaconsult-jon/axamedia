@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-  from: "AXA Consult <kontakt@contact.axaconsult.se>",
+  from: "Formulär axaconsult.se <kontakt@contact.axaconsult.se>",
   to: ["info@axaconsult.se"],
   replyTo: email,
   subject: `Ny förfrågan från ${name}`,
