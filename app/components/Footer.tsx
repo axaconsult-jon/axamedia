@@ -1,4 +1,22 @@
+"use client";
+
 import Image from "next/image";
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...eventParams,
+  });
+}
 
 export default function Footer() {
   const focusRing =
@@ -9,7 +27,6 @@ export default function Footer() {
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
-        
         {/* LOGO + TEXT */}
         <div className="max-w-sm">
           <Image
@@ -53,14 +70,29 @@ export default function Footer() {
             <p>
               <a
                 href="mailto:info@axaconsult.se"
+                onClick={() =>
+                  trackEvent("click_email", {
+                    contact_type: "email",
+                    contact_value: "info@axaconsult.se",
+                    link_location: "footer",
+                  })
+                }
                 className={`transition hover:text-white ${focusRing}`}
               >
                 info@axaconsult.se
               </a>
             </p>
+
             <p>
               <a
                 href="tel:+46760353560"
+                onClick={() =>
+                  trackEvent("click_phone", {
+                    contact_type: "phone",
+                    contact_value: "+46760353560",
+                    link_location: "footer",
+                  })
+                }
                 className={`transition hover:text-white ${focusRing}`}
               >
                 +46 760 35 35 60

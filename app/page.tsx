@@ -1,10 +1,27 @@
 "use client";
 
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...eventParams,
+  });
+}
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -71,6 +88,10 @@ export default function HomePage() {
 }
 
 setIsSuccess(true);
+trackEvent("generate lead", {
+  form_name: "contact_form",
+  form_location: "homepage_contact_section",
+});
 setAcceptedPrivacy(false);
 
 setTimeout(() => {
@@ -671,47 +692,73 @@ setTimeout(() => {
           </div>
         </section>
 
-        {/* CONTACT */}
-        <section
-          id="contact"
-          className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
+      {/* CONTACT */}
+<section
+  id="contact"
+  className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
 
-          <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
-                  Kontakt
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Vill du se om vi är rätt för varandra?
-                </h2>
-                <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
-                  Hör av dig så tar vi ett första samtal om nuläge, behov och
-                  vad som skulle vara ett rimligt nästa steg för er.
-                </p>
+  <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
+          Kontakt
+        </p>
 
-                <div className="mt-8 space-y-3 text-slate-200">
-                  <p>
-                    <span className="font-semibold text-white">Telefon:</span>{" "}
-                    +46 (0)760 35 35 60
-                  </p>
-                  <p>
-                    <span className="font-semibold text-white">E-post:</span>{" "}
-                    info@axaconsult.se
-                  </p>
-                  <p>
-                    <span className="font-semibold text-white">Plats:</span>{" "}
-                    Uppsala & Falun
-                  </p>
-                </div>
-              </div>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Vill du se om vi är rätt för varandra?
+        </h2>
+
+        <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
+          Hör av dig så tar vi ett första samtal om nuläge, behov och
+          vad som skulle vara ett rimligt nästa steg för er.
+        </p>
+
+        <div className="mt-8 space-y-3 text-slate-200">
+          <p>
+            <span className="font-semibold text-white">Telefon:</span>{" "}
+            <a
+              href="tel:+46760353560"
+              onClick={() =>
+                trackEvent("click_phone", {
+                  contact_type: "phone",
+                  contact_value: "+46760353560",
+                })
+              }
+              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+            >
+              +46 (0)760 35 35 60
+            </a>
+          </p>
+
+          <p>
+            <span className="font-semibold text-white">E-post:</span>{" "}
+            <a
+              href="mailto:info@axaconsult.se"
+              onClick={() =>
+                trackEvent("click_email", {
+                  contact_type: "email",
+                  contact_value: "info@axaconsult.se",
+                })
+              }
+              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+            >
+              info@axaconsult.se
+            </a>
+          </p>
+
+          <p>
+            <span className="font-semibold text-white">Plats:</span>{" "}
+            Uppsala & Falun
+          </p>
+        </div>
+      </div>
 
               <div className="rounded-[2rem] border border-white/10 bg-white/[0.08] p-6 shadow-2xl shadow-black/15 backdrop-blur-sm">
                 <div aria-live="polite" aria-atomic="true">
                   {!isSuccess ? (
-                    <form onSubmit={handleSubmit} noValidate className="grid gap-4">
+                    <form onSubmit={handleSubmit} noValidate className="grid gap-4" >  
                       {submitError && (
                         <div
                           role="alert"
@@ -838,8 +885,6 @@ setTimeout(() => {
         </section>
 
         <Footer />
-
-    
       </main>
     </>
   );

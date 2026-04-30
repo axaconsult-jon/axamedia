@@ -5,6 +5,22 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...eventParams,
+  });
+}
+
 export default function BokaMote() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -43,16 +59,10 @@ export default function BokaMote() {
         throw new Error("Failed to send");
       }
 
-      if (typeof window !== "undefined") {
-        (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer =
-          (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer || [];
-
-        (window as typeof window & { dataLayer?: Record<string, unknown>[] }).dataLayer?.push({
-          event: "form_submit",
-          form_name: "boka_mote",
-        });
-      }
-
+      trackEvent("generate_lead", {
+  form_name: "booking_form",
+  form_location: "booking_page",
+});
       setIsSuccess(true);
       setAcceptedPrivacy(false);
 
