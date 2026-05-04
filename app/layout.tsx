@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+  verification: {
+    google: "hr3m7KAt_mw2MCCe9wWM0hAuxFyGyArLSOmAuyKLDgo",
+  },
 };
 
 const inter = Inter({
@@ -27,18 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sv">
-      <head>
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
+      <body className={`${inter.className} antialiased`}>
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,9 +44,7 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-WWK4BHP');
           `}
         </Script>
-      </head>
 
-      <body className={`${inter.className} antialiased`}>
         <noscript>
           <iframe
             title="Google Tag Manager"
