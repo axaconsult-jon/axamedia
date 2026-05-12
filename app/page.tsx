@@ -108,7 +108,7 @@ setTimeout(() => {
     {
       question: "Vad gör en marknadskonsult?",
       answer:
-        "En marknadskonsult hjälper företag att få tydligare riktning, bättre struktur och mer fart i marknadsföringen – både strategiskt och praktiskt.",
+        "En marknadskonsult hjälper företag att få tydligare riktning, bättre struktur och mer fart i marknadsföringen. Både strategiskt och praktiskt.",
     },
     {
       question: "Vilka företag passar AXA Consult för?",
@@ -128,7 +128,7 @@ setTimeout(() => {
     {
       question: "Hur vet vi vad som ska prioriteras först?",
       answer:
-        "Det är en viktig del av arbetet. Vi börjar med nuläge, behov och mål – och prioriterar sedan det som sannolikt gör störst skillnad först.",
+        "Det är en viktig del av arbetet. Vi börjar med nuläge, behov och mål,  och prioriterar sedan det som sannolikt gör störst skillnad först.",
     },
     {
       question: "Vad kostar det att anlita AXA Consult?",
@@ -341,10 +341,12 @@ setTimeout(() => {
                   isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                 } transition-all duration-700 delay-100`}
               >
-                Vi arbetar med endast en handfull kunder – för att kunna vara nära
-                och sitta på er sida av bordet, inte bara skicka över en rapport och
-                försvinna. Oavsett om det gäller SEO, Google Ads, sociala medier eller
-                något annat. Det vi inte gör själva fixar vi genom vårt nätverk.
+                Vi arbetar med en handfull kunder, för att kunna ge 
+                varje kund den tid de behöver och sitta på deras sida
+                av bordet. Inte bara skicka över en rapport och försvinna. 
+                Oavsett om det gäller SEO, Google Ads, sociala medier, 
+                annonsering eller något annat. Det vi inte gör själva 
+                fixar vi genom vårt stora nätverk.
               </p>
 
               <div
@@ -480,13 +482,13 @@ setTimeout(() => {
 
     <p className="text-[18px] leading-[1.85] text-[#3f4a5a] md:text-[20px]">
       Hos oss är du inte rad 47 i ett CRM-system. Vi jobbar med ett
-      begränsat antal kunder åt gången – för att vi ska kunna sätta oss
+      begränsat antal kunder åt gången, för att vi ska kunna sätta oss
       in i er verksamhet och bidra med något som gör skillnad.
     </p>
 
     <p className="text-[18px] leading-[1.85] text-[#3f4a5a] md:text-[20px]">
       Marknadsföring på fler kanaler än bara Google och Meta. Strategi,
-      SEO, annonsering, innehåll, grafik – vi hanterar det mesta. Och det
+      SEO, annonsering, innehåll, grafik...ja vi hanterar det mesta. Och det
       vi inte gör själva fixar vi genom vårt nätverk.
     </p>
   </div>
@@ -617,7 +619,7 @@ setTimeout(() => {
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
                   Det gör att vi kan sätta oss in i verksamheten, förstå
                   prioriteringarna och bidra med både strategi och genomförande.
-                  Målet är inte att göra mer – utan att göra rätt. Alla våra kunder är viktiga.
+                  Målet är inte att göra mer, utan att göra rätt. Alla våra kunder är viktiga.
                 </p>
               </div>
 
@@ -707,8 +709,8 @@ setTimeout(() => {
         </h2>
 
         <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
-          Hör av dig så pratar vi. Inget sälj, inget krångel –
-          bara ett samtal om vart ni står och vad ni behöver.
+          Hör av dig så pratar vi. Inget sälj, inget krånge.
+          Bara ett samtal om vart ni står och vad ni behöver.
         </p>
 
         <div className="mt-8 space-y-3 text-slate-200">
