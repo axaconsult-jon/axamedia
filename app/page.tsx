@@ -306,16 +306,16 @@ setTimeout(() => {
         <Header variant="home" menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
-           <div className="hidden md:block hero-particles absolute inset-0" />
-<div className="hidden md:block hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
-<div className="hidden md:block absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
-<div className="hidden md:block absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
-          </div>
+     <section className="relative isolate overflow-hidden bg-[#08121d] px-6 pb-28 pt-[185px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+  <div className="pointer-events-none absolute inset-0 -z-10">
+    <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+    <div className="hidden md:block hero-particles absolute inset-0" />
+    <div className="hidden md:block hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+    <div className="hidden md:block absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+    <div className="hidden md:block absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
+  </div>
 
-          <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
+  <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-7">
               <p
                 className={`mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E] sm:text-[12px] ${
