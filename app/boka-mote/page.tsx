@@ -168,7 +168,7 @@ export default function BokaMote() {
               <div className="rounded-[28px] border border-[#ddd6cc] bg-[#f7f3eb] p-6 text-[#1A2430] shadow-[0_40px_100px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
                 <div aria-live="polite" aria-atomic="true">
                   {!isSuccess ? (
-                    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                       {submitError && (
                         <div
                           role="alert"
@@ -189,7 +189,7 @@ export default function BokaMote() {
                           autoComplete="name"
                           placeholder="Ditt namn"
                           required
-                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)] invalid:border-red-500"
                         />
                       </div>
 
