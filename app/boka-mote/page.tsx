@@ -3,10 +3,79 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import { useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...eventParams,
+  });
+}
 
 export default function BokaMote() {
-  const bookingUrl =
-    "https://outlook.office.com/bookwithme/user/90e6dd1aa16b4e24b37a37e47b12928d@axaconsult.se/meetingtype/dzez0tJUQ0OBLcMcVAeM5w2?anonymous&ismsaljsauthenabled&ep=mlink";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const successRef = useRef<HTMLHeadingElement | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!acceptedPrivacy) {
+      setSubmitError("Du behöver godkänna integritetspolicyn för att skicka formuläret.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const formData = new FormData(e.currentTarget);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send");
+      }
+
+      trackEvent("generate_lead", {
+  form_name: "booking_form",
+  form_location: "booking_page",
+});
+      setIsSuccess(true);
+      setAcceptedPrivacy(false);
+
+      setTimeout(() => {
+        successRef.current?.focus();
+      }, 0);
+    } catch (error) {
+      console.error("Form submit error:", error);
+      setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <>
@@ -18,7 +87,7 @@ export default function BokaMote() {
       </a>
 
       <main id="main-content" className="relative min-h-screen overflow-x-hidden text-white">
-        <div className="fixed inset-x-0 top-0 z-[160] h-[10px]">
+        <div className="fixed inset-x-0 top-0 z-[120] h-[10px]">
           <Image
             src="/line-axa.png"
             alt=""
@@ -31,14 +100,18 @@ export default function BokaMote() {
 
         <Header variant="boka" />
 
-        <section className="relative isolate overflow-hidden bg-[#08121d] px-6 pb-28 pt-20 md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
-          <div className="pointer-events-none absolute inset-0 -z-10">
+        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+          <div className="absolute inset-0">
             <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
-            <div className="hidden md:block hero-particles absolute inset-0" />
-            <div className="hidden md:block hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
-            <div className="hidden md:block absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
-            <div className="hidden md:block absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
+
+            <div className="hero-particles absolute inset-0" />
+            <div className="hero-wave absolute inset-x-0 bottom-0 h-[42%]" />
+
+            <div className="absolute right-[6%] top-[22%] h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px]" />
+            <div className="absolute left-[2%] bottom-[8%] h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px]" />
           </div>
+
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.012)_0%,rgba(255,255,255,0)_18%,rgba(255,255,255,0)_82%,rgba(255,255,255,0.012)_100%)]" />
 
           <div className="relative mx-auto max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-20 xl:pt-6">
@@ -49,56 +122,187 @@ export default function BokaMote() {
                   </p>
 
                   <h1 className="mt-3 text-[42px] font-semibold leading-[0.95] tracking-[-0.05em] md:text-[64px]">
+                    Inget sälj.
+                    <br />
                     Bara ett samtal
                     <br />
                     om vad ni behöver.
                   </h1>
 
                   <p className="mt-6 max-w-2xl text-[18px] leading-[1.8] text-white/80 md:text-[20px]">
-                    Välj en tid som passar dig direkt i kalendern. Vi pratar om vart ni står,
-                    vad som inte fungerar och vad som vore rimligt att börja med.
+                    Vi pratar om vart ni står, vad som inte fungerar och
+                    vad som vore rimligt att börja med. Ni behöver inte ha
+                    allt klart – det är därför vi pratas vid.
                   </p>
                 </div>
 
                 <div className="mt-14 max-w-xl space-y-4">
-                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 md:backdrop-blur-md">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Vad vi pratar om
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
-                      Er marknadsföring idag, vad som fungerar, vad som inte fungerar
-                      och vad som borde prioriteras först.
+                      Er marknadsföring idag, vad som fungerar, vad som inte
+                      fungerar och vad som borde prioriteras först.
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 md:backdrop-blur-md">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
-                      Innan mötet
+                      Innan ni skickar
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
-                      Du behöver inte förbereda något stort. Boka en tid och ta med
-                      det du funderar på.
+                      Skriv bara kort vad ni funderar på. Vi tar det därifrån.
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 md:backdrop-blur-md">
+                  <div className="rounded-[24px] border border-white/12 bg-white/[0.06] p-5 backdrop-blur-md">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]/70">
                       Efteråt
                     </p>
                     <p className="mt-3 text-[17px] leading-[1.75] text-white/90">
-                      Ni vet vad nästa steg är. Konkret, enkelt och utan krångel.
+                      Ni vet vad nästa steg är. Konkret, enkelt, utan krångel.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-[28px] border border-[#ddd6cc] bg-[#f7f3eb] p-2 text-[#1A2430] shadow-[0_30px_80px_rgba(0,0,0,0.18)] sm:p-4 lg:p-5">
-                <iframe
-                  src={bookingUrl}
-                  title="Boka ett första samtal med AXA Consult"
-                  className="h-[760px] w-full rounded-[20px] bg-white md:h-[720px]"
-                  loading="lazy"
-                />
+              <div className="rounded-[28px] border border-[#ddd6cc] bg-[#f7f3eb] p-6 text-[#1A2430] shadow-[0_40px_100px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
+                <div aria-live="polite" aria-atomic="true">
+                  {!isSuccess ? (
+                    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                      {submitError && (
+                        <div
+                          role="alert"
+                          className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800"
+                        >
+                          {submitError}
+                        </div>
+                      )}
+
+                      <div>
+                        <label htmlFor="name" className="text-sm font-medium text-[#2f2f35]">
+                          Namn
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          autoComplete="name"
+                          placeholder="Ditt namn"
+                          required
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="company" className="text-sm font-medium text-[#2f2f35]">
+                          Företag
+                        </label>
+                        <input
+                          id="company"
+                          name="company"
+                          type="text"
+                          autoComplete="organization"
+                          placeholder="Företagsnamn"
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="text-sm font-medium text-[#2f2f35]">
+                          E-post
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          placeholder="din@email.se"
+                          required
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="message" className="text-sm font-medium text-[#2f2f35]">
+                          Vad handlar det om?
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          rows={5}
+                          autoComplete="off"
+                          placeholder="Beskriv kort vad ni funderar på"
+                          required
+                          className="mt-2 w-full rounded-xl border border-[#cfc6ba] bg-white px-4 py-3 text-[#111827] placeholder-[#6b7280] outline-none transition hover:border-[#bcae98] focus:border-[#8a5a14] focus:shadow-[0_0_0_3px_rgba(138,90,20,0.18)]"
+                        />
+                      </div>
+
+                      <div className="rounded-2xl border border-[#ddd6cc] bg-white/60 p-4">
+                        <div className="flex items-start gap-3">
+                          <input
+                            id="privacy"
+                            name="privacy"
+                            type="checkbox"
+                            checked={acceptedPrivacy}
+                            onChange={(e) => {
+                              setAcceptedPrivacy(e.target.checked);
+                              if (e.target.checked) setSubmitError("");
+                            }}
+                            className="mt-1 h-4 w-4 rounded border-[#cfc6ba] accent-[#F5B74E]"
+                          />
+
+                          <label htmlFor="privacy" className="text-sm leading-6 text-[#2f2f35]">
+                            Jag godkänner att AXA Consult behandlar mina uppgifter enligt{" "}
+                            <a
+                              href="/integritetspolicy"
+                              className="font-medium text-[#8a5a14] underline underline-offset-4 transition hover:text-[#1A2430]"
+                            >
+                              integritetspolicyn
+                            </a>
+                            .
+                          </label>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        aria-busy={isSubmitting}
+                        className="inline-flex min-w-[180px] items-center justify-center rounded-full bg-[#1A2430] px-7 py-3.5 text-[15px] font-medium text-white transition hover:scale-[0.97] hover:bg-[#24364a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E] disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        {isSubmitting ? "Skickar..." : "Skicka förfrågan"}
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="rounded-[22px] border border-[#ddd6cc] bg-[#f7f3eb] p-6 text-[#0f172a]">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-[#8a5a14]">
+                        Tack
+                      </p>
+
+                      <h2
+                        ref={successRef}
+                        tabIndex={-1}
+                        className="mt-3 text-[26px] font-medium focus:outline-none"
+                      >
+                        Er förfrågan är skickad.
+                      </h2>
+
+                      <p className="mt-4 text-[#0f172a]/80">
+                        Vi återkommer så snart vi kan.
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => setIsSuccess(false)}
+                        className="mt-6 rounded-full border border-[#cfc6ba] px-6 py-3 text-[#0f172a] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
+                      >
+                        Skicka igen
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -115,6 +319,7 @@ export default function BokaMote() {
               radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
             background-size: 96px 88px, 142px 132px, 210px 190px;
             background-position: 0 0, 42px 64px, 90px 30px;
+            animation: particlesMove 32s linear infinite;
           }
 
           .hero-wave {
@@ -124,16 +329,7 @@ export default function BokaMote() {
               radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
               linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
             filter: blur(1px);
-          }
-
-          @media (min-width: 768px) {
-            .hero-particles {
-              animation: particlesMove 32s linear infinite;
-            }
-
-            .hero-wave {
-              animation: waveMove 12s ease-in-out infinite alternate;
-            }
+            animation: waveMove 12s ease-in-out infinite alternate;
           }
 
           @keyframes particlesMove {
