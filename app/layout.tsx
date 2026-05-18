@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import SchemaMarkup from "./components/SchemaMarkup";
 import Script from "next/script";
 import type { ReactNode } from "react";
@@ -22,10 +22,11 @@ export const metadata: Metadata = {
   },
 };
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
 });
+
 
 export default function RootLayout({
   children,
@@ -33,8 +34,8 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="sv">
-      <body className={`${inter.className} antialiased`}>
+    <html lang="sv" suppressHydrationWarning>
+      <body className={`${dmSans.className} antialiased`}>
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

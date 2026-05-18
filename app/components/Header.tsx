@@ -27,13 +27,13 @@ export default function Header({
           className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]"
         >
           <Image
-            src="/axa-logo.svg"
-            alt="AXA Consult"
-            width={124}
-            height={33}
-            priority
-            className="md:w-[132px]"
-          />
+  src="/axa-logo.svg"
+  alt="AXA Consult"
+  width={124}
+  height={33}
+  priority
+  className="w-[100px] md:w-[132px]"
+/>
         </a>
 
         <div className={`hidden items-center justify-center gap-3 ${variant === "home" ? "md:flex" : "md:hidden"}`}>

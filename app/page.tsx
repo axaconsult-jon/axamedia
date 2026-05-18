@@ -306,7 +306,7 @@ setTimeout(() => {
         <Header variant="home" menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[165px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+        <section className="relative overflow-hidden bg-[#08121d] px-6 pb-28 pt-[40px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
             <div className="hero-particles absolute inset-0" />
