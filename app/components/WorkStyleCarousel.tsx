@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+
 
 type Slide = {
   title: string;
@@ -38,26 +39,22 @@ export default function WorkStyleCarousel() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const cardWidths = useMemo(
-    () => ({ mobile: 292, tablet: 460, desktop: 930 }),
-    []
-  );
-  const [cardWidth, setCardWidth] = useState(cardWidths.desktop);
+  const [cardWidth, setCardWidth] = useState(930);
 
-  useEffect(() => {
-    const updateCardWidth = () => {
-      if (window.innerWidth < 768) {
-        setCardWidth(cardWidths.mobile);
-      } else if (window.innerWidth < 1024) {
-        setCardWidth(cardWidths.tablet);
-      } else {
-        setCardWidth(cardWidths.desktop);
-      }
-    };
-    updateCardWidth();
-    window.addEventListener("resize", updateCardWidth);
-    return () => window.removeEventListener("resize", updateCardWidth);
-  }, [cardWidths]);
+useEffect(() => {
+  const updateCardWidth = () => {
+    if (window.innerWidth < 768) {
+      setCardWidth(window.innerWidth - 48);
+    } else if (window.innerWidth < 1024) {
+      setCardWidth(460);
+    } else {
+      setCardWidth(930);
+    }
+  };
+  updateCardWidth();
+  window.addEventListener("resize", updateCardWidth);
+  return () => window.removeEventListener("resize", updateCardWidth);
+}, []);
 
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
