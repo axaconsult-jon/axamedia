@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 
 type Slide = {
   title: string;
@@ -30,9 +30,13 @@ const slides: Slide[] = [
   },
 ];
 
+const AUTOPLAY_MS = 6000;
+
 export default function WorkStyleCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const cardWidths = useMemo(
     () => ({ mobile: 292, tablet: 460, desktop: 930 }),
@@ -40,7 +44,6 @@ export default function WorkStyleCarousel() {
   );
   const [cardWidth, setCardWidth] = useState(cardWidths.desktop);
 
-  // FIX 1: Syntaxfelet är borta — ren useEffect för resize
   useEffect(() => {
     const updateCardWidth = () => {
       if (window.innerWidth < 768) {
@@ -56,7 +59,6 @@ export default function WorkStyleCarousel() {
     return () => window.removeEventListener("resize", updateCardWidth);
   }, [cardWidths]);
 
-  // FIX 2: Kontrollera video via refs istället för att mounta om elementet
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
@@ -70,13 +72,33 @@ export default function WorkStyleCarousel() {
     });
   }, [activeIndex]);
 
-  function goPrev() {
-    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  }
+  // Autoplay — pausas när användaren interagerar
+  useEffect(() => {
+    if (isPaused) return;
 
-  function goNext() {
+    timerRef.current = setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, AUTOPLAY_MS);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [activeIndex, isPaused]);
+
+  const goPrev = useCallback(() => {
+    setIsPaused(true);
+    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }, []);
+
+  const goNext = useCallback(() => {
+    setIsPaused(true);
     setActiveIndex((prev) => (prev + 1) % slides.length);
-  }
+  }, []);
+
+  const goTo = useCallback((index: number) => {
+    setIsPaused(true);
+    setActiveIndex(index);
+  }, []);
 
   return (
     <section
@@ -157,13 +179,13 @@ export default function WorkStyleCarousel() {
                             key={dotIndex}
                             type="button"
                             onMouseDown={(e) => e.preventDefault()}
-                            onClick={() => setActiveIndex(dotIndex)}
+                            onClick={() => goTo(dotIndex)}
                             aria-label={`Gå till slide ${dotIndex + 1}`}
                             aria-pressed={activeIndex === dotIndex}
                             className="flex h-11 w-11 items-center justify-center rounded-full"
                           >
                             <span
-                              className={`h-2.5 rounded-full transition-all ${
+                              className={`h-2.5 rounded-full transition-all duration-300 ${
                                 activeIndex === dotIndex
                                   ? "w-8 bg-[#F5B74E]"
                                   : "w-2.5 bg-[#d7cdb8]"
@@ -195,7 +217,6 @@ export default function WorkStyleCarousel() {
                       </div>
                     </div>
 
-                    {/* FIX 3: Stabil key, loop=false, ingen autoPlay — styrs av useEffect via ref */}
                     <video
                       key={slide.videoSrc}
                       ref={(el) => { videoRefs.current[index] = el; }}

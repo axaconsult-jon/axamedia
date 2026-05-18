@@ -13,7 +13,7 @@ export default function Header({ variant = "home" }: HeaderProps) {
       <header className="fixed inset-x-0 top-0 z-[150] border-b border-white/5 bg-[#08121d] px-5 pt-[14px] shadow-[0_1px_0_rgba(255,255,255,0.08)] md:top-[10px] md:bg-[linear-gradient(135deg,rgba(8,18,29,0.98)_0%,rgba(10,23,36,0.97)_60%,rgba(13,27,43,0.96)_100%)] md:px-10 md:pt-8 md:shadow-none lg:px-16">
       <nav
         aria-label="Huvudnavigering"
-        className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center py-5 md:grid-cols-[180px_1fr_240px] md:py-6"
+        className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center py-3 md:grid-cols-[180px_1fr_240px] md:py-6"
       >
         <a
           href="/"
@@ -25,7 +25,7 @@ export default function Header({ variant = "home" }: HeaderProps) {
             width={124}
             height={33}
             priority
-            className="w-[100px] md:w-[132px]"
+            className="w-[80px] md:w-[132px]"
           />
         </a>
 
