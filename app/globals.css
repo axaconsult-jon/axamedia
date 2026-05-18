@@ -9,10 +9,12 @@ body {
   background: #ffffff;
   color: #1A2430;
 }
+
 ::selection {
   background: #F5B74E;
   color: #08121d;
 }
+
 .hero-wave {
   opacity: 0.7;
   background:
@@ -26,21 +28,20 @@ body {
       transparent 100%
     );
   filter: blur(1px);
-  animation: waveMove 12s ease-in-out infinite alternate;
+  animation: none;
 }
 
 @keyframes waveMove {
   from {
     transform: translate3d(-3%, 8px, 0) scale(1);
   }
-
   to {
     transform: translate3d(4%, -10px, 0) scale(1.04);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: no-preference) {
   .hero-wave {
-    animation: none;
+    animation: waveMove 12s ease-in-out infinite alternate;
   }
 }
