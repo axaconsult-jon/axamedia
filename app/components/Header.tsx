@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MobileMenu from "./Mobilemenu";
+import MobileMenu from "./MobileMenu";
 
 type HeaderProps = {
   variant?: "home" | "boka";
