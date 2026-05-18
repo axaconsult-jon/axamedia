@@ -13,3 +13,34 @@ body {
   background: #F5B74E;
   color: #08121d;
 }
+.hero-wave {
+  opacity: 0.7;
+  background:
+    radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
+    radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(143, 179, 218, 0.15) 38%,
+      rgba(245, 183, 78, 0.18) 62%,
+      transparent 100%
+    );
+  filter: blur(1px);
+  animation: waveMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes waveMove {
+  from {
+    transform: translate3d(-3%, 8px, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(4%, -10px, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-wave {
+    animation: none;
+  }
+}

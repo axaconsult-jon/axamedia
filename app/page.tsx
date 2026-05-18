@@ -1,209 +1,65 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Contactform from "./components/contactform";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import Hero from "./components/Hero";
+import ContactForm from "./components/ContactForm";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";
-import { motion } from "framer-motion";
+import MobileMenu from "./components/MobileMenu";
 
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
-
-function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
-  if (typeof window === "undefined") return;
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: eventName,
-    ...eventParams,
-  });
-}
-
-export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const successRef = useRef<HTMLHeadingElement | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 120);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setMenuOpen(false);
-    }
-
-    if (menuOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-      setTimeout(() => closeButtonRef.current?.focus(), 0);
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (!acceptedPrivacy) {
-  setSubmitError("Du behöver godkänna integritetspolicyn för att skicka formuläret.");
-  return;
-}
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
-      const formData = new FormData(e.currentTarget);
-
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          company: "",
-          email: formData.get("email"),
-          message: formData.get("message"),
-        }),
-      });
-
-      if (!response.ok) {
-  throw new Error("Failed to send");
-}
-trackEvent("generate lead", {
-  form_name: "contact_form",
-  form_location: "homepage_contact_section",
-});
-setIsSuccess(true);
-setAcceptedPrivacy(false);
-
-setTimeout(() => {
-  successRef.current?.focus();
-}, 0);
-    } catch (error) {
-      console.error("Form submit error:", error);
-      setSubmitError("Något gick fel när formuläret skulle skickas. Försök igen.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
-  const faqItems = [
-    {
-      question: "Vad gör en marknadskonsult?",
-      answer:
-        "En marknadskonsult hjälper företag att få tydligare riktning, bättre struktur och mer fart i marknadsföringen – både strategiskt och praktiskt.",
-    },
-    {
-      question: "Vilka företag passar AXA Consult för?",
-      answer:
-        "AXA Consult passar ofta företag som vill få bättre ordning i marknadsföringen, men som saknar en intern marknadsansvarig eller behöver mer affärsnära stöd.",
-    },
-    {
-      question: "Vilka tjänster kan ni hjälpa till med?",
-      answer:
-        "Det kan handla om strategi, SEO, Google Ads, webb, innehåll, nyhetsbrev, sociala medier, varumärkesfrågor och löpande marknadsstöd.",
-    },
-    {
-      question: "Jobbar ni löpande eller i projekt?",
-      answer:
-        "Både och. Ibland är behovet ett tydligt avgränsat projekt, ibland passar ett löpande samarbete bättre. Upplägget anpassas efter vad som är mest rimligt för er.",
-    },
-    {
-      question: "Hur vet vi vad som ska prioriteras först?",
-      answer:
-        "Det är en viktig del av arbetet. Vi börjar med nuläge, behov och mål – och prioriterar sedan det som sannolikt gör störst skillnad först.",
-    },
-    {
-      question: "Vad kostar det att anlita AXA Consult?",
-      answer:
-        "Det beror på omfattning, mål och hur mycket stöd ni behöver. Målet är alltid att hitta ett upplägg som känns rimligt och skapar tydligt värde.",
-    },
-  ];
-
- const services = [
+const faqItems = [
   {
-    title: "Strategi & prioritering",
-    text: "Vi hjälper er sätta riktning, välja fokus och prioritera rätt.",
+    question: "Vad gör en marknadskonsult?",
+    answer:
+      "En marknadskonsult hjälper företag att få tydligare riktning, bättre struktur och mer fart i marknadsföringen – både strategiskt och praktiskt.",
   },
   {
-    title: "SEO & hemsida",
-    text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid.",
+    question: "Vilka företag passar AXA Consult för?",
+    answer:
+      "AXA Consult passar ofta företag som vill få bättre ordning i marknadsföringen, men som saknar en intern marknadsansvarig eller behöver mer affärsnära stöd.",
   },
   {
-    title: "Google Ads",
-    text: "Vi hjälper er nå rätt målgrupp via sökannonsering och få bättre koll på resultat och budget.",
+    question: "Vilka tjänster kan ni hjälpa till med?",
+    answer:
+      "Det kan handla om strategi, SEO, Google Ads, webb, innehåll, nyhetsbrev, sociala medier, varumärkesfrågor och löpande marknadsstöd.",
   },
   {
-    title: "Bing Ads / Microsoft Ads",
-    text: "Ett smart komplement till Google Ads för att nå fler relevanta kunder i sök.",
+    question: "Jobbar ni löpande eller i projekt?",
+    answer:
+      "Både och. Ibland är behovet ett tydligt avgränsat projekt, ibland passar ett löpande samarbete bättre. Upplägget anpassas efter vad som är mest rimligt för er.",
   },
   {
-    title: "Social organic",
-    text: "Vi hjälper er skapa innehåll som bygger förtroende, synlighet och relation över tid.",
+    question: "Hur vet vi vad som ska prioriteras först?",
+    answer:
+      "Det är en viktig del av arbetet. Vi börjar med nuläge, behov och mål – och prioriterar sedan det som sannolikt gör störst skillnad först.",
   },
   {
-    title: "Social paid",
-    text: "Annonsering i sociala medier för varumärke, trafik, leads eller kampanjer med tydligare styrning.",
-  },
-  {
-    title: "Grafisk profil",
-    text: "Vi hjälper er få ett visuellt uttryck som känns tydligt, professionellt och lätt att använda.",
-  },
-  {
-    title: "Foto & film",
-    text: "Vi arbetar med lokala fotografer och videoproducenter för material som stärker ert varumärke.",
-  },
-  {
-    title: "Rådgivning",
-    text: "Stöd när ni behöver bolla idéer, fatta bättre beslut eller få extern riktning framåt.",
-  },
-  {
-    title: "Referenscase & kundrecensioner",
-    text: "Vi hjälper er lyfta kundcase och omdömen som skapar förtroende hos nya kunder.",
-  },
-  {
-    title: "Kreativt content",
-    text: "Vi tar fram idéer för innehåll, UGC och influencers som når fler och berör.",
-  },
-  {
-    title: "Sponsring & samarbeten",
-    text: "Vi hjälper er hitta samarbeten som stärker varumärket och känns relevanta för målgruppen.",
-  },
-  {
-    title: "Display & programmatic",
-    text: "Digital annonsering för att bygga synlighet, återaktivera målgrupper och stötta andra kampanjer.",
-  },
-  {
-    title: "Native annonsering",
-    text: "Annonser som smälter in i redaktionella miljöer och passar för räckvidd, trafik och förtroende.",
-  },
-  {
-    title: "Tryckt media",
-    text: "Vi hjälper er ta fram annonser, material och budskap för print när det passar målgruppen.",
+    question: "Vad kostar det att anlita AXA Consult?",
+    answer:
+      "Det beror på omfattning, mål och hur mycket stöd ni behöver. Målet är alltid att hitta ett upplägg som känns rimligt och skapar tydligt värde.",
   },
 ];
 
-  const focusRing =
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]";
+const services = [
+  { title: "Strategi & prioritering", text: "Vi hjälper er sätta riktning, välja fokus och prioritera rätt." },
+  { title: "SEO & hemsida", text: "För företag som vill synas bättre i sök och bygga relevant trafik över tid." },
+  { title: "Google Ads", text: "Vi hjälper er nå rätt målgrupp via sökannonsering och få bättre koll på resultat och budget." },
+  { title: "Bing Ads / Microsoft Ads", text: "Ett smart komplement till Google Ads för att nå fler relevanta kunder i sök." },
+  { title: "Social organic", text: "Vi hjälper er skapa innehåll som bygger förtroende, synlighet och relation över tid." },
+  { title: "Social paid", text: "Annonsering i sociala medier för varumärke, trafik, leads eller kampanjer med tydligare styrning." },
+  { title: "Grafisk profil", text: "Vi hjälper er få ett visuellt uttryck som känns tydligt, professionellt och lätt att använda." },
+  { title: "Foto & film", text: "Vi arbetar med lokala fotografer och videoproducenter för material som stärker ert varumärke." },
+  { title: "Rådgivning", text: "Stöd när ni behöver bolla idéer, fatta bättre beslut eller få extern riktning framåt." },
+  { title: "Referenscase & kundrecensioner", text: "Vi hjälper er lyfta kundcase och omdömen som skapar förtroende hos nya kunder." },
+  { title: "Kreativt content", text: "Vi tar fram idéer för innehåll, UGC och influencers som når fler och berör." },
+  { title: "Sponsring & samarbeten", text: "Vi hjälper er hitta samarbeten som stärker varumärket och känns relevanta för målgruppen." },
+  { title: "Display & programmatic", text: "Digital annonsering för att bygga synlighet, återaktivera målgrupper och stötta andra kampanjer." },
+  { title: "Native annonsering", text: "Annonser som smälter in i redaktionella miljöer och passar för räckvidd, trafik och förtroende." },
+  { title: "Tryckt media", text: "Vi hjälper er ta fram annonser, material och budskap för print när det passar målgruppen." },
+];
 
-  const mobileLinkClass = `py-3 text-[28px] tracking-[-0.04em] text-white transition hover:text-[#F5B74E] ${focusRing}`;
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5B74E]";
 
+export default function HomePage() {
   return (
     <>
       <a
@@ -217,227 +73,17 @@ setTimeout(() => {
         id="main-content"
         className="relative min-h-screen overflow-x-hidden bg-white text-[#1A2430]"
       >
-        <div
-          className={`fixed inset-x-0 top-0 z-[120] h-[10px] transition-all duration-700 ease-out ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
+        <div className="fixed inset-x-0 top-0 z-[120] h-[10px]">
+          <img
             src="/line-axa.png"
             alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
+            className="h-full w-full object-cover object-center"
           />
         </div>
 
-        <div
-          id="mobile-menu"
-          aria-hidden={!menuOpen}
-          className={`fixed inset-0 z-[200] md:hidden ${
-            menuOpen ? "pointer-events-auto" : "pointer-events-none"
-          }`}
-        >
-          <button
-            type="button"
-            aria-label="Stäng menybakgrund"
-            onClick={() => setMenuOpen(false)}
-            className={`absolute inset-0 bg-black/35 transition-opacity duration-500 ${
-              menuOpen ? "opacity-100" : "opacity-0"
-            }`}
-          />
-
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobilmeny"
-            className={`absolute inset-y-0 right-0 w-full bg-[#101923] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              menuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="flex h-full flex-col px-6 pb-8 pt-8">
-              <div className="flex justify-end">
-                <button
-                  ref={closeButtonRef}
-                  type="button"
-                  onClick={() => setMenuOpen(false)}
-                  aria-label="Stäng meny"
-                  className={`text-[40px] leading-none text-white/75 transition hover:text-[#F5B74E] ${focusRing}`}
-                >
-                  <span aria-hidden="true" className="inline-block rotate-45">
-                    +
-                  </span>
-                </button>
-              </div>
-
-              <nav aria-label="Mobil navigering" className="mt-8 flex flex-col">
-                <a href="#services" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
-                  Tjänster
-                </a>
-                <a href="#process" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
-                  Arbetssätt
-                </a>
-                <a href="#samarbete" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
-                  Samarbete
-                </a>
-                <a href="#faq" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
-                  FAQ
-                </a>
-                <a href="#contact" onClick={() => setMenuOpen(false)} className={mobileLinkClass}>
-                  Kontakt
-                </a>
-              </nav>
-
-              <div className="mt-auto pt-8">
-                <a
-                  href="/boka-mote"
-                  onClick={() => setMenuOpen(false)}
-                  className={`inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-white to-[#f4efe6] px-6 py-4 text-[15px] font-medium text-[#10161f] transition hover:scale-[0.985] hover:from-[#fff7ea] hover:to-white ${focusRing}`}
-                >
-                  Boka ett första samtal
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Header variant="home" menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-        {/* HERO */}
-<section className="relative overflow-hidden bg-[#08121d] px-6 pb-24 pt-[40px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
-  <div className="absolute inset-0">
-    <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
-
-    <div className="hero-particles absolute inset-0 hidden md:block" />
-    <div className="hero-wave absolute inset-x-0 bottom-0 hidden h-[42%] md:block" />
-
-    <div className="absolute right-[6%] top-[22%] hidden h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[140px] md:block" />
-    <div className="absolute left-[2%] bottom-[8%] hidden h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[130px] md:block" />
-  </div>
-
-  <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-12 lg:items-start">
-    <div className="lg:col-span-7">
-      <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5B74E] sm:text-[12px]">
-        Marknadskonsult i Uppsala och Falun
-      </p>
-
-      <h1 className="max-w-4xl text-[42px] font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-[56px] md:text-[68px] lg:text-[78px]">
-        <span className="block">
-          Vi är en byrå.
-        </span>
-        <span className="block bg-gradient-to-r from-[#8fb3da] via-[#dce8f6] to-[#F5B74E] bg-clip-text pb-[0.08em] text-transparent">
-          Men ändå inte en byrå.
-        </span>
-      </h1>
-
-      <p className="mt-6 max-w-2xl text-[17px] leading-[1.8] text-white/75 sm:text-[18px] md:text-[20px]">
-        Vi arbetar med en handfull kunder, för att kunna ge varje kund
-        den tid de behöver och sitta på deras sida av bordet. Inte bara
-        skicka över en rapport och försvinna. Oavsett om det gäller SEO,
-        Google Ads, sociala medier, annonsering eller något annat. Det vi
-        inte gör själva fixar vi genom vårt breda nätverk.
-      </p>
-
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a
-          href="/boka-mote"
-          className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#101923] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#24364a] ${focusRing}`}
-        >
-          Boka ett första samtal
-        </a>
-
-        <a
-          href="#services"
-          className={`inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/15 ${focusRing}`}
-        >
-          Se hur vi hjälper till
-        </a>
-      </div>
-    </div>
-
-    <div className="lg:col-span-5">
-      <p className="text-sm font-medium uppercase tracking-[0.18em] text-[#F5B74E]">
-        Så kan vi hjälpa till
-      </p>
-
-      <div className="mt-5 grid gap-3">
-        {[
-          {
-            title: "Rätt prioriteringar",
-            text: "Vi hjälper er se vad som är viktigast just nu och vad som kan vänta.",
-            icon: "◎",
-          },
-          {
-            title: "Stöd i det löpande arbetet",
-            text: "Vi håller ihop marknadsföringen och ser till att det rör sig.",
-            icon: "↗",
-          },
-          {
-            title: "Från plan till genomförande",
-            text: "När det inte räcker med idéer, utan också behöver bli något konkret.",
-            icon: "✦",
-          },
-        ].map((item) => (
-          <div
-            key={item.title}
-            className="flex gap-4 rounded-[18px] border border-white/10 bg-white/[0.06] px-4 py-4"
-          >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[22px] text-[#F5B74E]">
-              {item.icon}
-            </div>
-
-            <div>
-              <p className="text-[15px] font-medium text-white">
-                {item.title}
-              </p>
-              <p className="mt-1 text-[14px] leading-[1.7] text-white/70">
-                {item.text}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-
-  <style jsx>{`
-    .hero-particles {
-      opacity: 0.48;
-      background-image:
-        radial-gradient(circle, rgba(245, 183, 78, 0.48) 1px, transparent 1.8px),
-        radial-gradient(circle, rgba(143, 179, 218, 0.38) 1px, transparent 1.7px),
-        radial-gradient(circle, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.4px);
-      background-size: 96px 88px, 142px 132px, 210px 190px;
-      background-position: 0 0, 42px 64px, 90px 30px;
-      animation: particlesMove 32s linear infinite;
-    }
-
-    .hero-wave {
-      opacity: 0.7;
-      background:
-        radial-gradient(ellipse at 20% 85%, rgba(143, 179, 218, 0.32), transparent 34%),
-        radial-gradient(ellipse at 78% 75%, rgba(245, 183, 78, 0.28), transparent 36%),
-        linear-gradient(115deg, transparent 0%, rgba(143, 179, 218, 0.15) 38%, rgba(245, 183, 78, 0.18) 62%, transparent 100%);
-      filter: blur(1px);
-      animation: waveMove 12s ease-in-out infinite alternate;
-    }
-
-    @keyframes particlesMove {
-      from { background-position: 0 0, 40px 60px; }
-      to { background-position: 180px 90px, -90px 190px; }
-    }
-
-    @keyframes waveMove {
-      from { transform: translate3d(-3%, 8px, 0) scale(1); }
-      to { transform: translate3d(4%, -10px, 0) scale(1.04); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-particles, .hero-wave { animation: none; }
-    }
-  `}</style>
-</section>
+        <Header variant="home" />
+        <MobileMenu />
+        <Hero />
 
         <section className="bg-white px-6 py-20 md:py-28">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.4fr_0.3fr_0.3fr]">
@@ -445,7 +91,6 @@ setTimeout(() => {
               <p className="text-[12px] font-medium uppercase tracking-[0.24em] text-[#8a5a14]">
                 Varför AXA
               </p>
-
               <h2 className="mt-4 text-[36px] font-semibold leading-[1.04] tracking-[-0.055em] text-[#0f1724] md:text-[52px]">
                 Vi är det ni vill att vi ska vara.
               </h2>
@@ -467,7 +112,6 @@ setTimeout(() => {
 
         <WorkStyleCarousel />
 
-        {/* SERVICES */}
         <section
           id="services"
           className="scroll-mt-[120px] border-y border-[#ece2cf] bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)]"
@@ -503,7 +147,6 @@ setTimeout(() => {
           </div>
         </section>
 
-        {/* PROCESS */}
         <section
           id="process"
           className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
@@ -527,26 +170,10 @@ setTimeout(() => {
 
               <div className="grid gap-4">
                 {[
-                  {
-                    number: "01",
-                    title: "Nuläge & behov",
-                    text: "Vi tittar på var ni står idag, vad som redan görs och vilka utmaningar som bromsar er marknadsföring.",
-                  },
-                  {
-                    number: "02",
-                    title: "Strategi & prioritering",
-                    text: "Tillsammans sätter vi riktning, väljer fokus och landar i en plan som är rimlig att genomföra.",
-                  },
-                  {
-                    number: "03",
-                    title: "Genomförande",
-                    text: "Vi kör med rätt insatser, rätt tempo och tydlig kommunikation längs vägen.",
-                  },
-                  {
-                    number: "04",
-                    title: "Uppföljning & förbättring",
-                    text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov.",
-                  },
+                  { number: "01", title: "Nuläge & behov", text: "Vi tittar på var ni står idag, vad som redan görs och vilka utmaningar som bromsar er marknadsföring." },
+                  { number: "02", title: "Strategi & prioritering", text: "Tillsammans sätter vi riktning, väljer fokus och landar i en plan som är rimlig att genomföra." },
+                  { number: "03", title: "Genomförande", text: "Vi kör med rätt insatser, rätt tempo och tydlig kommunikation längs vägen." },
+                  { number: "04", title: "Uppföljning & förbättring", text: "Vi följer upp, justerar och ser till att marknadsföringen utvecklas i takt med företagets behov." },
                 ].map((step) => (
                   <div
                     key={step.number}
@@ -572,7 +199,6 @@ setTimeout(() => {
           </div>
         </section>
 
-        {/* OM SAMARBETET */}
         <section
           id="samarbete"
           className="bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] text-[#1A2430]"
@@ -598,25 +224,25 @@ setTimeout(() => {
                   Passar ofta företag som...
                 </p>
                 <div className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
-                  <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
-                    saknar intern marknadsansvarig
-                  </div>
-                  <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
-                    vill få bättre kontroll på vad som görs
-                  </div>
-                  <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
-                    behöver hjälp att prioritera rätt insatser
-                  </div>
-                  <div className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4">
-                    vill ha en mer personlig partner än en traditionell byrå
-                  </div>
+                  {[
+                    "saknar intern marknadsansvarig",
+                    "vill få bättre kontroll på vad som görs",
+                    "behöver hjälp att prioritera rätt insatser",
+                    "vill ha en mer personlig partner än en traditionell byrå",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-[#ece2cf] bg-[#fcfaf6] p-4"
+                    >
+                      {item}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
         <section
           id="faq"
           className="bg-[linear-gradient(180deg,#faf7f1_0%,#ffffff_100%)] px-6 py-24 text-[#1A2430] md:px-10 lg:px-16 lg:py-28"
@@ -660,60 +286,59 @@ setTimeout(() => {
           </div>
         </section>
 
-      {/* CONTACT */}
-<section
-  id="contact"
-  className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
->
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
+        <section
+          id="contact"
+          className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
 
-  <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
-    <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
-          Kontakt
-        </p>
+          <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
+                  Kontakt
+                </p>
 
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-          Låter det här som något för er?
-        </h2>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Låter det här som något för er?
+                </h2>
 
-        <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
-          Hör av dig så pratar vi. Bara ett samtal om vart ni står och vad ni behöver.
-        </p>
+                <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
+                  Hör av dig så pratar vi. Bara ett samtal om vart ni står och vad ni behöver.
+                </p>
 
-        <div className="mt-8 space-y-3 text-slate-200">
-          <p>
-            <span className="font-semibold text-white">Telefon:</span>{" "}
-            <a
-              href="tel:+46760353560"
-              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
-            >
-              +46 (0)760 35 35 60
-            </a>
-          </p>
+                <div className="mt-8 space-y-3 text-slate-200">
+                  <p>
+                    <span className="font-semibold text-white">Telefon:</span>{" "}
+                    <a
+                      href="tel:+46760353560"
+                      className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+                    >
+                      +46 (0)760 35 35 60
+                    </a>
+                  </p>
 
-          <p>
-            <span className="font-semibold text-white">E-post:</span>{" "}
-            <a
-              href="mailto:info@axaconsult.se"
-              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
-            >
-              info@axaconsult.se
-            </a>
-          </p>
+                  <p>
+                    <span className="font-semibold text-white">E-post:</span>{" "}
+                    <a
+                      href="mailto:info@axaconsult.se"
+                      className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+                    >
+                      info@axaconsult.se
+                    </a>
+                  </p>
 
-          <p>
-            <span className="font-semibold text-white">Plats:</span>{" "}
-            Uppsala & Falun
-          </p>
-        </div>
-      </div>
+                  <p>
+                    <span className="font-semibold text-white">Plats:</span>{" "}
+                    Uppsala & Falun
+                  </p>
+                </div>
+              </div>
 
-      <Contactform />
-    </div>
-  </div>
-</section>
+              <ContactForm />
+            </div>
+          </div>
+        </section>
 
         <Footer />
       </main>
