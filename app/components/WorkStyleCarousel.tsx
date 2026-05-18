@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Slide = {
   title: string;
@@ -33,8 +33,12 @@ const slides: Slide[] = [
 const AUTOPLAY_MS = 7000;
 
 export default function WorkStyleCarousel() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const cardWidths = useMemo(
     () => ({
@@ -59,36 +63,59 @@ export default function WorkStyleCarousel() {
     };
 
     updateCardWidth();
-
     window.addEventListener("resize", updateCardWidth);
 
     return () => window.removeEventListener("resize", updateCardWidth);
   }, [cardWidths]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mediaQuery.matches);
+
+    const handleChange = () => setReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion || !isVisible || hasInteracted) return;
+
+    const timer = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, AUTOPLAY_MS);
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => window.clearInterval(timer);
+  }, [reducedMotion, isVisible, hasInteracted]);
 
   function goPrev() {
     setHasInteracted(true);
-
-    setActiveIndex((prev) =>
-      prev === 0 ? slides.length - 1 : prev - 1
-    );
+    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   }
 
   function goNext() {
     setHasInteracted(true);
-
     setActiveIndex((prev) => (prev + 1) % slides.length);
   }
 
   return (
     <section
+      ref={sectionRef}
       id="sa-jobbar-vi"
       className="overflow-hidden bg-[linear-gradient(180deg,#f7f4ee_0%,#ffffff_100%)] py-16 md:py-20 lg:py-24"
     >
@@ -120,7 +147,7 @@ export default function WorkStyleCarousel() {
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={goPrev}
-                aria-label="Previous slide"
+                aria-label="Föregående slide"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
               >
                 ←
@@ -130,7 +157,7 @@ export default function WorkStyleCarousel() {
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={goNext}
-                aria-label="Next slide"
+                aria-label="Nästa slide"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/80"
               >
                 →
@@ -142,91 +169,95 @@ export default function WorkStyleCarousel() {
             <div
               className="flex gap-4 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-6"
               style={{
-                transform: `translate3d(-${
-                  activeIndex * (cardWidth + 24)
-                }px, 0, 0)`,
+                transform: `translate3d(-${activeIndex * (cardWidth + 24)}px, 0, 0)`,
               }}
             >
-              {slides.map((slide, index) => (
-                <div
-                  key={`${slide.title}-${index}`}
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label={`${index + 1} av ${slides.length}`}
-                  className="shrink-0"
-                  style={{ width: `${cardWidth}px` }}
-                >
-                  <div className="grid min-h-[320px] grid-cols-1 gap-5 rounded-[24px] bg-white p-4 text-black shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-5 lg:min-h-[390px] lg:rounded-[32px] lg:p-6 xl:grid-cols-[0.82fr_1.18fr] xl:items-stretch">
-                    <div className="order-2 flex flex-col xl:order-1">
-                      <h3 className="mb-4 max-w-[14ch] text-[22px] font-semibold leading-[1.12] tracking-[-0.03em] text-[#111827] md:text-[26px] lg:text-[32px]">
-                        {slide.title}
-                      </h3>
+              {slides.map((slide, index) => {
+                const isActive = activeIndex === index;
+                const shouldLoadVideo = isActive && isVisible && !reducedMotion;
 
-                      <p className="mb-4 max-w-md text-[15px] leading-[1.75] text-[#5f6b7b] md:text-[16px]">
-                        {slide.text}
-                      </p>
+                return (
+                  <div
+                    key={slide.title}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${index + 1} av ${slides.length}`}
+                    className="shrink-0"
+                    style={{ width: `${cardWidth}px` }}
+                  >
+                    <div className="grid min-h-[320px] grid-cols-1 gap-5 rounded-[24px] bg-white p-4 text-black shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-5 lg:min-h-[390px] lg:rounded-[32px] lg:p-6 xl:grid-cols-[0.82fr_1.18fr] xl:items-stretch">
+                      <div className="order-2 flex flex-col xl:order-1">
+                        <h3 className="mb-4 max-w-[14ch] text-[22px] font-semibold leading-[1.12] tracking-[-0.03em] text-[#111827] md:text-[26px] lg:text-[32px]">
+                          {slide.title}
+                        </h3>
 
-                      <div className="mt-auto flex gap-2">
-                        {slides.map((_, dotIndex) => (
+                        <p className="mb-4 max-w-md text-[15px] leading-[1.75] text-[#5f6b7b] md:text-[16px]">
+                          {slide.text}
+                        </p>
+
+                        <div className="mt-auto flex gap-2">
+                          {slides.map((_, dotIndex) => (
+                            <button
+                              key={dotIndex}
+                              type="button"
+                              onMouseDown={(e) => e.preventDefault()}
+                              onClick={() => {
+                                setHasInteracted(true);
+                                setActiveIndex(dotIndex);
+                              }}
+                              aria-label={`Gå till slide ${dotIndex + 1}`}
+                              aria-pressed={activeIndex === dotIndex}
+                              className="flex h-11 w-11 items-center justify-center rounded-full"
+                            >
+                              <span
+                                className={`h-2.5 rounded-full transition-all ${
+                                  activeIndex === dotIndex
+                                    ? "w-8 bg-[#F5B74E]"
+                                    : "w-2.5 bg-[#d7cdb8]"
+                                }`}
+                              />
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="mt-6 flex gap-2 md:hidden">
                           <button
-  key={dotIndex}
-  type="button"
-  onMouseDown={(e) => e.preventDefault()}
-  onClick={() => {
-    setHasInteracted(true);
-    setActiveIndex(dotIndex);
-  }}
-  aria-label={`Gå till slide ${dotIndex + 1}`}
-  aria-pressed={activeIndex === dotIndex}
-  className="flex h-11 w-11 items-center justify-center rounded-full"
->
-  <span
-    className={`h-2.5 rounded-full transition-all ${
-      activeIndex === dotIndex
-        ? "w-8 bg-[#F5B74E]"
-        : "w-2.5 bg-[#d7cdb8]"
-    }`}
-  />
-</button>
-                        ))}
+                            type="button"
+                            onMouseDown={(e) => e.preventDefault()}
+                            onClick={goPrev}
+                            aria-label="Föregående slide"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#f7f4ee] text-black transition hover:bg-[#efe6d6]"
+                          >
+                            ←
+                          </button>
+
+                          <button
+                            type="button"
+                            onMouseDown={(e) => e.preventDefault()}
+                            onClick={goNext}
+                            aria-label="Nästa slide"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#f7f4ee] text-black transition hover:bg-[#efe6d6]"
+                          >
+                            →
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="mt-6 flex gap-2 md:hidden">
-                        <button
-                          type="button"
-                          onMouseDown={(e) => e.preventDefault()}
-                          onClick={goPrev}
-                          aria-label="Previous slide"
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#f7f4ee] text-black transition hover:bg-[#efe6d6]"
-                        >
-                          ←
-                        </button>
-
-                        <button
-                          type="button"
-                          onMouseDown={(e) => e.preventDefault()}
-                          onClick={goNext}
-                          aria-label="Next slide"
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#f7f4ee] text-black transition hover:bg-[#efe6d6]"
-                        >
-                          →
-                        </button>
-                      </div>
+                      <video
+                        key={`${slide.videoSrc}-${isActive ? "active" : "inactive"}`}
+                        className="order-1 aspect-[16/10] w-full rounded-[20px] object-cover xl:order-2 lg:rounded-[24px]"
+                        src={shouldLoadVideo ? slide.videoSrc : undefined}
+                        poster={slide.poster}
+                        muted
+                        loop
+                        playsInline
+                        autoPlay={shouldLoadVideo}
+                        preload="none"
+                      />
                     </div>
-
-                    <video
-  key={`${slide.videoSrc}-${activeIndex === index ? "active" : "inactive"}-${hasInteracted ? "manual" : "auto"}-${index}`}
-  className="order-1 aspect-[16/10] w-full rounded-[20px] object-cover xl:order-2 lg:rounded-[24px]"
-  src={activeIndex === index ? slide.videoSrc : undefined}
-  poster={slide.poster}
-  muted
-  playsInline
-  autoPlay={activeIndex === index}
-  preload="none"
-/>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
