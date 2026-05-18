@@ -215,11 +215,11 @@ export default function WorkStyleCarousel() {
                     </div>
 
                     <video
+  key={`${slide.videoSrc}-${activeIndex === index ? "active" : "inactive"}-${hasInteracted ? "manual" : "auto"}-${index}`}
   className="order-1 aspect-[16/10] w-full rounded-[20px] object-cover xl:order-2 lg:rounded-[24px]"
   src={activeIndex === index ? slide.videoSrc : undefined}
   poster={slide.poster}
   muted
-  loop
   playsInline
   autoPlay={activeIndex === index}
   preload="none"
