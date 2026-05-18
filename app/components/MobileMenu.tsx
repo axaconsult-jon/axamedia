@@ -38,7 +38,7 @@ export default function MobileMenu() {
         aria-controls="mobile-menu"
         aria-label={menuOpen ? "Stäng meny" : "Öppna meny"}
         onClick={() => setMenuOpen(!menuOpen)}
-        className="absolute right-3 top-4 z-[200] flex h-14 w-14 items-center justify-center text-[40px] leading-none text-white transition hover:text-[#F5B74E] focus:outline-none md:hidden"
+        className="absolute right-3 top-2 z-[200] flex h-14 w-14 items-center justify-center text-[40px] leading-none text-white transition hover:text-[#F5B74E] focus:outline-none md:hidden"
 
       >
         <span

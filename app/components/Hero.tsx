@@ -21,7 +21,7 @@ const heroItems = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#08121d] px-6 pb-24 pt-[100px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+    <section className="relative overflow-hidden bg-[#08121d] px-6 pb-24 pt-[120px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
 
@@ -55,7 +55,8 @@ export default function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="/boka-mote"
-              className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#101923] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#24364a] ${focusRing}`}
+              className={`inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#fff7ea] ${focusRing}`}
+
             >
               Boka ett första samtal
             </a>
