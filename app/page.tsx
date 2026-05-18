@@ -110,7 +110,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <WorkStyleCarousel />
+        {/* <WorkStyleCarousel /> */}
 
         <section
           id="services"
