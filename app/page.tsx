@@ -2,7 +2,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import ContactForm from "./components/ContactForm";
-import WorkStyleCarousel from "./components/WorkStyleCarousel";
+import dynamic from "next/dynamic";
+const WorkStyleCarousel = dynamic(() => import("./components/WorkStyleCarousel"), {
+  ssr: false,
+});
 import MobileMenu from "./components/MobileMenu";
 
 const faqItems = [
@@ -82,7 +85,6 @@ export default function HomePage() {
         </div>
 
         <Header variant="home" />
-        <MobileMenu />
         <Hero />
 
         <section className="bg-white px-6 py-20 md:py-28">
@@ -110,7 +112,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* <WorkStyleCarousel /> */}
+        {<WorkStyleCarousel /> }
 
         <section
           id="services"
