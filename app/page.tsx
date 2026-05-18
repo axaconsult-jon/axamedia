@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Contactform from "./components/contactform";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import WorkStyleCarousel from "./components/WorkStyleCarousel";
@@ -659,196 +660,60 @@ setTimeout(() => {
           </div>
         </section>
 
-        {/* CONTACT */}
-        <section
-          id="contact"
-          className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
+      {/* CONTACT */}
+<section
+  id="contact"
+  className="relative overflow-hidden bg-[linear-gradient(135deg,#13202c_0%,#1b2c3d_55%,#29405c_100%)] text-white"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,78,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_30%)]" />
 
-          <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
-                  Kontakt
-                </p>
+  <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f0d9ad]">
+          Kontakt
+        </p>
 
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Låter det här som något för er?
-                </h2>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Låter det här som något för er?
+        </h2>
 
-                <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
-                  Hör av dig så pratar vi. Bara ett samtal om vart ni står och vad ni behöver.
-                </p>
+        <p className="mt-4 max-w-xl text-lg leading-8 text-slate-200">
+          Hör av dig så pratar vi. Bara ett samtal om vart ni står och vad ni behöver.
+        </p>
 
-                <div className="mt-8 space-y-3 text-slate-200">
-                  <p>
-                    <span className="font-semibold text-white">Telefon:</span>{" "}
-                    <a
-                      href="tel:+46760353560"
-                      onClick={() =>
-                        trackEvent("click_phone", {
-                          contact_type: "phone",
-                          contact_value: "+46760353560",
-                        })
-                      }
-                      className="underline underline-offset-4 transition hover:text-[#F5B74E]"
-                    >
-                      +46 (0)760 35 35 60
-                    </a>
-                  </p>
+        <div className="mt-8 space-y-3 text-slate-200">
+          <p>
+            <span className="font-semibold text-white">Telefon:</span>{" "}
+            <a
+              href="tel:+46760353560"
+              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+            >
+              +46 (0)760 35 35 60
+            </a>
+          </p>
 
-                  <p>
-                    <span className="font-semibold text-white">E-post:</span>{" "}
-                    <a
-                      href="mailto:info@axaconsult.se"
-                      onClick={() =>
-                        trackEvent("click_email", {
-                          contact_type: "email",
-                          contact_value: "info@axaconsult.se",
-                        })
-                      }
-                      className="underline underline-offset-4 transition hover:text-[#F5B74E]"
-                    >
-                      info@axaconsult.se
-                    </a>
-                  </p>
+          <p>
+            <span className="font-semibold text-white">E-post:</span>{" "}
+            <a
+              href="mailto:info@axaconsult.se"
+              className="underline underline-offset-4 transition hover:text-[#F5B74E]"
+            >
+              info@axaconsult.se
+            </a>
+          </p>
 
-                  <p>
-                    <span className="font-semibold text-white">Plats:</span>{" "}
-                    Uppsala & Falun
-                  </p>
-                </div>
-              </div>
+          <p>
+            <span className="font-semibold text-white">Plats:</span>{" "}
+            Uppsala & Falun
+          </p>
+        </div>
+      </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.08] p-6 shadow-2xl shadow-black/15 backdrop-blur-sm">
-                <div aria-live="polite" aria-atomic="true">
-                  {!isSuccess ? (
-                    <form onSubmit={handleSubmit} noValidate className="grid gap-4">
-                      {submitError && (
-                        <div
-                          role="alert"
-                          className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800"
-                        >
-                          {submitError}
-                        </div>
-                      )}
-
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="mb-2 block text-sm font-medium text-white/80"
-                        >
-                          Namn
-                        </label>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                          placeholder="Ditt namn"
-                        />
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="mb-2 block text-sm font-medium text-white/80"
-                        >
-                          E-post
-                        </label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                          placeholder="din@epost.se"
-                        />
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="mb-2 block text-sm font-medium text-white/80"
-                        >
-                          Meddelande
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          rows={5}
-                          required
-                          className="w-full rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#F5B74E]"
-                          placeholder="Berätta kort vad du vill ha hjälp med"
-                        />
-                      </div>
-
-                      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                        <div className="flex items-start gap-3">
-                          <input
-                            id="privacy"
-                            name="privacy"
-                            type="checkbox"
-                            checked={acceptedPrivacy}
-                            onChange={(e) => {
-                              setAcceptedPrivacy(e.target.checked);
-                              if (e.target.checked) setSubmitError("");
-                            }}
-                            className="mt-1 h-4 w-4 rounded border-white/20 bg-white/[0.06] accent-[#F5B74E]"
-                          />
-                          <label htmlFor="privacy" className="text-sm leading-6 text-white/75">
-                            Jag godkänner att AXA Consult behandlar mina uppgifter enligt{" "}
-                            <a
-                              href="/integritetspolicy"
-                              className="font-medium text-[#F5B74E] underline underline-offset-4 transition hover:text-white"
-                            >
-                              integritetspolicyn
-                            </a>
-                            .
-                          </label>
-                        </div>
-                      </div>
-
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        aria-busy={isSubmitting}
-                        className="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-medium text-[#10161f] transition hover:bg-[#f8f3ea] disabled:cursor-not-allowed disabled:opacity-70"
-                      >
-                        {isSubmitting ? "Skickar..." : "Skicka förfrågan"}
-                      </button>
-                    </form>
-                  ) : (
-                    <div className="rounded-[22px] border border-white/10 bg-white/[0.06] p-6 text-white">
-                      <p className="text-[11px] uppercase tracking-[0.2em] text-[#F5B74E]">
-                        Tack
-                      </p>
-                      <h3
-                        ref={successRef}
-                        tabIndex={-1}
-                        className="mt-3 text-[24px] font-medium focus:outline-none"
-                      >
-                        Din förfrågan är skickad.
-                      </h3>
-                      <p className="mt-4 text-white/75">
-                        Jag återkommer så snart jag kan.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setIsSuccess(false)}
-                        className="mt-6 rounded-full border border-white/20 px-6 py-3 text-white transition hover:bg-white/10"
-                      >
-                        Skicka igen
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <Contactform />
+    </div>
+  </div>
+</section>
 
         <Footer />
       </main>
