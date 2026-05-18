@@ -21,9 +21,11 @@ const heroItems = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#08121d] px-6 pb-24 pt-[40px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
+    <section className="relative overflow-hidden bg-[#08121d] px-6 pb-24 pt-[100px] md:px-10 md:pb-32 md:pt-[205px] lg:px-16 lg:pb-36 lg:pt-[235px]">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,#07111c_0%,#0a1724_38%,#102238_72%,#142b44_100%)]" />
+
+        {/* <div className="hero-wave absolute inset-x-0 bottom-0 hidden h-[42%] md:block" /> */}
 
         <div className="absolute right-[6%] top-[22%] hidden h-[420px] w-[420px] rounded-full bg-[#F5B74E]/20 blur-[90px] md:block" />
         <div className="absolute left-[2%] bottom-[8%] hidden h-[360px] w-[360px] rounded-full bg-[#8fb3da]/18 blur-[80px] md:block" />
