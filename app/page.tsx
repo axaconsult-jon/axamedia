@@ -1,8 +1,9 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import WorkStyleCarousel from "./components/WorkStyleCarousel";
 import ContactForm from "./components/ContactForm";
+import WorkStyleCarousel from "./components/WorkStyleCarousel";
+
 import MobileMenu from "./components/MobileMenu";
 
 const faqItems = [
@@ -75,7 +76,7 @@ export default function HomePage() {
       >
         <div className="fixed inset-x-0 top-0 z-[120] h-[10px]">
           <img
-            src="/line-axa.png"
+            src="/line-axa.webp"
             alt=""
             className="h-full w-full object-cover object-center"
           />
@@ -109,7 +110,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {<WorkStyleCarousel /> }
+        <WorkStyleCarousel /> 
 
         <section
           id="services"
